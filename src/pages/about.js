@@ -17,26 +17,30 @@ const HeaderTitle = styled.h1`
 font-size: 4rem;
 color: #111111;
 a {
-  padding: 0 .2em;
+  padding: 0 .4em;
+  margin: 0 .4em;
   cursor: pointer;
   text-decoration: none;
-  color: #111111;
+  color: #555555;
 }
 
 a:hover {
-  background-color: #b2c5a5;
-  border-radius: 6px;
+  color: #111111;
 }
 `
 
 const SubheaderContainer = styled.div`
 display: flex;
+flex-direction: column;
 a {
   padding: 0 .4em;
   margin: 0 .4em;
   cursor: pointer;
   text-decoration: none;
   color: #111111;
+}
+p {
+  text-align: center;
 }
 
 a:hover {
@@ -49,12 +53,13 @@ export default () => {
   const { title } = useSiteMetadata();
   return (
   <Layout>
-    <SEO title='vnck | a collection of writings and projects'/>
-    <HeaderTitle><Link to={'about'}>{title}</Link></HeaderTitle>
+    <SEO title='About'/>
+    <HeaderTitle><Link to={'/'}>{title}</Link></HeaderTitle>
     <SubheaderContainer>
-      <Link to={'journal'}>journal</Link>
-      <span>/</span>
-      <Link to={'projects'}>projects</Link>
+      <p>Ivan Chuang.</p>
+      <p>🇸🇬</p>
+      <p>Master's Candidate; Urban Science, Planning & Policy @ SUTD.</p>
+      <p>Thinking about the data/tech-mediated city.</p>
     </SubheaderContainer>
   </Layout>
   );

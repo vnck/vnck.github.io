@@ -3,20 +3,21 @@ import Typography from "typography"
 const typography = new Typography({
   baseFontSize: "18px",
   headerFontFamily: [
-    "Roboto",
+    "Work Sans",
     "Helvetica Neue",
     "Helvetica",
     "Arial",
     "sans-serif",
   ],
   bodyFontFamily: ["Roboto Slab", "serif"],
-  headerWeight: 100,
   bodyWeight: 400,
+  headerWeight: 200,
   googleFonts: [
     {
-      name: 'Roboto',
+      name: 'Work Sans',
       styles: [
-        '100',
+        '200',
+        '300',
       ],
     },
     {
