@@ -1,0 +1,16 @@
+---
+layout: page
+title: Writings
+permalink: /writings.html
+icon: 📝
+---
+{% for post in site.posts %}
+    {% assign reading_time = post.content | strip_html | strip_newlines | remove: " " | size | divided_by: 600 | plus: 1 %}
+    <div class="post-item">
+        <h4>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+        </h4>
+        <p class="caption">{{post.description}}</p>
+        <p class="caption">{{post.date | date_to_string}}&ensp;·&ensp;{{reading_time}} min</p>
+    </div>
+{% endfor %}

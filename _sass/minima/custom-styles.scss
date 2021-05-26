@@ -1,0 +1,34 @@
+// Placeholder to allow defining custom styles that override everything else.
+// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+
+.site-header {
+    font-family: 'Raleway', serif;
+}
+
+.site-footer {
+    font-family: 'Raleway', serif;
+}
+
+.caption {
+    font-size: $small-font-size;
+    font-family: 'Raleway', serif;
+    color: #888;
+}
+
+.post-item {
+    padding-bottom: $spacing-unit;
+
+    h4,p {
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        color: $text-color;
+    }
+
+    a:hover {
+        color: $link-base-color;
+        text-decoration: none;
+      }
+}

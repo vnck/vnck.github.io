@@ -1,0 +1,14 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+body {
+    font-family: 'Merriweather', serif;
+}
+
+.site-header {
+    font-family: 'Raleway', serif;
+}
+
+.site-footer {
+    font-family: 'Raleway', serif;
+}
