@@ -8,7 +8,7 @@
         <div class="social-links">
           {%- include social.html -%}
         </div>
-      {%- if site.author %}
+      <!-- {%- if site.author %}
         <ul class="contact-list">
           {% if site.author.name -%}
             <li class="p-name">{{ site.author.name | escape }}</li>
@@ -17,10 +17,10 @@
             <li><a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
           {%- endif %}
         </ul>
-      {%- endif %}
+      {%- endif %} -->
       </div>
       <div class="footer-col">
-        <p>{{ site.description | escape }}</p>
+        <p>{{ site.tagline | escape }}</p>
         <p class="caption">© Ivan Chuang 2021</p>
       </div>
     </div>
