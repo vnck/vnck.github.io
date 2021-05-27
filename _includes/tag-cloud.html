@@ -7,7 +7,7 @@
     {% assign sortedtemptags = temptags | split:' ' | sort | reverse %}
     {% for temptag in sortedtemptags %}
         {% assign tagitems = temptag | split: '#' %}
-        {% capture tagname %}{{ tagitems[1] }}{% endcapture %}
-        <a href="/tag/{{ tagname }}"><code class='tag'><nobr>{{ tagname }}</nobr></code></a>
+        {% capture tag %}{{ tagitems[1] }}{% endcapture %}
+        {% include tag.html %}
     {% endfor %}
 </div>

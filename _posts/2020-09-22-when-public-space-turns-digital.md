@@ -4,6 +4,7 @@ title: "When public space turns digital"
 date: 2020-09-22
 tags: codespace
 description: "A reflection on living digitally during a pandemic lockdown."
+permalink: /writings/public-space-digital
 ---
 
 When Circuit Breaker<sup>1</sup> was officially announced in Singapore, one of the first things I remember doing was to set up a Discord channel (affectionately called stay home party) for my friends and I.<sup>2</sup> This was done out of a need for a new space to gather and mingle. And as the campus and all public spaces were closing, we turned to a space we could all access from the (dis)comfort of our homes, a digital space.

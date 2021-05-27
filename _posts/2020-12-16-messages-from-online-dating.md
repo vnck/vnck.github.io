@@ -4,6 +4,7 @@ title: "Messages from online dating"
 date: 2020-12-16
 tags: codespace
 description: "Field notes from the dating site."
+permalink: /writings/messages-online-dating
 ---
 
 A few of my friends have been joining the online dating scene recently and so I decided it would be fun to get on the scene and sojourn the space. This is the post about that short trip.

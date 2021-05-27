@@ -4,6 +4,7 @@ date: 2020-07-04
 layout: post
 description: "All the books I managed to read in 2020."
 tags: reading
+permalink: /writings/2020-reading-record
 ---
 
 Here are all the books I managed to read in 2020, a whopping  **48** books. (My greatest achievement from the pandemic.)
