@@ -3,6 +3,7 @@ title: 2020 Reading Record
 date: 2020-07-04
 layout: post
 description: "All the books I managed to read in 2020."
+tags: reading
 ---
 
 Here are all the books I managed to read in 2020, a whopping  **48** books. (My greatest achievement from the pandemic.)

@@ -2,7 +2,7 @@
 layout: post
 title: "What I think about when I watch surveillance cameras"
 date: 2021-04-28
-tags: code/space
+tags: codespace
 description: "Or, what I think about when surveillance cameras watch me."
 ---
 

@@ -3,6 +3,7 @@ layout: page
 title: About
 headerless: true
 permalink: /about/
+nav: true
 ---
 
 # 👋🏼 Hi!
