@@ -18,6 +18,7 @@
 .caption-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     p {
         font-size: $small-font-size;
         font-family: 'Raleway', serif;
