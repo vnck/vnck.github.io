@@ -129,6 +129,9 @@ summary {
         display: none;
         content: "";
     }
+    &::-webkit-details-marker {
+        display: none;
+    }
 }
 
 details[open] {
@@ -143,11 +146,14 @@ details[open] {
             display: none;
             content: "";
         }
+        &::-webkit-details-marker {
+            display: none;
+        }
+        list-style-type: none;
     }
     p {
         border-left: 4px solid mistyrose;
         margin-left: 1.8em;
         padding-left: 1em;
     }
-    list-style-type: none;
 }
