@@ -20,7 +20,10 @@ If you are familiar with pre-trained models, you will know that what commonly fo
 
 Here's an exciting news though, models with zero-shot capabilities are creating a whole new ball game of projects that are no longer limited by data scarcity.
 
-**Zero-shot** refers the capability of machine learning models to perform unseen tasks, in other words, to do things the model was not explicitly trained to do. A model's zero-shot capability is therefore also related to a model's robustness and ability to generalise.
+<details>
+	<summary>What is zero-shot?</summary>
+	<p><b>Zero-shot</b> refers the capability of machine learning models to perform unseen tasks, in other words, to do things the model was not explicitly trained to do. A model's zero-shot capability is therefore also related to a model's robustness and ability to generalise.</p>
+</details>
 
 #### OpenAI's CLIP
 

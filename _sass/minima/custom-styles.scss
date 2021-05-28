@@ -107,3 +107,38 @@
         text-decoration: none;
       }
 }
+
+summary {
+    &:hover {
+        cursor: pointer;
+    }
+    display: flex;
+    align-items: center;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    background-color: mistyrose;
+    border-radius: 4px;
+    list-style-type: none;
+    font-weight: 700;
+    &::before {
+        content: "👉";
+        font-size: 28px;
+        padding: 0 .4em 0 .4em;
+    }
+}
+
+details[open] {
+    summary{
+        &::before {
+            content: "👇";
+            font-size: 28px;
+            padding: 0 .4em 0 .4em;
+        }
+        background-color: transparent;
+    }
+    p {
+        border-left: 4px solid mistyrose;
+        margin-left: 1.8em;
+        padding-left: 1em;
+    }
+}
