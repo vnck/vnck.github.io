@@ -1,0 +1,13 @@
+---
+layout: page
+title: Projects
+permalink: /projects
+icon: 💡
+nav: true
+---
+
+{% for post in site.posts %}
+    {% if post.tag contains 'projects' %}
+        {% include post-entry.html %}
+    {% endif %}
+{% endfor %}

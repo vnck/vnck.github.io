@@ -8,6 +8,8 @@ nav: true
 
 # 👋🏼 Hi!
 
-I'm Ivan Chuang. I mostly write about experiences within technological and/or urban systems. I originally wanted to be a frontend engineer, but eventually specialised in data science, and now I also dabble in urban studies and social science. In other words, I care about design systems. 
+I'm Ivan Chuang. I write mostly about experiences within technological and/or urban systems. I originally studied to be a frontend engineer, but ended up enjoying data science wayyy too much, and now I study cities.
 
-I'm completing a M.Sc. in Urban Science, Planning and Policy @ SUTD in August this year, and am currently 🔍 [looking for roles](https://www.linkedin.com/in/vnck/) in data science or urban research!
+I'm completing a M.Sc. in Urban Science, Planning and Policy @ SUTD in August this year, and am currently 🔍 [looking for roles](https://www.linkedin.com/in/vnck/) in data science and urban research!
+
+Because of the pandemic, I've been [reading a lot](https://www.notion.so/d026112598e84b658e777b832cdcae50) 🙇🏻‍♂️

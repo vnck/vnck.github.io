@@ -10,6 +10,6 @@ layout: home
 
 I write mostly about experiences within technological and/or urban systems. I will be completing my M.Sc. in Urban Science, Planning and Policy @ SUTD in August this year. 
 
-I'm currently 🔍 [looking for roles](https://www.linkedin.com/in/vnck/) in data science or urban research!
+I'm currently 🔍 [looking for roles](https://www.linkedin.com/in/vnck/) in data science and urban research!
 
 ---

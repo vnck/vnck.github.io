@@ -3,8 +3,12 @@ layout: default
 ---
 
 <article class="post">
-    {% assign post_count = site.tags[page.tag] | size %}
-
+    {% if page.tag != "all"%}
+        {% assign post_count = site.tags[page.tag] | size %}
+    {% else %}
+        {% assign post_count = site.posts | size %}
+    {% endif %}
+    
     <header class="post-header">
       {% if page.headerless %}
       {% else %}
@@ -13,11 +17,18 @@ layout: default
     </header>
 
     {% include tag-cloud.html %}
-  
+    
+    
     <div class="post-content">
-        {% for post in site.tags[page.tag] %}
-            {% include post-entry.html %}
-        {% endfor %}
+        {% if page.tag == "all"%}
+            {% for post in site.posts %}
+                {% include post-entry.html %}
+            {% endfor %}
+        {% else %}
+            {% for post in site.tags[page.tag] %}
+                {% include post-entry.html %}
+            {% endfor %}
+        {% endif %}
     </div>
   
 </article>

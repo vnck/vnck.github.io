@@ -239,8 +239,8 @@
     @include relative-font-size(1.0625);
   }
 
-  li {
-    padding-bottom: 1em;
+  li:not(:last-child) {
+    margin-bottom: $spacing-unit/1.5;
   }
 }
 

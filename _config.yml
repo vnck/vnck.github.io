@@ -30,7 +30,7 @@ author:
 
 twitter:
   username: vvvnck
-  card: summary
+  card: summary_large_image
 
 minima:
   social_links:
@@ -45,6 +45,7 @@ google_analytics: G-2Y729X1TE9
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 defaults:
   - 

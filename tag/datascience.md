@@ -1,5 +1,5 @@
 ---
 layout: tagpage
-tag: data-science
+tag: datascience
 icon: 🔖
 ---
