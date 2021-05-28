@@ -118,7 +118,7 @@ summary {
     margin-bottom: .5em;
     background-color: mistyrose;
     border-radius: 4px;
-    list-style-type: none;
+    list-style: none;
     font-weight: 700;
     &::before {
         content: "👉";
@@ -149,7 +149,7 @@ details[open] {
         &::-webkit-details-marker {
             display: none;
         }
-        list-style-type: none;
+        list-style: none;
     }
     p {
         border-left: 4px solid mistyrose;
