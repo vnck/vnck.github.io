@@ -1,6 +1,14 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 
+.home {
+    @include media-query($on-palm) {
+        h1 {
+            font-size: 24px;
+        }
+    }
+}
+
 .site-header {
     font-family: 'Raleway', serif;
 }
@@ -13,6 +21,9 @@
     font-size: $small-font-size;
     font-family: 'Raleway', serif;
     color: #888;
+    @include media-query($on-palm) {
+        font-size: 12px;
+    }
 }
 
 .caption-container {
@@ -23,6 +34,9 @@
         font-size: $small-font-size;
         font-family: 'Raleway', serif;
         color: #888;
+        @include media-query($on-palm) {
+            font-size: 12px;
+        }
     }
 }
 
@@ -51,6 +65,9 @@
         text-decoration: underline;
     }
     margin-bottom: 3em;
+    @include media-query($on-palm) {
+        font-size: 12px;
+    }
 }
 
 .tag {

@@ -14,6 +14,7 @@
 
   @include media-query($on-palm) {
     width: 80%;
+    font-size: 14px;
   }
 }
 
@@ -73,6 +74,9 @@
   width: 58%;
   @include media-query($on-palm) {
     width: 80%;
+    p {
+      font-size: 12px;
+    }
   }
 }
 
@@ -89,6 +93,9 @@
 .social-media-list {
   list-style: none;
   margin-left: 0;
+  @include media-query($on-palm) {
+    font-size: 12px;
+  }
 }
 
 .footer-col-wrapper,
@@ -156,6 +163,7 @@
   width: 58%;
   @include media-query($on-palm) {
     width: 80%;
+    font-size: 14px;
   }
 }
 
@@ -179,6 +187,11 @@
 .post-meta {
   font-size: $small-font-size;
   color: $brand-color;
+  @include media-query($on-palm) {
+    p {
+      font-size: 12px !important;
+    }
+  }
 }
 
 .post-link {
@@ -197,7 +210,7 @@
 
 .post-title,
 .post-content h1 {
-  @include relative-font-size(2);
+  @include relative-font-size(1.5);
   letter-spacing: -1px;
   line-height: 1.15;
 
@@ -213,7 +226,7 @@
   h4, h5, h6 { margin-top: $spacing-unit }
 
   h2 {
-    @include relative-font-size(1.5);
+    @include relative-font-size(1.25);
 
     @media screen and (min-width: $on-large) {
       @include relative-font-size(1.5);
@@ -221,7 +234,7 @@
   }
 
   h3 {
-    @include relative-font-size(1.25);
+    @include relative-font-size(1.2);
 
     @media screen and (min-width: $on-large) {
       @include relative-font-size(1.25);
@@ -229,7 +242,7 @@
   }
 
   h4 {
-    @include relative-font-size(1.2);
+    @include relative-font-size(1.125);
   }
 
   h5 {
