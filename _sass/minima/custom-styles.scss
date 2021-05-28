@@ -125,6 +125,10 @@ summary {
         font-size: 28px;
         padding: 0 .4em 0 .4em;
     }
+    &::marker {
+        display: none;
+        content: "";
+    }
 }
 
 details[open] {
@@ -135,6 +139,10 @@ details[open] {
             padding: 0 .4em 0 .4em;
         }
         background-color: transparent;
+        &::marker {
+            display: none;
+            content: "";
+        }
     }
     p {
         border-left: 4px solid mistyrose;
