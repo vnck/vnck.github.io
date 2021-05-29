@@ -2,7 +2,7 @@
 layout: post
 title: "An Exploratory Study on Digital Sharing Communities"
 date: 2021-04-29
-tag: [datascience, socialscience, dataviz, projects]
+tag: [datascience, socialscience, projects]
 description: "Applying methods from computational social science to study HDB towns."
 permalink: /writings/studying-online-communities
 reading_time: 20
