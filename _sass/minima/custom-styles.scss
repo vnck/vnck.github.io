@@ -112,9 +112,8 @@ summary {
     &:hover {
         cursor: pointer;
     }
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
+    line-height: 1em;
+    padding: .8em 0;
     margin-top: .5em;
     margin-bottom: .5em;
     background-color: mistyrose;
@@ -124,7 +123,7 @@ summary {
     &::before {
         content: "👉";
         font-size: 28px;
-        padding: 0 .4em 0 .4em;
+        padding: 0 .6rem;
     }
     &::marker {
         display: none;
