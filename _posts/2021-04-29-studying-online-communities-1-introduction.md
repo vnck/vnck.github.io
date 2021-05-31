@@ -12,7 +12,9 @@ reading_time: 20
 
 During my spring semester, I had the opportunity to undertake a research study with the [Singapore Housing and Development Board (HDB)](https://en.wikipedia.org/wiki/Housing_and_Development_Board) to look into online sharing communities within HDB towns. Specifically, we were interested in (1) describing characteristics and (2) uncovering motivations and behaviours behind members of these online communities.
 <details>
-	<summary>What is an online sharing community?</summary>
+	<summary>
+		<h4>What is an online sharing community?</h4>
+	</summary>
 	<p>We defined online sharing communities as communities that exist on online social media platforms, but also associated with a place (region, town, block), that not only share physical resources but also include knowledge sharing and social sharing.
 	<br><br>
 	For example, BTO chat groups and Residential Facebook groups, while counterexamples would be online dating platforms and discord gaming communities.</p>

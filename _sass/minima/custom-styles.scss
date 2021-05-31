@@ -10,11 +10,11 @@
 }
 
 .site-header {
-    font-family: 'Raleway', serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .site-footer {
-    font-family: 'Raleway', serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .caption {
@@ -22,7 +22,7 @@
     font-family: 'Raleway', serif;
     color: #888;
     @include media-query($on-palm) {
-        font-size: 12px;
+        font-size: $palm-font-size * .725;
     }
 }
 
@@ -35,7 +35,7 @@
         font-family: 'Raleway', serif;
         color: #888;
         @include media-query($on-palm) {
-            font-size: 12px;
+            font-size: $palm-font-size * .725;
         }
     }
 }
@@ -72,22 +72,23 @@
     }
     margin-bottom: 3em;
     @include media-query($on-palm) {
-        font-size: 12px;
+        font-size: $palm-font-size * .725;
     }
 }
 
 .tag {
-    color: #4682B4;
+    color: steelblue;
     background-color: #eee;
     &:hover {
-        color: #4682B4;
+        color: steelblue;
         text-decoration: underline;
     }
 }
 
 .tag-header {
-    color: #4682B4;
+    color: steelblue;
     background-color: #eee;
+    @include relative-font-size(1.4);
 }
 
 .post-meta {
@@ -95,7 +96,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     p {
-        font-size: $base-font-size;
+        font-size: $small-font-size;
         font-family: 'Raleway', serif;
         color: #888;
     }
@@ -110,59 +111,68 @@
 }
 
 summary {
-    &:hover {
-        cursor: pointer;
+    display: flex;
+    align-items: center;
+    &::before {
+        background: url("data:image/svg+xml, <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👉</text></svg>") center no-repeat;
+        display: inline-block;
+        content: " ";
+        width: 32px;
+        height: 32px;
+        margin-right: .5em;
     }
-    line-height: 1em;
-    padding: .8em 0;
-    margin-top: .5em;
-    margin-bottom: .5em;
     background-color: mistyrose;
     border-radius: 4px;
-    list-style: none;
-    font-weight: 700;
-    &::before {
-        content: "👉";
-        font-size: 28px;
-        padding: 0 .6rem;
+    cursor: pointer;
+    padding: .3em 1em;
+    h4 {
+        font-weight: 700;
+        font-size: $base-font-size !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        @include media-query($on-palm) {
+            font-size: $palm-font-size *.875 !important;
+        }
     }
-    &::marker {
+    &::marker, &::-webkit-details-marker {
         display: none;
         content: "";
     }
-    &::-webkit-details-marker {
-        display: none;
+    &:focus {
+        outline: 0;
     }
 }
 
 details[open] {
     summary{
-        &::before {
-            content: "👇";
-            font-size: 28px;
-            padding: 0 .4em 0 .4em;
-        }
-        background-color: transparent;
-        &::marker {
+        &::marker, &::-webkit-details-marker {
             display: none;
             content: "";
         }
-        &::-webkit-details-marker {
-            display: none;
+        display: flex;
+        align-items: center;
+        &::before {
+            background: url("data:image/svg+xml, <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👇</text></svg>") center no-repeat;
+            display: inline-block;
+            content: " ";
+            width: 32px;
+            height: 32px;
+            margin-right: .5em;
         }
-        list-style: none;
+        background-color: transparent;
     }
     p {
         border-left: 4px solid mistyrose;
-        margin-left: 1.8em;
+        margin-left: 1em;
         padding-left: 1em;
+        margin-top: 1em;
     }
 }
 
 blockquote {
     border-left: 4px solid mistyrose;
     p {
-        font-size: $base-font-size;
+        font-size: $base-font-size * .875;
         font-family: 'Raleway', sans-serif;
         color: $text-color;
         font-style: normal;
