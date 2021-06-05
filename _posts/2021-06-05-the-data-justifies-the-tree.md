@@ -5,6 +5,7 @@ date: 2021-06-05
 tag: [codespace]
 description: "If a tree falls, but is not captured in the data."
 permalink: /writings/the-data-justifies-the-tree
+image: ../assets/posts/2021-06-05-the-data-justifies-the-tree/explore-trees.png
 ---
 
 In 2019, NParks and GovTech released [trees.sg](http://trees.SG) is a public dataset of trees in Singapore. Everything you would think to know about a tree is in there—species, age, height, girth, even whether it’s flowering. 
