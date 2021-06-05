@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The data justifies the tree"
-date: 2021-06-01
+date: 2021-06-05
 tag: [codespace]
 description: "If a tree falls, but is not captured in the data."
 permalink: /writings/the-data-justifies-the-tree
