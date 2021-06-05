@@ -18,11 +18,11 @@
 }
 
 .caption {
-    font-size: $small-font-size;
+    font-size: $small-font-size * .825;
     font-family: 'Raleway', serif;
     color: #888;
     @include media-query($on-palm) {
-        font-size: $palm-font-size * .725;
+        font-size: $palm-font-size * .825;
     }
 }
 
@@ -31,13 +31,23 @@
     flex-direction: row;
     flex-wrap: wrap;
     p {
-        font-size: $small-font-size;
+        font-size: $small-font-size * .825;
         font-family: 'Raleway', serif;
         color: #888;
         @include media-query($on-palm) {
-            font-size: $palm-font-size * .725;
+            font-size: $palm-font-size * .825;
         }
     }
+}
+
+figcaption {
+    font-size: $small-font-size * .825;
+    font-family: 'Raleway', serif;
+    color: #888;
+}
+
+figure > img {
+    max-height: 400px;
 }
 
 .post-item {
@@ -59,7 +69,7 @@
 }
 
 .tag-cloud {
-    font-size: $small-font-size;
+    font-size: $small-font-size * .825;
     display: flex;
     flex-wrap: wrap;
     a:hover {
@@ -72,7 +82,7 @@
     }
     margin-bottom: 3em;
     @include media-query($on-palm) {
-        font-size: $palm-font-size * .725;
+        font-size: $palm-font-size * .825;
     }
 }
 
@@ -163,7 +173,7 @@ details[open] {
     }
     p {
         border-left: 4px solid mistyrose;
-        margin-left: 1em;
+        margin-left: 2em;
         padding-left: 1em;
         margin-top: 1em;
     }

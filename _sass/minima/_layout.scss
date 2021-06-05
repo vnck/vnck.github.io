@@ -38,7 +38,7 @@
 
 .site-nav {
   float: right;
-  font-size: $base-font-size * .875;
+  font-size: $small-font-size;
   .page-link {
     color: $text-color;
 
@@ -73,7 +73,7 @@
   padding: $spacing-unit 0;
   width: 58%;
   p,a {
-    font-size: $base-font-size * .725 !important;
+    font-size: $small-font-size * .825;
   }
   @include media-query($on-palm) {
     width: 80%;
