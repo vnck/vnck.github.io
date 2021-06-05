@@ -57,7 +57,7 @@ defaults:
   - scope:
       path: ""
     values:
-      image: "assets/banner-default.png"
+      image: /assets/banner-default.png
 
 # Exclude from processing.
 # The following items will not be processed, by default.
