@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Introduction to my Master's Thesis"
+title: "Introduction: Master's Thesis: Singapore AI Governance Concept Map"
 date: 2021-06-01
-tag: [thesis, AI]
-description: "An introduction to my graduate thesis looking at  Singapore's AI strategy."
+tag: [thesis, AI, projects]
+description: "An introduction to my graduate thesis looking at Singapore's AI strategy."
 permalink: /writings/a-conceptual-map-of-ai-in-sg
 ---
 

@@ -1,11 +1,10 @@
 ---
 layout: post
-title: "An Exploratory Study on Digital Sharing Communities"
+title: "Introduction: An Exploratory Study on Digital Sharing Communities"
 date: 2021-04-29
 tag: [datascience, socialscience, projects]
-description: "Applying methods from computational social science to study HDB towns."
+description: "Introductory post to applying methods from computational social science to study HDB towns."
 permalink: /writings/studying-online-communities
-reading_time: 20
 ---
 
 > This is an introductory post on my experience conducting a research study on online communities using computational social science methods. The full report can be accessed [here](https://vnck.xyz/digital-sharing-communities-study/).
