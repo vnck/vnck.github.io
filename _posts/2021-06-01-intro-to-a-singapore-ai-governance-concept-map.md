@@ -2,7 +2,7 @@
 layout: post
 title: "Introduction to my Master's Thesis"
 date: 2021-06-01
-tag: [thesis, AI, projects]
+tag: [thesis, AI]
 description: "An introduction to my graduate thesis looking at  Singapore's AI strategy."
 permalink: /writings/a-conceptual-map-of-ai-in-sg
 ---
