@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Thesis: A Conceptual Map of A.I. in the Singapore Smart City"
+title: "Introduction to my Master's Thesis"
 date: 2021-06-01
 tag: [thesis, AI, projects]
 description: "An introduction to my graduate thesis looking at  Singapore's AI strategy."
