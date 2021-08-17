@@ -1,5 +1,5 @@
 ---
 layout: tagpage
-tag: life
+tag: misc
 icon: 🔖
 ---
