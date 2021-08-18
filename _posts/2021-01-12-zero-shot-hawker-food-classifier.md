@@ -2,7 +2,7 @@
 layout: post
 title: "How to build a hawker food classifier without training data"
 date: 2021-01-12
-tag: [AI, projects]
+tag: [projects, AI]
 description: "And why you should not sleep on zero-shot models."
 permalink: /writings/zero-shot-hawker-food-classifier
 ---
