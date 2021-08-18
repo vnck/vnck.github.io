@@ -10,13 +10,13 @@ permalink: /writings/visualising-singapore-anti-vax-communities
 
 Even as Singapore climbs it way to be [the most vaccinated country](https://www.nytimes.com/interactive/2021/world/covid-vaccinations-tracker.html), a number of local anti-vax communities have emerged on messaging platform Telegram. These communities deserve our attention as they are a [concern to public health](https://www.channelnewsasia.com/commentary/covid-19-coronavirus-conspiracy-misinformation-fake-news-400276).
 
-Arguably, Telegram packs features that enable the spread of misinformation more effectively than other messaging platforms such as WhatsApp.
+Arguably, Telegram packs features that enable the spread of misinformation more effectively than other messaging platforms such as WhatsApp. Technology writer Venkat Ananth has a thread briefly exploring the reasons for this:
 
 <div class="twitter-tweet-container">
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🧵 WhatsApp as a propaganda distribution channel might be slowing down (as one pol functionary told me a majority of groups are muted by users) <br><br>Engagement with content is not as much in real-time as it used to be. Shares do happen. But that depends on when folks engage w/ it</p>&mdash; Venkat Ananth (@venkatananth) <a href="https://twitter.com/venkatananth/status/1357923318356037637?ref_src=twsrc%5Etfw">February 6, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-On the other hand, Telegram's features also makes it easier to study these communities. New users are not restricted access to old messages, meaning that the community's whole history is exposed to anyone. Telegram's desktop application even allows exporting chat history in machine-readable JSON format.
+On the flip side, Telegram's features also makes it easier to study these communities. New users are not restricted access to old messages, meaning that the community's whole history is exposed to anyone. Telegram's desktop application even allows exporting chat history in machine-readable JSON format.
 
 In this post, I'll explore how network visualisation can be used to understand anti-vax communities in Singapore. In particular, I'll look at three SG anti-vax communities that range in age and size.
 
