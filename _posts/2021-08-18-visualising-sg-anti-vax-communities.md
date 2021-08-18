@@ -58,42 +58,42 @@ The social networks of each of the communities are thus presented.
     <figcaption>Social network of community C</figcaption>
 </figure>
 
-The social network of each community is significantly smaller than the actual community as only actors that interact with each other are considered in the construction. That is, we filter out lurkers (also called isolates) within the communities.
+The social networks of each community are significantly smaller than the actual size of the community as only actors that interact with each other are considered in the construction. That is, lurkers (also called isolates) who do not interact with anyone within the communities have been filtered out.
 
-Within each network, a set of actors can be identified as more active in interacting with other members. Not only are they active in socialising with more diverse members, they also interact with each other more frequently, constituting a broadcast group (e.g. the green cluster in community A).
+Within each network, a set of actors can be identified as more active in interacting with other members. Not only are they active in socialising with a more diverse group of members, they also interact with each other more frequently, constituting a broadcast network (e.g. the green cluster in community A), from which most messages are distributed to the rest of the community.
 
-However, as the group grows in size, such as in community C, the number of active members grow and there are less strong ties within the community, active members interact with a diverse group instead of gathering into sub-communities. It becomes harder to point out individuals responsible for the spread of mis-information.
+However, as the group grows in size, such as in community C, the number of more-active-than-usual members grow and there are less strong ties present in the network, active members are found interacting across diverse groups within the broader network, instead of coalescing into distinct sub-communities. In such a community, it becomes harder to point out individuals responsible for the spread of mis-information.
 
 ## The Word Network of an Anti-Vax Community
 
-To get insight into the conversations that happen within a community, we can use a [word co-occurrence network](https://en.wikipedia.org/wiki/Co-occurrence_network) to visualise how words are used in relation to each other in the community. This allows us to identify key topics of conversation, revealing the diversity of topics within the community.
+Beyond the social structure of these communities, network visualisation can also provide insight into the conversations that happen within a community, we can use a [word co-occurrence network](https://en.wikipedia.org/wiki/Co-occurrence_network) to visualise how words are used in relation to each other in the community. This allows us to identify key topics of conversation, revealing the diversity of topics within the community.
 
-To improve the interpretability of the network, only the top 1000 most frequently occurring word was used in the construction of the network.
+To improve the interpretability of the network, only the top 1000 most frequently occurring word were used in the construction of these networks. The assumption is that the top occurring keywords correlates to the key topics of the community. To reduce the complexity of the network, words were [lemmatised](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html) using the [NLTK](https://www.nltk.org/) toolkit. [Stopwords](https://nlp.stanford.edu/IR-book/html/htmledition/dropping-common-terms-stop-words-1.html) were removed as well.
 
 <figure>
     <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_A.png"/>
     <figcaption>Word co-occurrence network of community A</figcaption>
 </figure>
 
-Within community A, there are 3 clusters, though no particular keyword was observed to anchor the conversation. The first cluster (green) pertains to medical information such as information on vaccines and the covid virus. The second cluster (pink) pertains to community actions, including advice, personal opinions, and requests. The third cluster (blue) pertains to news and media, including geopolitical topics.
+Within community A, 3 cluster can be observed, though it appears no particular keyword anchors the conversation of the community. The green cluster pertains to medical information such as information on vaccines and the covid virus. A pink cluster reveals community actions, including asking for advice, personal opinions, and informal requests. A third cluster in blue pertains to the news and media, a staple source of information for these communities.
 
 <figure>
     <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png"/>
     <figcaption>Word co-occurrence network of community B</figcaption>
 </figure>
 
-Community B exhibits more distinct clustering. The green cluster pertains to information on vaccines and the pandemic, such as death counts, vaccination reports, and case updates. The yellow cluster pertains to alternative medicine, including organic ingredients and home remedies. The pink cluster pertains to symptoms and negative reactions. It becomes clear that community B has a specific interest in alternative remedies and anxiety over the side-effects of the vaccine.
+Community B exhibits more visibly distinct clustering. A green cluster pertains to information on vaccines and the pandemic, such as death counts, vaccination reports, and case updates. The yellow cluster is particularly unique to this community, pertaining to alternative medicine and home remedies, evidenced by the names of organic ingredients and household chemicals. The pink cluster, on the other hand, relates to symptoms and negative reactions from vaccines. It becomes clear that community B has a specific interest in alternative remedies and distrust and anxiety over side-effects and potential harm from the vaccine.
 
 <figure>
     <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_C.png"/>
     <figcaption>Word co-occurrence network of community C</figcaption>
 </figure>
 
-Finally, in community C, the clusters are the least distinct, indicating a mixing of various topics in conversation. This is perhaps a consequence of the size of the community, which results in more diverse conversations. However, by looking at the words in the network, we can conclude that community C exhibits similar topic clusters as community A.
+Finally, in community C, clusters are the least distinct, indicating a mixing of various topics in conversation. This is perhaps a consequence of the size of the community, which results in more diverse conversations. However, an cursory look at the words that make up the network reveals that community C exhibits similar topic clusters as community A.
 
-Generally, within anti-vax communities in Singapore, members use reports on negative symptoms to view vaccines in negative light. Vaccines are often mentioned together with words such as toxic, risks, and experimental. How vaccines might negatively affect the body is a topic discussed in detail, with specific references to organs in the body such as the liver or heart, as well as detailed symptoms such as fever and stroke. Alternative treatments also appears as a topic—community B is distinct in its interest in home-based natural remedies. 
+Generally, within anti-vax communities in Singapore, members use reports on negative symptoms to view vaccines in negative light. Vaccines are often mentioned together with words such as toxic, risks, and experimental. How vaccines might negatively affect the body is a topic also discussed in detail, with specific references to organs in the body such as the liver or heart, as well as specific symptoms such as fever and stroke. In response, alternative treatments are frequently discussed, and community B is particularly unique in its focus on home-based natural remedies.
 
-Finally, we can observe evidence that these community channels are actively promoting and encouraging the spread of misinformation. These take the form of frequent requests for more information, as well as encouragement to share misinformation, specifically targeting friends and families.
+Finally, we can also observe evidence that these community channels are actively promoting and encouraging the spread of misinformation. These take the form of frequent requests for more information, as well as encouragement to share misinformation, specifically targeting friends and families.
 
 ## What can we do?
 
