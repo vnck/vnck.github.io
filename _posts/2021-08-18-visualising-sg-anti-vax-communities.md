@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Visualising the talk in Singapore's anti-vax communities"
-date: 2021-06-05
+date: 2021-08-18
 tag: [communities, dataviz]
 image: /assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png
 description: "Exploring Singaporean anti-vax communities."
