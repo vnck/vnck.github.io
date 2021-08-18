@@ -75,7 +75,7 @@ To improve the interpretability of the network, only the top 1000 most frequentl
     <figcaption>Word co-occurrence network of community A</figcaption>
 </figure>
 
-Within community A, there are 3 prominent clusters. The first cluster (green) pertains to medical information such as information on vaccines and the covid virus. The second cluster (pink) pertains to community actions, including advice, personal opinions, and requests. The third cluster (blue) pertains to news and media, including geopolitical topics.
+Within community A, there are 3 clusters, though no particular keyword was observed to anchor the conversation. The first cluster (green) pertains to medical information such as information on vaccines and the covid virus. The second cluster (pink) pertains to community actions, including advice, personal opinions, and requests. The third cluster (blue) pertains to news and media, including geopolitical topics.
 
 <figure>
     <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png"/>
@@ -89,8 +89,12 @@ Community B exhibits more distinct clustering. The green cluster pertains to inf
     <figcaption>Word co-occurrence network of community C</figcaption>
 </figure>
 
-Finally, community C exhibits the same clusters as community A, though the clusters are less distinct given the more diverse conversations that result from the larger size of the group.
+Finally, in community C, the clusters are the least distinct, indicating a mixing of various topics in conversation. This is perhaps a consequence of the size of the community, which results in more diverse conversations. However, by looking at the words in the network, we can conclude that community C exhibits similar topic clusters as community A.
 
 Generally, within anti-vax communities in Singapore, members use reports on negative symptoms to view vaccines in negative light. Vaccines are often mentioned together with words such as toxic, risks, and experimental. How vaccines might negatively affect the body is a topic discussed in detail, with specific references to organs in the body such as the liver or heart, as well as detailed symptoms such as fever and stroke. Alternative treatments also appears as a topic—community B is distinct in its interest in home-based natural remedies. 
 
-Finally, frequent requests for more information, as well as encouragement to share misinformation were observed, targeting friends and families. Evidently, these channels are significant sources of misinformation.
+Finally, we can observe evidence that these community channels are actively promoting and encouraging the spread of misinformation. These take the form of frequent requests for more information, as well as encouragement to share misinformation, specifically targeting friends and families.
+
+## What can we do?
+
+Recently, these communities have been exposed to our mainstream media and social networks. People have been joining these communities either to satisfy their curiosity or to troll. However, this does little to resolve the problem as such communities can quickly migrate and start new community channels, like the mythical hydra. Should the government be given the power to shut down these communities in a similar vein to [POFMA](https://www.pofmaoffice.gov.sg/regulations/protection-from-online-falsehoods-and-manipulation-act/)? Or perhaps we should seek to [understand these communities](https://datasociety.net/library/searching-for-alternative-facts/) and learn to [speak their lingo](https://www.pnas.org/content/118/21/e2101723118.short), in order to change their opinions using the power of their own words.
