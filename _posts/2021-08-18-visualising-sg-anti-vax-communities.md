@@ -8,11 +8,7 @@ description: "Exploring Singaporean anti-vax communities through network visuali
 permalink: /writings/visualising-singapore-anti-vax-communities
 ---
 
-Even as Singapore climbs it way to be [the most vaccinated country](https://www.nytimes.com/interactive/2021/world/covid-vaccinations-tracker.html), a number of local anti-vax communities have emerged on messaging platform Telegram.
-
-<div class="twitter-tweet-container">
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Commentary: Misinformation threatens Singapore’s COVID-19 vaccination programme <a href="https://t.co/6sA9WypCbE">https://t.co/6sA9WypCbE</a> <a href="https://t.co/gsnihNafG4">pic.twitter.com/gsnihNafG4</a></p>&mdash; CNA (@ChannelNewsAsia) <a href="https://twitter.com/ChannelNewsAsia/status/1348759361674309634?ref_src=twsrc%5Etfw">January 11, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
+Even as Singapore climbs it way to be [the most vaccinated country](https://www.nytimes.com/interactive/2021/world/covid-vaccinations-tracker.html), a number of local anti-vax communities have emerged on messaging platform Telegram. These communities deserve our attention as they are a [concern to public health](https://www.channelnewsasia.com/commentary/covid-19-coronavirus-conspiracy-misinformation-fake-news-400276).
 
 Arguably, Telegram packs features that enable the spread of misinformation more effectively than other messaging platforms such as WhatsApp.
 
@@ -97,4 +93,4 @@ Finally, community C exhibits the same clusters as community A, though the clust
 
 Generally, within anti-vax communities in Singapore, members use reports on negative symptoms to view vaccines in negative light. Vaccines are often mentioned together with words such as toxic, risks, and experimental. How vaccines might negatively affect the body is a topic discussed in detail, with specific references to organs in the body such as the liver or heart, as well as detailed symptoms such as fever and stroke. Alternative treatments also appears as a topic—community B is distinct in its interest in home-based natural remedies. 
 
-Finally, there is frequent requests for more information, as well as encouragement to share misinformation, targeting friends and families. Evidently, these channels are significant sources of misinformation.
+Finally, frequent requests for more information, as well as encouragement to share misinformation were observed, targeting friends and families. Evidently, these channels are significant sources of misinformation.
