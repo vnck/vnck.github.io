@@ -4,7 +4,7 @@ title: "Visualising the talk in Singapore's anti-vax communities"
 date: 2021-08-18
 tag: [communities, dataviz]
 image: /assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png
-description: "Exploring Singaporean anti-vax communities."
+description: "Exploring Singaporean anti-vax communities through network visualisation."
 permalink: /writings/visualising-singapore-anti-vax-communities
 ---
 
