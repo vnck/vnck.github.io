@@ -23,7 +23,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Hi, I'm Ivan. I write about technological and urban systems.
 tagline: Writings about technological and urban systems.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "vnck.xyz" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://vnck.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 author: 
   name: "Ivan Chuang"
   email: ivanckj96@gmail.com
