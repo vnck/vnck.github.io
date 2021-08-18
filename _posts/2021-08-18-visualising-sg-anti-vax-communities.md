@@ -62,7 +62,9 @@ The social networks of each community are significantly smaller than the actual 
 
 Within each network, a set of actors can be identified as more active in interacting with other members. Not only are they active in socialising with a more diverse group of members, they also interact with each other more frequently, constituting a broadcast network (e.g. the green cluster in community A), from which most messages are distributed to the rest of the community.
 
-However, as the group grows in size, such as in community C, the number of more-active-than-usual members grow and there are less strong ties present in the network, active members are found interacting across diverse groups within the broader network, instead of coalescing into distinct sub-communities. In such a community, it becomes harder to point out individuals responsible for the spread of mis-information.
+However, as the group grows in size, such as in community C, the number of more-active-than-usual members grow and there are less strong ties present in the network, active members are found interacting across diverse groups within the broader network, instead of coalescing into distinct sub-communities.
+
+Would removing these active users halt misinformation within the group? For a small to medium sized community, this might be effective and sufficient to shut down the community, but for a large community like Community C, it becomes harder to select out the few individuals responsible for the majority spread of misinformation.
 
 ## The Word Network of an Anti-Vax Community
 
