@@ -66,7 +66,7 @@ However, as the group grows in size, such as in community C, the number of activ
 
 ## The Word Network of an Anti-Vax Community
 
-To get insight into the conversations that happen within a community, we can use a word co-occurrence network to visualise how words are used in relation to each other in the community. This allows us to identify key topics of conversation, revealing the diversity of topics within the community.
+To get insight into the conversations that happen within a community, we can use a [word co-occurrence network](https://en.wikipedia.org/wiki/Co-occurrence_network) to visualise how words are used in relation to each other in the community. This allows us to identify key topics of conversation, revealing the diversity of topics within the community.
 
 To improve the interpretability of the network, only the top 1000 most frequently occurring word was used in the construction of the network.
 
