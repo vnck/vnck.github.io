@@ -75,7 +75,7 @@ To improve the interpretability of the network, only the top 1000 most frequentl
     <figcaption>Word co-occurrence network of community A</figcaption>
 </figure>
 
-Within community A, 3 cluster can be observed, though it appears no particular keyword anchors the conversation of the community. The green cluster pertains to medical information such as information on vaccines and the covid virus. A pink cluster reveals community actions, including asking for advice, personal opinions, and informal requests. A third cluster in blue pertains to the news and media, a staple source of information for these communities.
+Within community A, three clusters can be observed, though it appears no particular keyword anchors the conversation of the community. The green cluster pertains to medical information such as information on vaccines and the covid virus. A pink cluster reveals community actions, including asking for advice, personal opinions, and informal requests. A third cluster in blue pertains to the news and media, a staple source of information for these communities.
 
 <figure>
     <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png"/>
