@@ -14,4 +14,4 @@ I'm Ivan Chuang. Right now, I'm working on a master's thesis on Singapore's AI s
 Because there's a pandemic going on, I've been [reading a lot](https://www.notion.so/d026112598e84b658e777b832cdcae50) 🙇🏻‍♂️
 
 ---
-[[CV]](https://vnck.xyz/assets/resume_IvanChuang_caa0521.pdf)
+[[CV]](https://vnck.xyz/assets/cv_IvanChuang_caa0801.pdf)

@@ -30,7 +30,8 @@ author:
 
 twitter:
   username: vvvnck
-  card: summary_large_image
+
+title_image: "https://vnck.xyz/assets/banner-default.jpg"
 
 minima:
   social_links:
