@@ -39,7 +39,7 @@ When we plot the activity of unique users over time however, we see positive gro
 
 ## The Social Network of an Anti-Vax Community
 
-In a social network, each actor in the community is represented by a node. Each edge represents a user interaction between two actors, which can be a mention, reply, or invitation. The size of the node is proportional to its [out-degree](https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree), meaning that a larger node interacts with more members in the community. Using [modularity clustering](https://en.wikipedia.org/wiki/Modularity_(networks)), the network has been segmented into community clusters. Open source visualisation software [Gephi](https://gephi.org/) was used to visualise the network.
+In a social network, each actor in the community is represented by a node. The numbers on each node is a generated id, to maintain anonymity of the data. Each edge represents a user interaction between two actors, which can be a mention, reply, or invitation. The size of the node is proportional to its [out-degree](https://en.wikipedia.org/wiki/Directed_graph#Indegree_and_outdegree), meaning that a larger node interacts with more members in the community. Using [modularity clustering](https://en.wikipedia.org/wiki/Modularity_(networks)), the network has been segmented into community clusters. Open source visualisation software [Gephi](https://gephi.org/) was used to visualise the network.
 
 The social networks of each of the communities are thus presented.
 
