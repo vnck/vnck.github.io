@@ -58,7 +58,7 @@ The social networks of each of the communities are thus presented.
     <figcaption>Social network of community C</figcaption>
 </figure>
 
-The social network of each community is significantly smaller as we only consider actors that interact with each other. That is, we filter out lurkers (also called isolates) within the communities.
+The social network of each community is significantly smaller than the actual community as only actors that interact with each other are considered in the construction. That is, we filter out lurkers (also called isolates) within the communities.
 
 Within each network, a set of actors can be identified as more active in interacting with other members. Not only are they active in socialising with more diverse members, they also interact with each other more frequently, constituting a broadcast group (e.g. the green cluster in community A).
 
