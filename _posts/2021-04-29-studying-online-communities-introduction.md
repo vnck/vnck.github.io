@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Introduction: An Exploratory Study on Digital Sharing Communities"
+title: "[Introduction] An Exploratory Study on Digital Sharing Communities"
 date: 2021-04-29
 tag: [projects, communities]
 description: "Introductory post to applying methods from computational social science to study HDB towns."
