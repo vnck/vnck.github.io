@@ -2,10 +2,10 @@
 layout: post
 title: "Visualising the talk in Singapore's anti-vax communities"
 date: 2021-08-18
-tag: [projects, communities, dataviz]
+tag: [communities, dataviz]
 image: /assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png
 description: "Exploring Singaporean anti-vax communities through network visualisation."
-permalink: /writings/visualising-singapore-anti-vax-communities
+permalink: /projects/visualising-singapore-anti-vax-communities
 ---
 
 Even as Singapore climbs it way to be [the most vaccinated country](https://www.nytimes.com/interactive/2021/world/covid-vaccinations-tracker.html), a number of local anti-vax communities have emerged on messaging platform Telegram. These communities deserve our attention as they are a [concern to public health](https://www.channelnewsasia.com/commentary/covid-19-coronavirus-conspiracy-misinformation-fake-news-400276).

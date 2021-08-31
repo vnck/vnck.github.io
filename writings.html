@@ -9,5 +9,7 @@ nav: true
 {% include tag-cloud.html %}
 
 {% for post in site.posts %}
-    {% include post-entry.html %}
+    {% unless post.categories contains 'projects' %}
+        {% include post-entry.html %}
+    {% endunless %}
 {% endfor %}

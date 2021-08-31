@@ -2,10 +2,10 @@
 layout: post
 title: "[Introduction] Master's Thesis: Singapore AI Governance Concept Map"
 date: 2021-06-01
-tag: [projects, AI, thesis]
+tag: [AI, thesis]
 description: "An introductory post to my graduate thesis looking at Singapore's AI strategy."
 image: /assets/posts/2021-08-12-a-singapore-ai-governance-semantic-network/sg-ai-conceptual-map.png
-permalink: /writings/a-conceptual-map-of-ai-in-sg
+permalink: /projects/a-conceptual-map-of-ai-in-sg
 ---
 
 > This is an introductory post to my master's thesis. Tldr; I am conducting a content analysis on all AI-related policy papers and speeches the Singapore government has published in order to understand the state of AI governance in Singapore. The interactive visualisation can be accessed [here](https://vnck.xyz/singapore-ai-governance-concept-map/).
