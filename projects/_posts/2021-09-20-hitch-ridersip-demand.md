@@ -17,7 +17,7 @@ Still, these private hitch telegram groups with sizes up to 60,000 members prese
 The data comprises of text messages extracted from a hitch Telegram supergroup created in July 2020. Messages within a period of a year was extracted, from  August 2020 to August 2021. Among the messages, hitch requests are of primary interest. A typical hitch request looks like this:
 
 <figure>
-    <img src="../assets/posts/2021-09-20-hitch-ridersip-demand/typical-hitch-request.png"/>
+    <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/typical-hitch-request.png"/>
     <figcaption>A typical hitch request message.</figcaption>
 </figure>
 
