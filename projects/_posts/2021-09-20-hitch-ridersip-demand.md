@@ -8,9 +8,9 @@ description: "Extracting hitch ridership demand from a Singapore-based telegram 
 permalink: /projects/extracting-hitch-ridership-demand
 ---
 
-Early 2019, a [carpooling telegram group made headlines](https://www.straitstimes.com/singapore/transport/new-carpooling-service-in-telegram-chat-group-draws-1300-members-in-2-weeks) as a competitive service to the dominant ride-hailing services in Singapore. The next year, [such groups were banned](https://www.tnp.sg/news/singapore/private-carpooling-services-still-demand-despite-ban) as part of Singapore's health safety measures against the Covid-19 pandemic. This has not stopped these communities from operating business-as-usual, albeit the adoption of anti-surveillance measures such as daily data erasure policy and carrying out transactions over private messaging. 
+Early 2019, a [carpooling telegram group made headlines](https://www.straitstimes.com/singapore/transport/new-carpooling-service-in-telegram-chat-group-draws-1300-members-in-2-weeks) as a competitive service to the dominant ride-sharing services in Singapore. The next year, [such groups were banned](https://www.tnp.sg/news/singapore/private-carpooling-services-still-demand-despite-ban) as part of Singapore's health safety measures against the Covid-19 pandemic. This has not stopped these communities from operating business-as-usual, albeit the adoption of anti-surveillance measures such as daily data erasure policy and carrying out transactions over private messaging.
 
-Still, these private hitch telegram groups with sizes up to 60,000 members present valuable insights on private carpooling ridership demand in Singapore. In this post, I present how these insights can be distilled from the messy textual data of conversations in a Telegram group.
+Still, these private hitch telegram groups with sizes up to 60,000 members present valuable insights on ride-sharing demand in Singapore. These telegram groups serve as an alternative data source to ride-sharing in Singapore, when ride-sharing companies tend to keep such data confidential. In this post, I present how these insights can be distilled from the messy textual data of message conversations in a Telegram group.
 
 ### About the data
 
@@ -31,18 +31,20 @@ For this analysis, the OD pairs were aggregated into 55 subzones according to th
 
 ### Analysis
 
-Despite the ban on hitch telegram groups, these communities have still been very much active. 
+Despite the ban on hitch telegram groups, these communities have still been very much active. Within a year, a total of 491,809 trip requests were made in this one Telegram community.
 
 <figure>
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/hitchdemand-yearmonthhour.png"/>
-    <figcaption>A typical hitch request message.</figcaption>
+    <figcaption>Left: Ridership demand by month. Right: Ridership demand by hour.</figcaption>
 </figure>
 
-Hitch ridership demand peaked at 6,409 on February 14, over the Chinese New Year weekend. However, we can also see that 
+Hitch ridership demand peaks across the weekends and from the hourly plot, we can see that ridership demand peaks during the off-work rush hour though the same preference is not observed for the to-work early commute. In addition, the peak during the late night hours (11pm to 3am) reveals the dependence on private carpooling as an alternative transport mode after public transport services cease operations for the day.
+
+Hitch ridership demand peaked at 76,084 in February 2021, primarily because of the Chinese New Year weekend (as seen below). However, the impact of soft lockdowns onto ridership demand is also visible such as the dip in demand in July (see below) as a result of [heightened safety measures between 22 July to 18 August 2021](https://www.gov.sg/article/as-of-20-july-2021-return-to-phase-2-heightened-alert-measures).
 
 <figure>
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/hitchdemand-febjuly21.png"/>
-    <figcaption>A typical hitch request message.</figcaption>
+    <figcaption>Daily ridership demand for Feb'21 and July'21.</figcaption>
 </figure>
 
 ---
