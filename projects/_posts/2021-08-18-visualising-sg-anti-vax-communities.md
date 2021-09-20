@@ -33,7 +33,7 @@ Out of the three communities, two were of similar in age and size, while the thi
 When we plot the activity of unique users over time however, we see positive growth across all three communities.
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/actors_time.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/actors_time.png"/>
     <figcaption>No. of actors over time</figcaption>
 </figure>
 
@@ -44,17 +44,17 @@ In a social network, each actor in the community is represented by a node. The n
 The social networks of each of the communities are thus presented.
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social_network_A.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social_network_A.png"/>
     <figcaption>Social network of community A</figcaption>
 </figure>
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social_network_B.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social_network_B.png"/>
     <figcaption>Social network of community B</figcaption>
 </figure>
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social_network_C.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social_network_C.png"/>
     <figcaption>Social network of community C</figcaption>
 </figure>
 
@@ -73,21 +73,21 @@ Beyond the social structure of these communities, network visualisation can also
 To improve the interpretability of the network, only the top 1000 most frequently occurring word were used in the construction of these networks. The assumption is that the top occurring keywords correlates to the key topics of the community. To reduce the complexity of the network, words were [lemmatised](https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html) using the [NLTK](https://www.nltk.org/) toolkit. [Stopwords](https://nlp.stanford.edu/IR-book/html/htmledition/dropping-common-terms-stop-words-1.html) were removed as well.
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_A.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_A.png"/>
     <figcaption>Word co-occurrence network of community A</figcaption>
 </figure>
 
 Within community A, three clusters can be observed, though it appears no particular keyword anchors the conversation of the community. The green cluster pertains to medical information such as information on vaccines and the covid virus. A pink cluster reveals community actions, including asking for advice, personal opinions, and informal requests. A third cluster in blue pertains to the news and media, a staple source of information for these communities.
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png"/>
     <figcaption>Word co-occurrence network of community B</figcaption>
 </figure>
 
 Community B exhibits more visibly distinct clustering. A green cluster pertains to information on vaccines and the pandemic, such as death counts, vaccination reports, and case updates. The yellow cluster is particularly unique to this community, pertaining to alternative medicine and home remedies, evidenced by the names of organic ingredients and household chemicals. The pink cluster, on the other hand, relates to symptoms and negative reactions from vaccines. It becomes clear that community B has a specific interest in alternative remedies and distrust and anxiety over side-effects and potential harm from the vaccine.
 
 <figure>
-    <img src="../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_C.png"/>
+    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_C.png"/>
     <figcaption>Word co-occurrence network of community C</figcaption>
 </figure>
 
