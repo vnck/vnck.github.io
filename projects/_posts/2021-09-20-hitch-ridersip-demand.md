@@ -49,7 +49,7 @@ Despite the ban on hitch telegram groups, these communities have still been very
 
 <figure>
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/hitchdemand-yearmonthhour.png"/>
-    <figcaption>Left: hitch demand by month. Right: hitch demand by hour.</figcaption>
+    <figcaption>Left: Hitch demand by month. Middle: Hitch demand by day of the week. Right: Hitch demand by hour.</figcaption>
 </figure>
 
 Hitch ridership demand peaks across the weekends and during the off-work rush hour (5pm to 7pm) though a same preference is not observed for early commute (5am to 7am). In addition, the peak during the late night hours (11pm to 3am) reveals the dependence on private carpooling as an alternative transport mode after public transport services cease operations for the day.
