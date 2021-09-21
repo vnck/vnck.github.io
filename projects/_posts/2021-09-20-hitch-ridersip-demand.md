@@ -1,5 +1,5 @@
 ---
-layout: draft
+layout: post
 title: "Extracting ridership demand from online hitch communities"
 date: 2021-09-20
 tag: [cities, communities, dataviz]
