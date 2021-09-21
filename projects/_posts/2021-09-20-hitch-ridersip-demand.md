@@ -1,10 +1,10 @@
 ---
 layout: draft
-title: "Extracting hitch demand from online hitch communities"
+title: "Extracting ridership demand from online hitch communities"
 date: 2021-09-20
 tag: [cities, communities, dataviz]
-# image: /assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word_network_B.png
-description: "Extracting hitch hitch demand from a Singapore-based telegram group."
+image: /assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdist.png
+description: "Extracting hitch ridership demand from a Singapore-based telegram group."
 permalink: /projects/extracting-hitch-ridership-demand
 ---
 
@@ -31,13 +31,13 @@ Having extracted the OD pairs, the next challenge is to translate them from natu
 
     Using a simple regex filter, the 6-digit postal code of the origin and destination can be extracted from the text message.
 
-2. **Fuzzy matching**
-
-    As the ODs will be aggregated to subzones, using fuzzy matching allows comparison with the ODs to the list of subzones in Singapore. Fuzzy matching accounts for the messy nature of textual data as it can accommodate for spelling mistakes. The python package [TheFuzz](https://github.com/seatgeek/thefuzz) was used which employs the Levenshtein distance statistic to calculate the difference between two strings. A threshold score of 90 was set for acceptable results using this method.
-
-3. **OneMap API**
+2. **OneMap API**
 
     [OneMap by the Singapore Land Authority](https://www.onemap.gov.sg/home/index.html) helpfully provides a search API for retrieving geospatial information given a text query or postal code. For simplicity, the first result is taken for each search query. This step also serves as filter for invalid pick up and drop off locations. While [Google Map's Place API](https://developers.google.com/maps/documentation/places/web-service/overview) appears to be more robust in handling natural language text queries, the OneMap Search API has the advantage of being freely accessible.
+
+3. **Fuzzy matching**
+
+    To account for geospatial information not retrievable using the OneMap API, fuzzy matching was used to compare the ODs to the list of planning areas in Singapore. Fuzzy matching accounts for the messy nature of textual data as it can accommodate for spelling mistakes. The python package [TheFuzz](https://github.com/seatgeek/thefuzz) was used which employs the Levenshtein distance statistic to calculate the difference between two strings. A threshold score of 90 was set for acceptable results using this method.
 
 For additional note, some messages consist of multiple possible pick-up locations. In these instances, the first pick-up location is treated as the origin.
 
@@ -52,7 +52,7 @@ Despite the ban on hitch telegram groups, these communities have still been very
     <figcaption>Left: hitch demand by month. Right: hitch demand by hour.</figcaption>
 </figure>
 
-Hitch ridership demand peaks across the weekends and from the hourly plot, we can see that ridership demand peaks during the off-work rush hour though the same preference is not observed for the to-work early commute. In addition, the peak during the late night hours (11pm to 3am) reveals the dependence on private carpooling as an alternative transport mode after public transport services cease operations for the day.
+Hitch ridership demand peaks across the weekends and during the off-work rush hour (5pm to 7pm) though a same preference is not observed for early commute (5am to 7am). In addition, the peak during the late night hours (11pm to 3am) reveals the dependence on private carpooling as an alternative transport mode after public transport services cease operations for the day.
 
 Hitch ridership demand peaked at 76,084 in February 2021, primarily because of the Chinese New Year weekend (as seen below). However, the impact of soft lockdowns onto ridership demand is also visible such as the dip in demand in July (see below) as a result of [heightened safety measures between 22 July to 18 August 2021](https://www.gov.sg/article/as-of-20-july-2021-return-to-phase-2-heightened-alert-measures).
 
@@ -60,6 +60,30 @@ Hitch ridership demand peaked at 76,084 in February 2021, primarily because of t
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/hitchdemand-febjuly21.png"/>
     <figcaption>Daily hitch demand for Feb'21 and July'21.</figcaption>
 </figure>
+
+
+### Geospatial Analysis
+
+The geospatial visualisations below were produced in QGIS. The origin and destination counts were aggregated into a grid of 400m wide hexagon for easy visualisation. The hexagons that appear to be located outside of the island boundary are because they are calculated from the centroids of the planning area (lined in blue) which sometimes extends out to the sea.
+
+<figure>
+    <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-origins.png"/>
+    <figcaption>Origin counts</figcaption>
+</figure>
+
+<figure>
+    <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-destinations.png"/>
+    <figcaption>Destination counts</figcaption>
+</figure>
+
+From the figures above, we can see that the central business district (CBD) functions a strong trip generator and trip attractor. Choa Chu Kang is also a secondary strong trip generator and attractor.
+
+<figure>
+    <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdist.png"/>
+    <figcaption>Average trip distance (km) from origin to destination.</figcaption>
+</figure>
+
+In the figure above, the average distance travelled from origin is visualised. Trips with the shortest distance travelled originate from the Ang Mo Kio and Bishan areas, while trip distance increases as their origin is located on the edges of the island such as Tuas, Changi and Woodlands. 
 
 ---
 This post adds to a collection of studies exploring Telegram groups as rich sources of urban insight for policy and planning. If you enjoyed this post, do check out these other posts:
