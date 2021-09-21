@@ -41,7 +41,7 @@ Having extracted the OD pairs, the next challenge is to translate them from natu
 
 For additional note, some messages consist of multiple possible pick-up locations. In these instances, the first pick-up location is treated as the origin.
 
-For this analysis, the OD pairs were aggregated into 55 subzones according to the  Singapore 2019 Master Plan, provided on [data.gov.sg](https://data.gov.sg/dataset/master-plan-2019-subzone-boundary-no-sea). However, it is worth mentioning that the high granularity of the OD-pairs in our data potentially allows for deeper analysis if combined with other datasets such as [land use characteristics](https://data.gov.sg/dataset/master-plan-2019-land-use-layer).
+For this analysis, the OD pairs were aggregated into 55 subzones according to the  Singapore 2019 Master Plan, provided on [data.gov.sg](https://data.gov.sg/dataset/master-plan-2019-subzone-boundary-no-sea). However, it is worth mentioning that the high granularity of the OD-pairs in our data potentially allows for deeper analysis on a building-level by combining with other datasets such as [land use characteristics](https://data.gov.sg/dataset/master-plan-2019-land-use-layer).
 
 ### Analysis
 
