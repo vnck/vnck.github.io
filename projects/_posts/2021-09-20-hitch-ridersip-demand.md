@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Extracting ridership demand from online hitch communities"
+title: "Deriving ridership demand from online hitch communities"
 date: 2021-09-20
 tag: [cities, communities, dataviz]
 image: /assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdist.png
-description: "Extracting hitch ridership demand from a Singapore-based telegram group."
-permalink: /projects/extracting-hitch-ridership-demand
+description: "Deriving hitch ridership demand from a Singapore-based telegram group."
+permalink: /projects/deriving-hitch-ridership-demand
 ---
 
 Early 2019, a [carpooling telegram group made headlines](https://www.straitstimes.com/singapore/transport/new-carpooling-service-in-telegram-chat-group-draws-1300-members-in-2-weeks) as a competitive service to the dominant ride-sharing services in Singapore. The next year, [such groups were banned](https://www.tnp.sg/news/singapore/private-carpooling-services-still-demand-despite-ban) as part of Singapore's health safety measures against the Covid-19 pandemic. This has not stopped these communities from operating business-as-usual, albeit the adoption of anti-surveillance measures such as daily data erasure policy and carrying out transactions over private messaging.
