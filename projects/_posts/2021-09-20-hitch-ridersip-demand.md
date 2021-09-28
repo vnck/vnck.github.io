@@ -3,7 +3,7 @@ layout: post
 title: "Deriving ridership demand from online hitch communities"
 date: 2021-09-20
 tag: [cities, communities, dataviz]
-image: /assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdist.png
+image: /assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdistsubzone.png
 description: "Deriving hitch ridership demand from a Singapore-based telegram group."
 permalink: /projects/deriving-hitch-ridership-demand
 ---
@@ -89,7 +89,7 @@ Alternatively, the origin and destination counts can be aggregated into a grid o
     <figcaption>Destination counts</figcaption>
 </figure>
 
-We can also visualise the average trip distance from origin to destination. As seen below, trips that originate from the edges of Singapore such as Changi, Tuas or Woodlands have on average larger trip distane than trips originating from heartlands such as the Ang Mo Kio and Bishan region. 
+We can also visualise the average trip distance from origin to destination. As seen below, trips that originate from the edges of Singapore such as Changi, Tuas or Woodlands have on average larger trip distane than trips originating from heartlands such as the Ang Mo Kio and Bishan region.
 
 <figure>
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdistsubzone.png"/>
