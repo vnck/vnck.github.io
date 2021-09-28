@@ -25,7 +25,7 @@ Our data was collected from a private hitch telegram supergroup through the Tele
 
 The semi-structured nature of a hitch request eases the data standardisation process. Each hitch request can be interpreted as a trip. Using regex matching, an Origin-Destination (OD) pair can be constructed from the textual content of the hitch request. For simplicity, the date and time when the hitch request was made is treated as the date and time of the trip, given that only a minority of the hitch requests are a scheduled request. It is important to note that these trips represent ridership demand, as each hitch request is not guaranteed to produce a fulfilled trip.
 
-Having extracted the OD pairs, the location names of the pick-up and drop-off then need to be transformed into a standardised geospatial format for analysis. Three different approaches were used for this process.
+Having extracted the OD pairs, the location names of the pick-up and drop-off exist as unstructured natural text data and thus, needs to be transformed into a standardised geospatial format for analysis. Three different approaches were used for this process.
 
 1. **Postal code extraction**
 
@@ -77,7 +77,7 @@ The geospatial visualisations below were produced in QGIS. The following two fig
 
 From the figures above, we can see that residential districts such as the bedok region and ang mo kio regions are both strong attractors and generators of ridesharing trips. In addition, Changi Airport on the extreme east of the island and Tuas on the extreme right are also strong attractors of trips.
 
-Alternatively, the origin and destination counts can be aggregated into a grid of 400m wide hexagon for higher granularity, as seen in the following two figures. However, in this instance, the use of centroids as placeholder locations for certain OD trips distorts visualisation using this approach.
+Alternatively, the origin and destination counts can be aggregated into a grid of 400m wide hexagon for higher granularity, as seen in the following two figures. However, in this instance, the use of centroids as placeholder locations for certain OD trips distorts visualisation using this approach, though this could be resolved through a smoothing function over hexagons belonging to the same planning area.
 
 <figure>
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-orgnhex.png"/>
@@ -101,7 +101,7 @@ We can also visualise the average trip distance from origin to destination. As s
     <figcaption>Average trip distance (km) from origin to destination.</figcaption>
 </figure>
 
-Interestingly enough, the Central Business District performs average as a trip generator and attractor for private carpooling. This could hint towards the population demographic that makes use of these unofficial private ridesharing services as opposed to the established ridesharing services offered by businesses.
+Interestingly enough, the Central Business District performs average as a trip generator and attractor for private carpooling. This could hint towards the population demographic that makes use of these unofficial private ridesharing services as opposed to the established ridesharing services.
 
 ---
 This post adds to a collection of studies exploring Telegram groups as rich sources of urban insight for policy and planning. If you enjoyed this post, do check out these other posts:
