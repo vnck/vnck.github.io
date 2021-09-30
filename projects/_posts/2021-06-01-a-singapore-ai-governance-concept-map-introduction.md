@@ -9,6 +9,7 @@ permalink: /projects/a-conceptual-map-of-ai-in-sg
 ---
 
 > This is an introductory post to my master's thesis. Tldr; I am conducting a content analysis on all AI-related policy papers and speeches the Singapore government has published in order to understand the state of AI governance in Singapore. The interactive visualisation can be accessed [here](https://vnck.xyz/singapore-ai-governance-concept-map/).
+
 ## Background
 
 Everyone—[governments](https://www.gov.uk/guidance/data-ethics-and-ai-guidance-landscape), [private companies](https://ai.google/static/documents/perspectives-on-issues-in-ai-governance.pdf), [the public](https://www.codedbias.com/)—is engaging in AI governance discourse. And because everyone has an own opinion on how AI will change the world (for better or for worse), and how it should be progressed and regulated, discourse seeks to reach a happy ending (consensus) on what norms, policies and institutions determines the path of AI's future.
