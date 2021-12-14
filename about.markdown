@@ -10,7 +10,9 @@ nav: true
 
 # 👋🏼 Hi!
 
-I'm Ivan Chuang, a data scientist for urban systems 🌇 and governance 🏛. I write to make sense of technology within cities (and conversely). Currently residing in Singapore 🇸🇬.
+I'm Ivan Chuang, a data scientist for urban systems 🌇 and governance 🏛
+
+I write to make sense of technology within cities (and conversely). Currently residing in Singapore 🇸🇬
 
 ---
 [[CV]](https://vnck.xyz/assets/cv_IvanChuang_caa0801.pdf)
