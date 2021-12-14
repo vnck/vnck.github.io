@@ -8,8 +8,6 @@ layout: home
 
 # 👋🏼 Hi! I'm Ivan Chuang
 
-I write mostly about experiences within technological and/or urban systems.
-
-🔍 I'm [looking for roles](https://www.linkedin.com/in/vnck/) in data science or urban research!
+I write to make sense of technology within cities (and conversely).
 
 ---
