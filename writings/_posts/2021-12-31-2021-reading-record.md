@@ -41,7 +41,7 @@ My most-read genre was sci-fi (8), overtaking fantasy from the previous year.
 
 ### Recommendations
 
-Of these 56 books, I gave 13 books 🦷—meaning they were good to sink your teeth into. These 12 books are:
+Of these 56 books, I gave 13 books 🦷—meaning they were good to sink your teeth into. These books are:
 
 - Circe _by Madeline Miller_
 - The Lifecycle of Software Objects _by Ted Chiang_
