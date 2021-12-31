@@ -7,7 +7,8 @@ tags: reading
 permalink: /writings/2021-reading-record
 ---
 
-This year, I managed to read 56 books in total, of which 31 were non-fiction🟨 and 25 fiction🟥:  
+This year, I managed to read 56 books in total, of which 31 were non-fiction🟨 and 25 fiction🟥:
+
 🟥🟥🟨🟥🟥🟥🟥🟥  
 🟥🟥🟨🟨🟨🟨🟨🟨  
 🟥🟨🟨🟥🟨🟨🟨🟨  
