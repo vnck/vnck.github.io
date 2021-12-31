@@ -19,12 +19,12 @@ This year, I managed to read 56 books in total, of which 31 were non-fiction🟨
 
 That bulk of non-fiction reading in the middle of the year can largely attributed to finishing my master's thesis. Turns out when I don't have a deadline, I find the time to read more fiction books.
 
-👽🦄🏘👽👽👽👽👽
-🦄🦄🛠🛠💵🏘🛠📃
-👩🏻‍💼📃👩🏻‍💼👻🧐👨‍👩‍👧🛠🧐
-🛠🛠🛠🏘🪞🪞🛠🏛
-⌛️📃🌱🛠🛠🛠🛠🛠
-👽🦄👻👽🦉👨‍👩‍👧🦄🦄
+👽🦄🏘👽👽👽👽👽  
+🦄🦄🛠🛠💵🏘🛠📃  
+👩🏻‍💼📃👩🏻‍💼👻🧐👨‍👩‍👧🛠🧐  
+🛠🛠🛠🏘🪞🪞🛠🏛  
+⌛️📃🌱🛠🛠🛠🛠🛠  
+👽🦄👻👽🦉👨‍👩‍👧🦄🦄  
 🪞📖📖🦄📖👻👻🌱
 
 ### Non-Fiction
