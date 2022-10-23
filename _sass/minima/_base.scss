@@ -198,6 +198,11 @@ pre {
  * Wrapper
  */
 .wrapper {
+  display: flex;
+  flex-direction: row;
+  @include media-query($on-palm) {
+    flex-direction: column;
+  }
   // max-width: calc(#{$content-width} - (#{$spacing-unit}));
   // margin-right: auto;
   // margin-left: auto;
