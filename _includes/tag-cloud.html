@@ -1,9 +1,18 @@
 <div class="tag-cloud">
     {% include tag.html tag="all" %}
     {% capture temptags %}
-        {% for tag in site.tags %}
+        {% if page.layout == 'catpage' %}
+            {% for tag in site.tags %}
+                {% assign ctag = tag[1] | where: "categories", page.cat %}
+                {% if ctag != empty %}
+                    {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for tag in site.tags %}
             {{ tag[1].size | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
-        {% endfor %}
+            {% endfor %}
+        {% endif %}
     {% endcapture %}
     {% assign sortedtemptags = temptags | split:' ' | sort | reverse %}
     {% for temptag in sortedtemptags %}

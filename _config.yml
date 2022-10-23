@@ -55,6 +55,8 @@ defaults:
     values:
       layout: "post"
 
+categories:
+  tag: [AI, cities, codespace, communities, all, dataviz, interactivefiction, misc, reading, thesis, writing]
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
@@ -74,3 +76,5 @@ defaults:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+# jekyll serve --livereload

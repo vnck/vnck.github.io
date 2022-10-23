@@ -1,0 +1,31 @@
+---
+layout: default
+---
+
+<article class="post">
+    {% assign post_count = site.categories[page.cat] | size %}
+    {% assign post_content = post.content | strip_newlines %}
+    <header class="post-header">
+        {% if page.headerless %}
+        {% else %}
+        <h1 class="post-title">{% if page.icon %}{{page.icon}}&ensp;{% endif %}{{ page.title | escape }} ({{post_count}})</h1>
+        {% endif %}
+      </header>
+
+    {% if post.content != "" %}
+        {{content}}
+        </br>
+    {% endif %}
+
+    {% include tag-cloud.html %}
+    
+    
+    <div class="post-content">
+        {% for post in site.posts %}
+            {% if post.categories contains page.cat %}
+                {% include post-entry.html %}
+            {% endif %}
+        {% endfor %}
+    </div>
+  
+</article>

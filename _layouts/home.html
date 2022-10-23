@@ -9,7 +9,9 @@ layout: default
   <h2>Recently,</h2>
   <br>
   {% for post in site.posts limit:8 %}
-    {% include post-entry.html %}
+    {% if post.categories contains 'projects' or post.categories contains 'writings' %}
+      {% include post-entry.html %}
+    {% endif %}
   {% endfor %}
 
 </div>

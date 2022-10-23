@@ -4,15 +4,16 @@ title: About
 headerless: true
 permalink: /about/
 nav: true
+order: 1
 ---
 
-![alt](https://github.com/vnck/vnck.github.io/blob/source/assets/headshot.PNG?raw=true&width=200)
+![alt](/assets/headshot.PNG?raw=true&width=200)
 
-# 👋🏼 Hi!
+### **Ivan Chuang**
 
-I'm Ivan Chuang, a data scientist for urban systems 🌇 and governance 🏛
+I'm a data scientist[^1] for urban systems and governance.
 
-I write to make sense of technology within cities (and conversely). Currently residing in Singapore 🇸🇬
+I usually write about technologies in the context of cities.
 
 ---
-[[CV]](https://vnck.xyz/assets/cv_IvanChuang_caa0801.pdf)
+[^1]: [[CV]](https://vnck.xyz/assets/cv_IvanChuang_caa120922.pdf)
