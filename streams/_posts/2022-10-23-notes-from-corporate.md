@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Notes From Corporate"
-date: 2022-10-24
+date: 2022-10-23
 tags: career
 description: "Realisations from a fresh hire perspective."
 permalink: /streams/notes-from-corporate
