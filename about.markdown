@@ -16,4 +16,4 @@ I'm a data scientist[^1] for urban systems and governance.
 I usually write about technologies in the context of cities.
 
 ---
-[^1]: [[CV]](https://vnck.xyz/assets/cv_IvanChuang_caa120922.pdf)
+[^1]: [CV](https://vnck.xyz/assets/cv_IvanChuang_caa120922.pdf)

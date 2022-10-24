@@ -77,8 +77,8 @@ I think I achieved my resolution to read more widely, and somehow managed to rea
 
 <details>
     <summary>
-		<h4>Full list of readings</h4>
-	</summary>
+  <h4>Full list of readings</h4>
+ </summary>
 <div>
 {{ "
 | Title | Author | Genre | Type | Date | Rating |

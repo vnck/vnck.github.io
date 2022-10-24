@@ -12,7 +12,7 @@ Starting a data science project almost always involves two components:
 1. Having a question that needs answering.
 2. Having the data needed to find that answer.
 
-The catch is that data is not always readily available (also called data scarcity) and to have to do your own data collection is a laborious process, which is an easy kill-switch for any enthusiasm to start on a data science project. 
+The catch is that data is not always readily available (also called data scarcity) and to have to do your own data collection is a laborious process, which is an easy kill-switch for any enthusiasm to start on a data science project.
 
 That's where most will turn to pre-trained models, completely removing the need to assign time and computational resources to train a model from scratch. Most machine learning packages these days make provide a set of readily available pre-trained models through a [model zoo](http://pytorch.org/serve/model_zoo.html).
 
@@ -21,10 +21,10 @@ If you are familiar with pre-trained models, you will know that what commonly fo
 Here's an exciting news though, models with zero-shot capabilities are creating a whole new ball game of projects that are no longer limited by data scarcity.
 
 <details>
-	<summary>
+ <summary>
         <h4>What is zero-shot?</h4>
     </summary>
-	<p><b>Zero-shot</b> refers the capability of machine learning models to perform unseen tasks, in other words, to do things the model was not explicitly trained to do. A model's zero-shot capability is therefore also related to a model's robustness and ability to generalise.</p>
+ <p><b>Zero-shot</b> refers the capability of machine learning models to perform unseen tasks, in other words, to do things the model was not explicitly trained to do. A model's zero-shot capability is therefore also related to a model's robustness and ability to generalise.</p>
 </details>
 
 #### OpenAI's CLIP
@@ -70,6 +70,6 @@ However, we can also see CLIP does struggle with some of the non-English dishes 
 
 #### What now?
 
-Certainly, more experiments can be done to tease out CLIP's nuances. Will it be able to recognise the [difference between white and roasted chicken rice](https://blog.usejournal.com/i-made-a-machine-learning-chicken-rice-classifier-in-4-hours-to-tell-me-what-type-of-chicken-rice-e9b1af4aa069)? What if we replaced the non-English names with their westernised version, *bah kuh teh* to *pork bone soup*? 
+Certainly, more experiments can be done to tease out CLIP's nuances. Will it be able to recognise the [difference between white and roasted chicken rice](https://blog.usejournal.com/i-made-a-machine-learning-chicken-rice-classifier-in-4-hours-to-tell-me-what-type-of-chicken-rice-e9b1af4aa069)? What if we replaced the non-English names with their westernised version, *bah kuh teh* to *pork bone soup*?
 
 Zero-shot models such as CLIP and [GPT-3](https://openai.com/blog/gpt-3-apps/) are changing the game of building machine learning solutions by bypassing the barrier of data scarcity. For people who are just starting out learning data science, and for people who simply want to experiment, this is great and exciting news.

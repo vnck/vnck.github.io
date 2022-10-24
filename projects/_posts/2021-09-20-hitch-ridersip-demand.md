@@ -63,7 +63,7 @@ Hitch ridership demand peaked at 76,084 in February 2021, primarily because of t
 
 ### Geospatial Analysis
 
-The geospatial visualisations below were produced in QGIS. The following two figures depict the aggregated counts of origins and destinations by subzone level. 
+The geospatial visualisations below were produced in QGIS. The following two figures depict the aggregated counts of origins and destinations by subzone level.
 
 <figure>
     <img src="../../assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-orgnsubzone.png"/>

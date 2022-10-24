@@ -15,12 +15,12 @@ As for the non-fiction (17) genre, I mostly read books about technology (5), esp
 
 My plan for 2021 is to read more widely (reading more memoirs!), but also maybe even read more, since this pandemic doesn't look like it's going away anytime soon.
 
-
 _(I've put a 🦷 beside the books I think are worth sinking teeth into.)_
 
 ## Read
 
 ### Fiction
+
 - Unsong _by Scott Alexandar_ 🦷
 - The Fifth Season (Broken Earth #1) _by N. K. Jemisin_
 - The Obelisk Gate (Broken Earth #2) _by N. K. Jemisin_
@@ -54,6 +54,7 @@ _(I've put a 🦷 beside the books I think are worth sinking teeth into.)_
 - Recursion by _by Blake Crouch_
 
 ### Non-Fiction
+
 - The Ethical Algorithm _by Aaron Roth and Michael Kearns_ 🦷
 - The War Of Art _by Steven Pressfield_
 - Uncanny Valley _by Anna Wiener_
