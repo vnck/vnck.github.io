@@ -29,6 +29,6 @@ Having been in my current company for almost a year, I will say that not all thr
 
 ---
 [^1]: Ten years. Just short of hitting a mid-life crisis, on which any further planning made now seems a futile effort.
-[^2]: See [Ikegai](https://en.wikipedia.org/wiki/Ikigai)
+[^2]: See [Ikigai](https://en.wikipedia.org/wiki/Ikigai)
 [^3]: This can certainly be problematic, and I would like to think I am working on becoming more "location-agnostic".
 [^4]: Although I cannot discount the possibility of some influence of having watched _Three Thousand Years of Longing_.
