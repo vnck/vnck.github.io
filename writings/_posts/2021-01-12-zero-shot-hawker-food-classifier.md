@@ -72,4 +72,4 @@ However, we can also see CLIP does struggle with some of the non-English dishes 
 
 Certainly, more experiments can be done to tease out CLIP's nuances. Will it be able to recognise the [difference between white and roasted chicken rice](https://blog.usejournal.com/i-made-a-machine-learning-chicken-rice-classifier-in-4-hours-to-tell-me-what-type-of-chicken-rice-e9b1af4aa069)? What if we replaced the non-English names with their westernised version, *bah kuh teh* to *pork bone soup*? 
 
-Zero-shot models such as CLIP and [GPT-3](https://openai.com/blog/gpt-3-apps/) are changing the game of building machine learning solutions by bypassing the barrier of data scarcity. For people who are just starting out learning data science, and for people who simply want to experiment, this is great and exciting  news.
+Zero-shot models such as CLIP and [GPT-3](https://openai.com/blog/gpt-3-apps/) are changing the game of building machine learning solutions by bypassing the barrier of data scarcity. For people who are just starting out learning data science, and for people who simply want to experiment, this is great and exciting news.
