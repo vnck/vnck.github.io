@@ -6,7 +6,7 @@ headerless: true
 layout: home
 ---
 
-# 👋🏼 Hi! I'm Ivan Chuang
+# 🌱 Hi! I'm Ivan Chuang
 
 I write to make sense of technology within cities (and conversely).
 

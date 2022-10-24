@@ -25,9 +25,10 @@ To that, I am thankful that the pandemic has forced us to reckon with these lega
 
 ## The fulfilment of wishes
 
-Having been in my current company for almost a year, I will say that not all three of my wishes were fulfilled immediately. I guess that's why I ultimately settled on calling them wishes and not expectations, for I knew that they were in fact difficult, and I would be less disappointed if wishes were not fulfilled than if expectations were not met. But the initial unfulfilment only reaffirmed their importance for me. In fact, I found myself resolving to make an early exit. That eventually didn't happen for by a series of fortunate events, my wishes were sufficiently fulfilled, and so I'm alright to stay, for now.
+Having been in my current company for almost a year, I will say that not all three of my wishes were fulfilled immediately. I guess that's why I ultimately settled on calling them wishes and not expectations, for I knew that they were in fact difficult, and I would be less disappointed if wishes were not fulfilled than if expectations were not met[^4]. But the initial unfulfilment only reaffirmed their importance for me. In fact, I found myself resolving to make an early exit. That eventually didn't happen for by a series of fortunate events, my wishes were sufficiently fulfilled, and so I'm alright to stay, for now.
 
 ---
 [^1]: Ten years. Just short of hitting a mid-life crisis, on which any further planning made now seems a futile effort.
 [^2]: See [Ikegai](https://en.wikipedia.org/wiki/Ikigai)
 [^3]: This can certainly be problematic, and I would like to think I am working on becoming more "location-agnostic".
+[^4]: Although I cannot discount the possibility of some influence of having watched _Three Thousand Years of Longing_.
