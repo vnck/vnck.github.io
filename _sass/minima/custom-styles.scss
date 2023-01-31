@@ -1,28 +1,156 @@
-// Placeholder to allow defining custom styles that override everything else.
-// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+body {
+    align-items: center;
+}
 
-.home {
+hr {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $grey-color-light;
+    margin: 30px 0;
+}
+
+.site-header {
+    font-family: $header-font-family;
+    width: 58%;
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+    border-top: 0px;
+    min-height: $spacing-unit * 1.865;
+
+    // Positioning context for the mobile navigation icon
+    position: relative;
+
     @include media-query($on-palm) {
-        h1 {
-            font-size: 24px;
+        width: 80%;
+        font-size: $palm-font-size;
+    }
+
+    a {
+        color: $text-color;
+        text-decoration: none;
+    
+        &:visited {
+            color: $text-color;
+        }
+    
+        &:hover {
+            color: $link-base-color;
+            text-decoration: none;
+        }
+    }
+
+    a.site-title {
+        &:hover {
+            color: $text-color;
+            text-decoration: none;
         }
     }
 }
 
-.site-header {
-    font-family: 'Raleway', sans-serif;
+.post-title {
+    font-size: $large-font-size;
+    @include media-query($on-palm) {
+        font-size: $palm-large-font-size;
+    }
 }
 
-.site-footer {
-    font-family: 'Raleway', sans-serif;
+// nav
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    font-size: $base-font-size;
+
+    .page-link {
+        color: $text-color;
+
+        // Gaps between nav items, but not on the last one
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        &:hover {
+            color: $link-base-color;
+            text-decoration: none;
+        }
+    }
+
+    @include media-query($on-palm) {
+        justify-content: space-around;
+    }
+
+    @media screen and (min-width: $on-palm) {
+        .page-link {
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+        }
+    }
+}
+
+// wrappers
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    @include media-query($on-palm) {
+        flex-direction: column;
+    }
+}
+
+.page-content {
+    flex: 1 0 auto;
+    width: 58%;
+    @include media-query($on-palm) {
+        width: 80%;
+        font-size: $palm-font-size;
+    }
+}
+
+.post-content > {
+    h1,h2,h3,h4 {
+        font-size: $medium-font-size;
+    }
+}
+// feed {
+.feed > .post-item > h4 > a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:visited {
+        color: $text-color;
+    }
+
+    &:hover {
+        color: $link-base-color;
+        text-decoration: none;
+    }
+}
+
+// Post Items 
+.post-item {
+    padding-bottom: $spacing-unit;
+    h4,p {
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        color: $text-color;
+    }
+    a:hover {
+        color: $link-base-color;
+        text-decoration: none;
+      }
 }
 
 .caption {
-    font-size: $small-font-size * .825;
-    font-family: 'Raleway', serif;
-    color: #888;
+    font-size: $tiny-font-size;
+    font-family: $header-font-family;
+    color: $grey-color;
     @include media-query($on-palm) {
-        font-size: $palm-font-size * .825;
+        font-size: $palm-tiny-font-size;
     }
 }
 
@@ -31,43 +159,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     p {
-        font-size: $small-font-size * .825;
-        font-family: 'Raleway', serif;
-        color: #888;
+        font-size: $tiny-font-size;
+        font-family: $header-font-family;
+        color: $grey-color;
         @include media-query($on-palm) {
-            font-size: $palm-font-size * .825;
+            font-size: $palm-small-font-size;
         }
     }
 }
 
-figcaption {
-    font-size: $small-font-size * .825;
-    font-family: 'Raleway', serif;
-    color: #888;
-}
-
-figure > img {
-    max-height: 400px;
-}
-
-.post-item {
-    padding-bottom: $spacing-unit;
-
-    h4,p {
-        margin: 0;
-        padding: 0;
-    }
-
-    a {
-        color: $text-color;
-    }
-
-    a:hover {
-        color: $link-base-color;
-        text-decoration: none;
-      }
-}
-
+// tags
 .tag-cloud {
     font-size: $small-font-size * .825;
     display: flex;
@@ -87,17 +188,18 @@ figure > img {
 }
 
 .tag {
-    color: steelblue;
-    background-color: #eee;
+    font-size: $tiny-font-size;
+    color: $tag-base-color;
+    background-color: $tag-background-color;
     &:hover {
-        color: steelblue;
+        color: $tag-hover-color;
         text-decoration: underline;
     }
 }
 
 .tag-header {
-    color: steelblue;
-    background-color: #eee;
+    color: $tag-base-color;
+    background-color: $tag-background-color;
     @include relative-font-size(1.4);
 }
 
@@ -107,22 +209,56 @@ figure > img {
     flex-wrap: wrap;
     p {
         font-size: $small-font-size;
-        font-family: 'Raleway', serif;
-        color: #888;
+        font-family: $header-font-family;
+        color: $grey-color;
     }
     a {
-        color: #4682B4;
+        color: $tag-base-color;
     }
 
     a:hover {
-        color: #4682B4;
+        color: $tag-background-color;
         text-decoration: none;
       }
 }
 
+// post content
+
+.post {
+    a {
+        color: $link-base-color;
+        &:hover {
+            color: $link-hover-color;
+        }
+    }
+}
+
+// figures
+
+figcaption {
+    font-size: $tiny-font-size;
+    font-family: $header-font-family;
+    color: $grey-color;
+    text-align: center;
+}
+
+figure > img {
+    max-height: 400px;
+    margin: 0 auto;
+}
+
+// footnotes
+
+.footnotes {
+    font-size: $small-font-size;
+}
+
+// summary pop-up
+
 summary {
     display: flex;
     align-items: center;
+    margin-bottom: 1.5em;
     &::before {
         background: url("data:image/svg+xml, <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👉</text></svg>") center no-repeat;
         display: inline-block;
@@ -141,7 +277,7 @@ summary {
         padding: 0 !important;
         margin: 0 !important;
         @include media-query($on-palm) {
-            font-size: $palm-font-size *.875 !important;
+            font-size: $palm-small-font-size !important;
         }
     }
     &::marker, &::-webkit-details-marker {
@@ -179,21 +315,58 @@ details[open] {
     }
 }
 
+// block quote
+
 blockquote {
     border-left: 4px solid mistyrose;
+    letter-spacing: 0;
     p {
-        font-size: $base-font-size * .875;
-        font-family: 'Raleway', sans-serif;
+        font-size: $small-font-size;
+        font-family: $header-font-family;
         color: $text-color;
         font-style: normal;
         @include media-query($on-palm) {
-            font-size: 14px;
+            font-size: $small-font-size;
         }
     }
 }
+
+// shared tweet
 
 .twitter-tweet-container {
     display: flex;
     justify-content: center;
     margin-bottom: 2rem;
+}
+
+// footer
+.site-footer {
+    font-family: $header-font-family;
+    width: 58%;
+    @include media-query($on-palm) {
+        width: 80%;
+    }
+
+    ul.social-media-list > li > a {
+        color: $grey-color !important;
+        &:hover {
+            color: $link-base-color !important;
+            span {
+                text-decoration: none;
+            }
+            svg {
+                fill: $link-base-color;
+            }
+        }
+    }
+}
+
+.footer-col-1,
+.footer-col-2 {
+  width: calc(50% - (#{$spacing-unit} / 2));
+  font-size: $small-font-size;
+  @include media-query($on-palm) {
+    width: 100%;
+    font-size: $palm-small-font-size;
+}
 }

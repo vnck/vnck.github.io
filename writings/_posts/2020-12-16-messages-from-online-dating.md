@@ -2,7 +2,7 @@
 layout: post
 title: "Messages from online dating"
 date: 2020-12-16
-tags: codespace
+tags: [codespace]
 description: "Field notes from the dating site."
 permalink: /writings/messages-online-dating
 ---

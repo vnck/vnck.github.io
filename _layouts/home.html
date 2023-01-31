@@ -6,10 +6,12 @@ layout: default
 
   {{ content }}
 
-  <h2>Recently,</h2>
-  <br>
-  {% for post in site.posts limit:8 %}
-    {% include post-entry.html %}
-  {% endfor %}
+  {%- if site.posts.size > 0 -%}
+    <h2>Recently,</h2>
+    <br>
+    {% for post in site.posts limit:8 %}
+        {% include post-entry.html %}
+    {% endfor %}
+  {%- endif -%}
 
 </div>

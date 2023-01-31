@@ -3,7 +3,7 @@ layout: default
 ---
 
 <article class="post">
-    {% assign post_count = site.categories[page.cat] | size %}
+    {% assign post_count = site.categories[page.category] | size %}
     {% assign post_content = post.content | strip_newlines %}
     <header class="post-header">
         {% if page.headerless %}
@@ -19,9 +19,9 @@ layout: default
     {% include tag-cloud.html %}
     
     
-    <div class="post-content">
+    <div class="post-content feed">
         {% for post in site.posts %}
-            {% if post.categories contains page.cat %}
+            {% if post.categories contains page.category %}
                 {% include post-entry.html %}
             {% endif %}
         {% endfor %}

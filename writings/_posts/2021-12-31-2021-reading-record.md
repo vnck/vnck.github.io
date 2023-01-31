@@ -3,7 +3,7 @@ title: 2021 Reading Record
 date: 2021-12-31
 layout: post
 description: "All the books I managed to read in 2021."
-tags: reading
+tags: [reading]
 permalink: /writings/2021-reading-record
 ---
 

@@ -3,7 +3,7 @@ title: 2020 Reading Record
 date: 2020-07-04
 layout: post
 description: "All the books I managed to read in 2020."
-tags: reading
+tags: [reading]
 permalink: /writings/2020-reading-record
 ---
 
