@@ -4,6 +4,7 @@
 
 layout: home
 nav: false
+title: vnck
 ---
 
 # 🌱 Hi! I'm Ivan Chuang
