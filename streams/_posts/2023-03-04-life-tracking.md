@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Life Tracking"
-date: 2023-04-03
+date: 2023-03-04
 tags: personal
 description: "A personal history of life-tracking."
 permalink: /streams/life-tracking
