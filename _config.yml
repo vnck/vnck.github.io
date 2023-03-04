@@ -30,6 +30,8 @@ github_username:  vnck
 linkedin_username: vnck
 rss: RSS
 
+title_image: "https://vnck.xyz/assets/banner-default.jpg"
+
 # Build settings
 theme: minima
 plugins:
