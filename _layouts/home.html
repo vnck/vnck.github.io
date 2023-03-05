@@ -3,11 +3,14 @@ layout: default
 ---
 
 <div class="home">
-  {{ content }} {%- if site.posts.size > 0 -%} {% assign recent_posts =
-  site.posts | where_exp:"post", "post.categories contains 'writings' or
-  post.categories contains 'projects'" | limit:8 %}
+  {{ content }} {%- if site.posts.size > 0 -%} 
+  {% assign writing_posts =
+  site.posts | where_exp:"post", "post.categories contains 'writings'" %}
+  {% assign project_posts =
+    site.posts | where_exp:"post", "post.categories contains 'projects'" %}
+  {% assign recent_posts = writing_posts | concat: project_posts | sort: "date" | reverse %}
   <h2>Recently,</h2>
   <br />
-  {% for post in recent_posts %} {% include post-entry.html %} {% endfor %} {%-
+  {% for post in recent_posts limit:5 %} {% include post-entry.html %} {% endfor %} {%-
   endif -%}
 </div>
