@@ -1,4 +1,4 @@
-{% if include.tag != null%}
-    {% assign tag = include.tag%}
-{% endif %}
-<a href="/tags/{{ tag }}"><code class='tag'><nobr>{{ tag | replace:'-',' ' }}</nobr></code></a>
+{% if include.tag != null%} {% assign tag = include.tag%} {% endif %}
+<a href="/tags/{{ tag }}"
+  ><code class="tag"><nobr>{{ tag | replace:'-',' ' }}</nobr></code></a
+>

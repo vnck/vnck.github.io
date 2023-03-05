@@ -1,39 +1,40 @@
 ---
 layout: default
 ---
-{% assign reading_time = content | strip_html | strip_newlines | remove: " " | size | divided_by: 600 | plus: 1 %}
 
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{% assign reading_time = content | strip_html | strip_newlines | remove: " " |
+size | divided_by: 600 | plus: 1 %}
 
+<article
+  class="post h-entry"
+  itemscope
+  itemtype="http://schema.org/BlogPosting"
+>
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <h1 class="post-title p-name" itemprop="name headline">
+      {{ page.title | escape }}
+    </h1>
     <div class="post-meta">
       <p>{{page.date | date_to_string}}</p>
       <p>&ensp;·&ensp;</p>
       <p>{{reading_time}} min</p>
       <p>&ensp;·&ensp;</p>
-      <p>
-      {% for tag in page.tags%}
-        {% include tag.html %}
-      {% endfor %}
-      </p>
-  </div>
+      <p>{% for tag in page.tags%} {% include tag.html %} {% endfor %}</p>
+    </div>
   </header>
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
+  <div class="post-content e-content" itemprop="articleBody">{{ content }}</div>
   <div>
-    <hr/>
-    <script src="https://utteranc.es/client.js"
+    <hr />
+    <script
+      src="https://utteranc.es/client.js"
       repo="vnck/vnck-comments"
       issue-term="url"
       theme="github-light"
       crossorigin="anonymous"
-      async>
-    </script>
+      async
+    ></script>
   </div>
-
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

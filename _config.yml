@@ -33,9 +33,11 @@ rss: RSS
 title_image: "https://vnck.xyz/assets/banner-default.jpg"
 
 # Build settings
-theme: minima
+# theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-redirect-from
 
 # Google Analytics
 google_analytics: G-2Y729X1TE9

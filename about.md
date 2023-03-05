@@ -10,6 +10,6 @@ nav-order: 1
 
 ### **Ivan Chuang**
 
-I'm a data scientist working for the Singapore government, on urban and governance systems.
+I'm a data scientist @ the Singapore government, developing urban and governance systems.
 
 I usually write about technologies in the context of cities.

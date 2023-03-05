@@ -3,15 +3,11 @@ layout: default
 ---
 
 <div class="home">
-
-  {{ content }}
-
-  {%- if site.posts.size > 0 -%}
-    <h2>Recently,</h2>
-    <br>
-    {% for post in site.posts limit:8 %}
-        {% include post-entry.html %}
-    {% endfor %}
-  {%- endif -%}
-
+  {{ content }} {%- if site.posts.size > 0 -%} {% assign recent_posts =
+  site.posts | where_exp:"post", "post.categories contains 'writings' or
+  post.categories contains 'projects'" | limit:8 %}
+  <h2>Recently,</h2>
+  <br />
+  {% for post in recent_posts %} {% include post-entry.html %} {% endfor %} {%-
+  endif -%}
 </div>
