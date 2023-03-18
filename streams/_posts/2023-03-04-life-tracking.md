@@ -25,7 +25,7 @@ I've started using [Hevy](https://www.hevyapp.com/) to keep track of my sets. Ho
 
 ### Shopping
 
-I've started using a combination of Apple's Freeform and Lift Subject from Photo feature to create "boards". I've been using it to create collages of wishlist items.
+I've started using a combination of Apple's Freeform and Lift Subject from Photo feature to create moodboard-esque wishlists.
 
 <figure>
     <img src="../../assets/posts/2023-03-04-life-tracking/freeform.jpg"/>
