@@ -12,7 +12,6 @@ layout: default
           {% if page.icon %}
             {{ page.icon }}&ensp;{% endif %}
           {{ page.title | escape }}
-          ({{ post_count }})
         </h1>
     {% endif %}
   </header>
@@ -21,12 +20,17 @@ layout: default
     {{ content }}
   {% endif %}
   {% include tag-cloud.html %}
-
-  <div class="post-content feed">
-    {% for post in site.posts %}
+  <hr/>
+  <div>
+    <ul class="post-list">
+    {% for post in site.posts limit:3 %}
       {% if post.categories contains page.category %}
-        {% include post-entry.html %}
+      <li>
+        {% include journal-entry.html content=post.content title=post.title tags=post.tags date=post.date %}
+      </li>
       {% endif %}
     {% endfor %}
+    </ul>
   </div>
+  <div class="lds-spinner"></div>
 </article>

@@ -1,11 +1,23 @@
 <div class="tag-cloud">
-  {% include tag.html tag="all" %} {% capture temptags %} {% if page.layout ==
-  'feed-page' %} {% for tag in site.tags %} {% assign ctag = tag[1] | where:
-  "categories", page.category %} {% if ctag != empty %} {{ tag[0] }}#{{
-  tag[1].size | plus: 1000 }}#{{ tag[1].size }} {% endif %} {% endfor %} {% else
-  %} {% for tag in site.tags %} {{ tag[0] }}#{{ tag[1].size | plus: 1000 }}#{{
-  tag[1].size }} {% endfor %} {% endif %} {% endcapture %} {% assign
-  sortedtemptags = temptags | split:' ' | sort %} {% for temptag in
-  sortedtemptags %} {% assign tagitems = temptag | split: '#' %} {% capture tag
-  %}{{ tagitems[0] }}{% endcapture %} {% include tag.html %} {% endfor %}
+  {% include tag.html tag = "all" %}
+  {% capture temptags %}
+    {% if page.layout == 'feed-page' or page.layout == 'journal-page' %}
+      {% for tag in site.tags %}
+        {% assign ctag = tag[1] | where: "categories", page.category %}
+        {% if ctag != empty %}
+          {{ tag[0] }}#{{ tag[1].size | plus: 1000 }}#{{ tag[1].size }}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% for tag in site.tags %}
+        {{ tag[0] }}#{{ tag[1].size | plus: 1000 }}#{{ tag[1].size }}
+      {% endfor %}
+    {% endif %}
+  {% endcapture %}
+  {% assign sortedtemptags = temptags | split: ' ' | sort %}
+  {% for temptag in sortedtemptags %}
+    {% assign tagitems = temptag | split: '#' %}
+    {% capture tag %}{{ tagitems[0] }}{% endcapture %}
+    {% include tag.html %}
+  {% endfor %}
 </div>

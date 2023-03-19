@@ -3,25 +3,35 @@ layout: default
 ---
 
 <article class="post">
-  {% if page.tag != "all"%} {% assign post_count = site.tags[page.tag] | size %}
-  {% else %} {% assign post_count = site.posts | size %} {% endif %}
+  {% if page.tag != "all" %}
+    {% assign post_count = site.tags[page.tag] | size %}
+  {% else %}
+    {% assign post_count = site.posts | size %}
+  {% endif %}
 
   <header class="post-header">
-    {% if page.headerless %} {% else %}
-    <h1 class="post-title">
-      {% if page.icon %}{{page.icon}}&ensp;{% endif %}Tag:
-      <code class="tag-header">{{page.tag | replace: '-',' '}}</code>
-      ({{post_count}})
-    </h1>
+    {% if page.headerless %}
+      {% else %}
+        <h1 class="post-title">
+          {% if page.icon %}
+            {{ page.icon }}&ensp;{% endif %}Tag:
+          <code class="tag-header">{{ page.tag | replace: '-', ' ' }}</code>
+          ({{ post_count }})
+        </h1>
     {% endif %}
   </header>
 
   {% include tag-cloud.html %}
 
   <div class="post-content">
-    {% if page.tag == "all"%} {% for post in site.posts %} {% include
-    post-entry.html %} {% endfor %} {% else %} {% for post in
-    site.tags[page.tag] %} {% include post-entry.html %} {% endfor %} {% endif
-    %}
+    {% if page.tag == "all" %}
+      {% for post in site.posts %}
+        {% include post-entry.html %}
+      {% endfor %}
+    {% else %}
+      {% for post in site.tags[page.tag] %}
+        {% include post-entry.html %}
+      {% endfor %}
+    {% endif %}
   </div>
 </article>

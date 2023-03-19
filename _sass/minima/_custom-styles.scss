@@ -381,3 +381,33 @@ blockquote {
 .footer-col-right {
   text-align: right;
 }
+
+
+.journal-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journal-post-title {
+  font-size: $base-font-size !important;
+  padding-bottom: calc($spacing-unit / 2);
+}
+
+.journal-post-content {
+  font-size: $small-font-size !important;
+  hr {
+    margin: 30px 1rem;
+  }
+}
+
+.journal-post-footer {
+  display: flex;
+  font-size: $tiny-font-size;
+  align-self: end;
+}
+
+.journal-post-break {
+  font-size: $small-font-size;
+  margin-top: 1rem;
+}

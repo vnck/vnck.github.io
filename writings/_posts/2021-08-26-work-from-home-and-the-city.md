@@ -2,7 +2,7 @@
 layout: post
 title: "Work from home, and the city"
 date: 2021-08-26
-tags: [codespace, cities]
+tags: [codespace, cities] 
 description: "Will work from home remain? and what the city says."
 permalink: /writings/work-from-home-and-the-city
 ---

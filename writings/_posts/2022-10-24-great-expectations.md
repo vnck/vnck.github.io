@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Great Expectations of a Fresh Grad"
+title: "Certain Expectations of a Fresh Graduate"
 date: 2022-10-24
 tags: career
-description: "Expectations from a workplace."
-permalink: /streams/three-wishes
+description: "Some expectations set for myself."
+permalink: /writing/certain-expectations
 ---
 
 September 2021. With the texture of the graduate certificate still lingering on my fingertips, I started the job hunt. I begun my expedition with three expectations, the distillation of four years of education and rumination over what the next ten odd years of my life should look like[^1]. Expectations are an invitation for disappointment, but I thought these expectations as the minimal leading lines to guide my search. These are the expectations.

@@ -1,0 +1,15 @@
+<div class="journal-post">
+    <h2 class="journal-post-title">{{ include.title }}</h2>
+    <div class="journal-post-content">{{ include.content }}
+    </div>
+    <div class="journal-post-footer">
+        <p>{{include.date | date_to_string}}</p>
+        <p>&ensp;·&ensp;</p>
+        <p>
+            {% for tag in include.tags%}
+            {% include tag.html %}
+            {% endfor %}
+        </p>
+    </div>
+    <div class="journal-post-break">* * *</div>
+</div>
