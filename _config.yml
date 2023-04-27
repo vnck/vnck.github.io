@@ -27,7 +27,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://vnck.xyz" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: vvvnck
 github_username:  vnck
-linkedin_username: vnck
 rss: RSS
 
 title_image: "https://vnck.xyz/assets/banner-default.jpg"

@@ -14,7 +14,11 @@ layout: default
       {{ page.title | escape }}
     </h1>
     <div class="post-meta">
-      <p>{{ page.date | date_to_string }}</p>
+      {% if page.modified_date %}
+      <p style="text-decoration:line-through;">{{page.date | date_to_string}}</p><p>&nbsp;&nbsp;{{page.modified_date | date_to_string}}</p>
+      {% else %}
+      <p>{{page.date | date_to_string}}</p>
+      {% endif %}
       <p>&ensp;·&ensp;</p>
       <p>{{ reading_time }} min</p>
       <p>&ensp;·&ensp;</p>

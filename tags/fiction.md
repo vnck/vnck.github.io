@@ -1,5 +1,5 @@
 ---
 layout: tag-page
-tag: interactivefiction
+tag: fiction
 icon: 🔖
 ---

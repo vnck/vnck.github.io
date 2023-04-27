@@ -11,7 +11,7 @@ hr {
 }
 
 .site-header {
-  font-family: $header-font-family;
+  font-family: $base-font-family;
   width: 58%;
   padding-top: 1.5rem;
   padding-bottom: 0;
@@ -135,10 +135,16 @@ hr {
 // Post Items
 .post-item {
   padding-bottom: $spacing-unit;
-  h4,
+  h4 {
+    margin: 0;
+    padding: 0;
+    font-family: $base-font-family;
+  }
   p {
     margin: 0;
     padding: 0;
+    font-family: $base-font-family;
+    font-size: $palm-small-font-size;
   }
   a {
     color: $text-color;
@@ -150,11 +156,11 @@ hr {
 }
 
 .caption {
-  font-size: $tiny-font-size;
-  font-family: $header-font-family;
+  font-size: $small-font-size;
+  font-family: $base-font-family;
   color: $grey-color;
   @include media-query($on-palm) {
-    font-size: $palm-tiny-font-size;
+    font-size: $palm-font-size;
   }
 }
 
@@ -162,9 +168,10 @@ hr {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-top: 0.1rem;
   p {
-    font-size: $tiny-font-size;
-    font-family: $header-font-family;
+    font-size: $small-font-size;
+    font-family: $base-font-family;
     color: $grey-color;
     @include media-query($on-palm) {
       font-size: $palm-small-font-size;

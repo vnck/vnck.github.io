@@ -11,7 +11,11 @@ strip_html | strip_newlines | remove: " " | size | divided_by: 600 | plus: 1 %}
     <p>[ Redirect ]</p>
     <p>&ensp;·&ensp;</p>
     {% endif %}
+    {% if post.modified_date %}
+    <p style="text-decoration:line-through;">{{post.date | date_to_string}}</p><p>&nbsp;{{post.modified_date | date_to_string}}</p>
+    {% else %}
     <p>{{post.date | date_to_string}}</p>
+    {% endif %}
     <p>&ensp;·&ensp;</p>
     <p>{{reading_time}} min</p>
     <p>&ensp;·&ensp;</p>

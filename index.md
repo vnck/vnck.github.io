@@ -7,8 +7,8 @@ nav: false
 title: vnck
 ---
 
-# 🌱 Hi! I'm Ivan Chuang
+# 🌱🌱 IVAN 🌱
 
-I write to make sense of technology within cities (and conversely).
+Writing to make sense of technology and the cities;
 
 ---
