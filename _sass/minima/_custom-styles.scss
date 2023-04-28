@@ -6,7 +6,7 @@ hr {
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 1px solid $grey-color-light;
+  border-bottom: 1px dashed $text-color;
   margin: 30px 0;
 }
 
@@ -17,6 +17,7 @@ hr {
   padding-bottom: 0;
   border-top: 0px;
   min-height: $spacing-unit * 1.865;
+  border-bottom: 1px dashed $text-color;
 
   // Positioning context for the mobile navigation icon
   position: relative;
@@ -79,6 +80,7 @@ hr {
 
   @include media-query($on-palm) {
     justify-content: space-around;
+    margin-bottom: .6rem;
   }
 
   @media screen and (min-width: $on-palm) {
@@ -184,13 +186,12 @@ hr {
   font-size: $small-font-size * 0.825;
   display: flex;
   flex-wrap: wrap;
-  a:hover {
-    color: #4682b4;
-    text-decoration: underline;
-  }
   a {
     margin-bottom: 4px;
     margin-right: 4px;
+  }
+  a:hover {
+    text-decoration: none;
   }
   margin-bottom: 3em;
   @include media-query($on-palm) {
@@ -358,6 +359,7 @@ blockquote {
 .site-footer {
   font-family: $header-font-family;
   width: 58%;
+  border-top: 1px dashed $text-color;
   @include media-query($on-palm) {
     width: 80%;
   }
