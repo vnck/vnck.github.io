@@ -1,7 +1,7 @@
 ---
 layout: journal-post
 title: "Updated tags"
-date: 2023-03-04
+date: 2023-05-01
 tags: [meta]
 description: "I updated the blog's tags."
 ---
