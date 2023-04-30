@@ -2,9 +2,9 @@
 layout: post
 title: "Things to look out for as a fresh grad"
 date: 2022-10-24
-tags: career
+tags: [tacit-knowledge]
 description: "To have a fun career start."
-permalink: /writing/certain-expectations
+permalink: /writing/what-look-out-fresh-grad
 ---
 
 After 2 internships and 1 year working full-time, I think I've distilled what are the key factors to having a great career start. As I was asked in a job interview early on, "What do you look for in a company?"

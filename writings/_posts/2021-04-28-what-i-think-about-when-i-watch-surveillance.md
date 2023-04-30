@@ -2,7 +2,7 @@
 layout: post
 title: "What I think about when I watch surveillance cameras"
 date: 2021-04-28
-tags: [codespace, cities]
+tags: [codespace, intfrastructure]
 description: "Or, what I think about when surveillance cameras watch me."
 permalink: /writings/what-i-think-about-surveillance
 ---

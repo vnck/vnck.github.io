@@ -2,7 +2,7 @@
 layout: post
 title: "LLMs as communicative infrastructure"
 date: 2023-04-28
-tags: AI
+tags: [intfrastructure]
 description: "Ruminations on LLMs, communication, and relationships"
 permalink: /writing/llm-communicative-infrastructure
 ---

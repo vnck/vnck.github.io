@@ -2,7 +2,7 @@
 layout: post
 title: "When public space turns digital"
 date: 2020-09-22
-tags: [codespace, communities]
+tags: [codespace]
 description: "A reflection on living digitally during a pandemic lockdown."
 permalink: /writings/public-space-digital
 ---

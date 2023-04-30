@@ -2,7 +2,7 @@
 layout: post
 title: "Deriving ridership demand from online hitch communities"
 date: 2021-09-20
-tags: [cities, communities, dataviz]
+tags: [small-world, codespace]
 image: /assets/posts/2021-09-20-hitch-ridersip-demand/sg-hitch-avgdistsubzone.png
 description: "Deriving hitch ridership demand from a Singapore-based telegram group."
 permalink: /projects/deriving-hitch-ridership-demand

@@ -23,6 +23,11 @@ layout: default
 
   {% include tag-cloud.html %}
 
+  {% if post.content != "" %}
+    {{ content }}
+    <hr>
+  {% endif %}
+
   <div class="post-content feed">
     {% if page.tag == "all" %}
       {% for post in site.posts %}

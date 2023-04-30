@@ -2,9 +2,8 @@
 layout: journal-post
 title: "Personal Tracking"
 date: 2023-03-04
-tags: personal
+tags: [databodies]
 description: "A personal history of life-tracking."
-permalink: /journal/life-tracking
 ---
 
 I started with a B5 grid-paper Muji ring-notebook, a journal I kept during my two years of national service. It's the only journal that I've successfully managed to commit to, owing to the abundance of free time in service.
