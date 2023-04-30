@@ -15,7 +15,7 @@ layout: default
         <h1 class="post-title">
           {% if page.icon %}
             {{ page.icon }}&ensp;{% endif %}Tag:
-          <code class="tag-header">{{ page.tag | replace: '-', ' ' }}</code>
+          <code class="tag-header">{{ page.tag }}</code>
           ({{ post_count }})
         </h1>
     {% endif %}

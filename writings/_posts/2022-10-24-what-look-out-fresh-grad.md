@@ -2,7 +2,7 @@
 layout: post
 title: "Things to look out for as a fresh grad"
 date: 2022-10-24
-tags: [tacit-knowledge]
+tags: [folklore]
 description: "To have a fun career start."
 permalink: /writing/what-look-out-fresh-grad
 ---
