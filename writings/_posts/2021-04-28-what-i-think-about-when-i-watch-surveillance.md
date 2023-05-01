@@ -43,6 +43,7 @@ Finally, while I imagine the landscape of surveillance, the areas that fall unde
 Singaporeans should rise up from their passiveness towards our increased state of surveillance and begin to hold these infrastructures of surveillance accountable. This extends beyond surveillance cameras which I have discussed here to other surveillance technologies like contact-tracing devices and camera-equipped doorbells. However, such accountability first demands a level of transparency which we are not currently afforded. However, the tacit knowledge of local communities might perhaps serve as initial grounds of evidence to begin such conversations and reduce our dependence on those in power to command information, enabling action from the ground up.
 
 ---
+**References**
 
 [^Abdullah]: Abdullah, Z., & Cheng, I. (2018, May 14). “Smart lamp posts” in Singapore won’t shine light into people’s lives. CNA. <https://www.channelnewsasia.com/news/singapore/smart-lampposts-singapore-wont-shine-light-peoples-lives-10229804>
 

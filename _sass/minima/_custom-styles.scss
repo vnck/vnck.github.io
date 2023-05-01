@@ -334,7 +334,7 @@ details[open] {
 // block quote
 
 blockquote {
-  border-left: 4px solid mistyrose;
+  border-left: 1px dashed $text-color;
   letter-spacing: 0;
   p {
     font-size: $small-font-size;
