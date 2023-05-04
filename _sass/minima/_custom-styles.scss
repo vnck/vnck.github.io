@@ -111,12 +111,15 @@ hr {
   }
 }
 
-.post-content > {
+.post-content {
   h1,
   h2,
-  h3,
-  h4 {
+  h3 {
     font-size: $medium-font-size;
+  }
+
+  ul > li {
+    list-style-type: "+ ";
   }
 }
 // feed {
@@ -334,6 +337,7 @@ details[open] {
 // block quote
 
 blockquote {
+  margin-top: .6rem;
   border-left: 1px dashed $text-color;
   letter-spacing: 0;
   p {

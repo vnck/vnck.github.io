@@ -42,7 +42,7 @@ Public spaces can be designed as serendipity structures, supporting chance encou
 _Side Note:_ You could also say that it bears similarity to the way we navigate the web. We go from address to address. Even searching on Google, we have a destination in mind, Google is the address book. Digital spaces that support serendipity feel like a thing of the 2000s, where online community spaces really peaked, like Club Penguin, Habbo Hotel, and Second Life. Perhaps VRChat is the closest thing we have right now to those glory days.
 
 ---
-**Footnotes**
+#### Footnotes
 
 [^1]: The term which the Singapore government affectionately uses to describe what is essentially a city lockdown.
 [^2]: The channel was set up on 6th April, three days after the official announcement.

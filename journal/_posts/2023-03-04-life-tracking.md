@@ -1,6 +1,6 @@
 ---
 layout: journal-post
-title: "Personal Tracking"
+title: "Personal tracking"
 date: 2023-03-04
 tags: [databodies]
 description: "A personal history of life-tracking."
