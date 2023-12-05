@@ -12,5 +12,7 @@ description: "A list of things that make me happy."
 - Melano CC Vitamin C Essence [[店](https://www.guardian.com.sg/melano-cc-intensive-anti-spot-essence-20ml/p/605673?lang=en)]
 - Onitsuka Tiger Serrano Independence Blue/White [无]
 - Uniqlo Oversized Pocket Crew Neck Half Sleeve T-Shirt [[店](https://www.uniqlo.com/sg/en/products/E446935-000?colorCode=COL00&sizeCode=SMA003)]
+- Adopt Parfum Au Bout Du Monde [[店](https://www.adopt.com/fr/au-bout-du-monde-eau-de-parfum.html)]
+- Asics Gel Nimbus 25 [[店](https://www.asics.com/sg/en-sg/gel-nimbus-25/p/18409491/15515559)]
 
 _^Will be updated frequently._
