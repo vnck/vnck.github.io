@@ -2,7 +2,7 @@
 layout: post
 title: "The data justifies the tree"
 date: 2021-06-05
-image: /assets/posts/2021-06-05-the-data-justifies-the-tree/explore-trees.png
+image: /assets/posts/2021-06-05-the-data-justifies-the-tree/twitter-card.png
 tags: [codespace, databodies]
 description: "If a tree falls, but is not captured in the data."
 permalink: /writings/the-data-justifies-the-tree
