@@ -3,7 +3,11 @@
     <div class="journal-post-content">{{ include.content }}
     </div>
     <div class="journal-post-footer">
-        <p>{{include.date | date_to_string}}</p>
+        {% if include.modified_date %}
+        <p>{{include.modified_date | date_to_string}}&nbsp;&nbsp;</p><p style="text-decoration:line-through;">{{include.date | date_to_string}}</p>
+        {% else %}
+            <p>{{include.date | date_to_string}}</p>
+        {% endif %}
         <p>&ensp;·&ensp;</p>
         <p>
             {% for tag in include.tags%}

@@ -26,7 +26,7 @@ layout: default
     {% for post in site.posts limit:4 %}
       {% if post.categories contains page.category %}
       <li>
-        {% include journal-entry.html content=post.content title=post.title tags=post.tags date=post.date %}
+        {% include journal-entry.html content=post.content title=post.title tags=post.tags date=post.date modified_date=post.modified_date %}
       </li>
       {% endif %}
     {% endfor %}

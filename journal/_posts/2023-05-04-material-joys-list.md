@@ -2,6 +2,7 @@
 layout: journal-post
 title: "List of material joys"
 date: 2023-05-04
+modified_date: 2023-12-05
 tags: [footnotes]
 description: "A list of things that make me happy."
 ---

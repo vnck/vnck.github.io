@@ -4,6 +4,7 @@ title: "My skincare routine"
 date: 2023-12-05
 tags: [folklore]
 description: "Sharing my skincare routine."
+image: /assets/posts/2023-12-05-skincare-routine/_2c24e1cc-30cf-476e-a3a3-822d958366b6.jpg
 permalink: /writing/skincare-routine
 ---
 
