@@ -50,4 +50,4 @@ Okay, now that I’ve shared my approach, I should talk about what that routine 
 4. **Exfoliant**: *Cosrx's BHA blackhead power liquid*. On days I don't use Differin, I use this instead.
 5. **Serum**: *Cos de Baha tranexamic acid*. On days I don’t use Differin, I use this instead. I’m testing this as an alternative to vitamin C, as it’s also meant to improve skin tone.
 
-So that’s it. Skincare is highly personal, so this is more a guide on how to approach it, rather than a recommendation to follow. Still, you can take it as a fun read!
+So that’s it. Skincare is highly personal, so this is more a guide on how to approach it, rather than a recommendation to follow~~
