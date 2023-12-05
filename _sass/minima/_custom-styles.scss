@@ -113,9 +113,13 @@ hr {
 
 .post-content {
   h1,
-  h2,
-  h3 {
+  h2 {
     font-size: $medium-font-size;
+    margin-top: $spacing-unit;
+  }
+
+  h3 {
+    font-size: $medium-small-font-size;
   }
 
   ul > li {
@@ -245,6 +249,12 @@ hr {
     &:hover {
       color: $link-hover-color;
     }
+  }
+  li {
+    margin-bottom: $spacing-unit;
+  }
+  li > ul, li > ol {
+    margin-top: $spacing-unit;
   }
 }
 
