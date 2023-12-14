@@ -4,6 +4,7 @@ title: "Work from home, and the city"
 date: 2021-08-26
 tags: [codespace] 
 description: "Will work from home remain? and what the city says."
+image: /assets/posts/2021-08-26-work-from-home-and-the-city/twitter-card.jpeg
 permalink: /writings/work-from-home-and-the-city
 ---
 

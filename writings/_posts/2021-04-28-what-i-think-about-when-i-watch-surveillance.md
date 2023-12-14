@@ -4,6 +4,7 @@ title: "What I think about when I watch surveillance cameras"
 date: 2021-04-28
 tags: [codespace, intfrastructure]
 description: "Or, what I think about when surveillance cameras watch me."
+image: /assets/posts/2021-04-28-what-i-think-about-when-i-watch-surveillance/twitter-card.jpeg
 permalink: /writings/what-i-think-about-surveillance
 ---
 
