@@ -45,9 +45,9 @@ Okay, now that I’ve shared my approach, I should talk about what that routine 
 ### My night routine:
 
 1. **Cleanser**: *Hada Labo's hydrating cleanser* / *Rovectin skin essential conditioning cleanser*
-2. **Toner**: I’ve been trying out *Cosrx's propolis toner*. It absorbs super fast and leaves a slightly tacky finish, hence I reserve it for the night. I primarily use a toner to moisturise before the next step.
+2. **Toner**: *isntree’s green tea fresh toner* I primarily use a toner to moisturise before the next step.
 3. **Retinoids**: I'm using *Differin gel with 0.1% adepelene*. It can only be bought from the pharmacy, and is the most expensive product I'm using ($40) but also the most potent and active. The active ingredient, Adapelene, is a retinoid which boosts skin turnover rate, preventing breakouts and improved skin texture. It's quite drying though, hence applied after the toner. I apply this every fortnite. It is effective though, and I think has produced the biggest improvement on skin quality over all the other products.
-4. **Exfoliant**: *Cosrx's BHA blackhead power liquid*. On days I don't use Differin, I use this instead.
-5. **Serum**: *Cos de Baha tranexamic acid*. On days I don’t use Differin, I use this instead. I’m testing this as an alternative to vitamin C, as it’s also meant to improve skin tone.
+4. **Exfoliant**: *Cosrx's BHA blackhead power liquid*. On days I don't use Differin, I use this instead along with serum.
+5. **Serum**: *Cos de Baha tranexamic acid*. I’m testing this as an alternative to vitamin C, so far I do see it fading some dark spots.
 
 So that’s it. Skincare is highly personal, so this is more a guide on how to approach it, rather than a recommendation to follow~~
