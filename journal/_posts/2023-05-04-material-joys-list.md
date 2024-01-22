@@ -13,6 +13,7 @@ description: "A list of things that make me happy."
 - Melano CC Vitamin C Essence [[店](https://www.guardian.com.sg/melano-cc-intensive-anti-spot-essence-20ml/p/605673?lang=en)]
 - Adopt Parfum Au Bout Du Monde [[店](https://www.adopt.com/fr/au-bout-du-monde-eau-de-parfum.html)]
 - New Balance 530 White [[店]](https://www.newbalance.com.sg/men/shoes/MR530-32265.html)
+- Fujifilm X-T30 II [[店]](https://fujifilm-x.com/global/products/cameras/x-t30-ii/)
 - Unsweetened Soy Milk [无]
 
 _^Will be updated frequently._
