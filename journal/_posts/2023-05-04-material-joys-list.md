@@ -2,7 +2,7 @@
 layout: journal-post
 title: "List of material joys"
 date: 2023-05-04
-modified_date: 2023-12-05
+modified_date: 2024-01-23
 tags: [footnotes]
 description: "A list of things that make me happy."
 ---
@@ -11,9 +11,8 @@ description: "A list of things that make me happy."
 - Flowers by _Makoto Nagata_ [[听](https://open.spotify.com/track/7f69rFN3ec1Qd6bqqgF2qo)]
 - Dirty by _Lush_ [[店](https://lushsg.com/products/dirty-6)]
 - Melano CC Vitamin C Essence [[店](https://www.guardian.com.sg/melano-cc-intensive-anti-spot-essence-20ml/p/605673?lang=en)]
-- Onitsuka Tiger Serrano Independence Blue/White [无]
-- Uniqlo Oversized Pocket Crew Neck Half Sleeve T-Shirt [[店](https://www.uniqlo.com/sg/en/products/E446935-000?colorCode=COL00&sizeCode=SMA003)]
 - Adopt Parfum Au Bout Du Monde [[店](https://www.adopt.com/fr/au-bout-du-monde-eau-de-parfum.html)]
-- Asics Gel Nimbus 25 [[店](https://www.asics.com/sg/en-sg/gel-nimbus-25/p/18409491/15515559)]
+- New Balance 530 White [[店]](https://www.newbalance.com.sg/men/shoes/MR530-32265.html)
+- Unsweetened Soy Milk [无]
 
 _^Will be updated frequently._
