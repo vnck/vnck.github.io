@@ -1,0 +1,35 @@
+---
+import { formatDate } from '../utils/index';
+
+interface Props {
+  title: string;
+  date: Date;
+  modifiedDate?: Date;
+  tags: string[];
+}
+
+const { title, date, modifiedDate, tags } = Astro.props;
+---
+<div class="journal-post">
+  <h2 class="journal-post-title">{title}</h2>
+  <div class="journal-post-content">
+    <slot />
+  </div>
+  <div class="journal-post-footer">
+    {modifiedDate ? (
+      <>
+        <p>{formatDate(modifiedDate)}&nbsp;&nbsp;</p>
+        <p style="text-decoration:line-through;">{formatDate(date)}</p>
+      </>
+    ) : (
+      <p>{formatDate(date)}</p>
+    )}
+    <p>&ensp;·&ensp;</p>
+    <p>
+      {tags.map(tag => (
+        <a href={`/tags/${tag}`}><code class="tag">{tag}</code></a>
+      ))}
+    </p>
+  </div>
+  <div class="journal-post-break">* * *</div>
+</div>

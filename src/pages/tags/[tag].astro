@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostEntry from '../../components/PostEntry.astro';
+import TagCloud from '../../components/TagCloud.astro';
+import { getCollection } from 'astro:content';
+import { readingTime, deriveSlug, getAllTags } from '../../utils/index';
+
+export async function getStaticPaths() {
+  const noDraft = ({ data }: { data: { draft?: boolean } }) => !data.draft;
+  const [writings, projects, journal] = await Promise.all([
+    getCollection('writings', noDraft),
+    getCollection('projects', noDraft),
+    getCollection('journal', noDraft),
+  ]);
+  const all = [...writings, ...projects, ...journal];
+  const tags = getAllTags(all);
+
+  return [
+    { params: { tag: 'all' }, props: { writings, projects, journal, allTags: tags } },
+    ...tags.map(tag => ({
+      params: { tag },
+      props: { writings, projects, journal, allTags: tags },
+    })),
+  ];
+}
+
+const { tag } = Astro.params;
+const { writings, projects, journal, allTags } = Astro.props;
+
+type AnyEntry = (typeof writings)[0] | (typeof projects)[0] | (typeof journal)[0];
+
+function getUrl(entry: AnyEntry): string {
+  const slug = deriveSlug(entry.id, entry.data.permalink);
+  return `/${entry.collection}/${slug}`;
+}
+
+const writingsAndProjects: AnyEntry[] = [...writings, ...projects];
+const filtered = tag === 'all'
+  ? writingsAndProjects
+  : writingsAndProjects.filter(e => e.data.tags.includes(tag));
+
+const sorted = filtered.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const count = sorted.length;
+
+const pageTitle = tag === 'all' ? 'All posts' : `Tag: ${tag}`;
+---
+<BaseLayout title={pageTitle}>
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        {tag === 'all'
+          ? `All posts (${count})`
+          : <span>Tag: <code class="tag-header">{tag}</code> ({count})</span>
+        }
+      </h1>
+    </header>
+    <TagCloud tags={allTags} currentTag={tag} />
+    <div class="post-content feed">
+      {sorted.map(post => {
+        const rt = readingTime(post.body, post.data.reading_time);
+        return (
+          <PostEntry
+            url={getUrl(post)}
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            modifiedDate={post.data.modified_date}
+            tags={post.data.tags}
+            readingTime={rt}
+            isRedirect={!!post.data.redirect_to}
+          />
+        );
+      })}
+    </div>
+  </article>
+</BaseLayout>

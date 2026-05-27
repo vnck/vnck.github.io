@@ -1,0 +1,42 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { readingTime, deriveSlug } from '../../utils/index';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => !data.draft);
+  return projects.map(entry => ({
+    params: { slug: deriveSlug(entry.id, entry.data.permalink) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+const rt = readingTime(entry.body, entry.data.reading_time);
+const redirectUrl = entry.data.redirect_to;
+---
+{redirectUrl ? (
+  <BaseLayout title={entry.data.title} description={entry.data.description} redirectUrl={redirectUrl}>
+    <div class="redirect-page">
+      <h1>{entry.data.title}</h1>
+      {entry.data.description && <p class="redirect-meta">{entry.data.description}</p>}
+      <p class="redirect-meta">Redirecting in 3 seconds&hellip;</p>
+      <p class="redirect-link"><a href={redirectUrl}>Continue reading &rarr;</a></p>
+    </div>
+  </BaseLayout>
+) : (
+  <PostLayout
+    title={entry.data.title}
+    date={entry.data.date}
+    tags={entry.data.tags}
+    description={entry.data.description}
+    image={entry.data.image}
+    modifiedDate={entry.data.modified_date}
+    readingTime={rt}
+    headings={headings}
+  >
+    <Content />
+  </PostLayout>
+)}

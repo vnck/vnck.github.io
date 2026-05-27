@@ -1,0 +1,41 @@
+---
+import { formatDate } from '../utils/index';
+
+interface Props {
+  url: string;
+  title: string;
+  description?: string;
+  date: Date;
+  modifiedDate?: Date;
+  tags: string[];
+  readingTime: number;
+  isRedirect?: boolean;
+}
+
+const { url, title, description, date, modifiedDate, tags, readingTime, isRedirect } = Astro.props;
+---
+<div class="post-item">
+  <h4>
+    <a href={url}>{title}</a>
+  </h4>
+  {description && <p class="caption">{description}</p>}
+  <div class="caption-container">
+    {isRedirect && <><p>[ Redirect ]</p><p>&ensp;·&ensp;</p></>}
+    {modifiedDate ? (
+      <>
+        <p style="text-decoration:line-through;">{formatDate(date)}</p>
+        <p>&nbsp;{formatDate(modifiedDate)}</p>
+      </>
+    ) : (
+      <p>{formatDate(date)}</p>
+    )}
+    <p>&ensp;·&ensp;</p>
+    <p>{readingTime} min</p>
+    <p>&ensp;·&ensp;</p>
+    <p>
+      {tags.map(tag => (
+        <a href={`/tags/${tag}`}><code class="tag">{tag}</code></a>
+      ))}
+    </p>
+  </div>
+</div>

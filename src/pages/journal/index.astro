@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalEntry from '../../components/JournalEntry.astro';
+import TagCloud from '../../components/TagCloud.astro';
+import { getCollection } from 'astro:content';
+import { getAllTags } from '../../utils/index';
+
+const journal = await getCollection('journal', ({ data }) => !data.draft);
+const sorted = journal.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const tags = getAllTags(journal);
+
+const rendered = await Promise.all(
+  sorted.map(async entry => {
+    const { Content } = await entry.render();
+    return { entry, Content };
+  })
+);
+---
+<BaseLayout title="Journal">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">🌊&ensp;Journal</h1>
+    </header>
+    <TagCloud tags={tags} />
+    <hr />
+    <ul style="list-style:none;margin-left:0;padding:0;">
+      {rendered.map(({ entry, Content }) => (
+        <li>
+          <JournalEntry
+            title={entry.data.title}
+            date={entry.data.date}
+            modifiedDate={entry.data.modified_date}
+            tags={entry.data.tags}
+          >
+            <Content />
+          </JournalEntry>
+        </li>
+      ))}
+    </ul>
+  </article>
+</BaseLayout>

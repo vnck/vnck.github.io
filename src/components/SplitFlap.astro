@@ -1,0 +1,98 @@
+---
+interface Props {
+  phrases: string[];
+  intervalMs?: number;
+}
+const { phrases, intervalMs = 12000 } = Astro.props;
+---
+
+<span id="split-flap-display" aria-hidden="true">{' '.repeat(phrases[0].length)}</span>
+<span id="split-flap-a11y" class="split-flap-sr" aria-live="polite">{phrases[0]}</span>
+
+<style>
+  #split-flap-display {
+    white-space: pre-wrap;
+  }
+
+  .split-flap-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script define:vars={{ phrases, intervalMs }}>
+  const CHARSET = 'abcdefghijklmnopqrstuvwxyz0123456789.,;:- ';
+  const CYCLE_MS = 55;
+  const STAGGER_MS = 28;
+
+  const display = document.getElementById('split-flap-display');
+  const a11y = document.getElementById('split-flap-a11y');
+  if (!display) throw new Error('split-flap-display not found');
+
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  function randomChar() {
+    return CHARSET[Math.floor(Math.random() * CHARSET.length)];
+  }
+
+  function animateTo(target) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const currentText = display.textContent || ' ';
+    const maxLen = Math.max(currentText.length, target.length);
+
+    display.innerHTML = '';
+    const spans = Array.from({ length: maxLen }, (_, i) => {
+      const span = document.createElement('span');
+      span.textContent = i < currentText.length ? currentText[i] : ' ';
+      display.appendChild(span);
+      return span;
+    });
+
+    let settled = 0;
+
+    spans.forEach((span, i) => {
+      const targetChar = i < target.length ? target[i] : ' ';
+      const numCycles = 5 + Math.floor(Math.random() * 5);
+
+      setTimeout(() => {
+        let count = 0;
+        span.style.color = 'var(--grey)';
+
+        const tick = setInterval(() => {
+          if (count >= numCycles) {
+            clearInterval(tick);
+            span.textContent = targetChar;
+            span.style.color = '';
+            settled++;
+            if (settled === spans.length) {
+              display.textContent = target;
+              if (a11y) a11y.textContent = target;
+              isAnimating = false;
+            }
+          } else {
+            span.textContent = randomChar();
+            count++;
+          }
+        }, CYCLE_MS);
+      }, i * STAGGER_MS);
+    });
+  }
+
+  // Animate in first phrase on load, then cycle
+  setTimeout(() => animateTo(phrases[0]), 300);
+
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % phrases.length;
+    animateTo(phrases[currentIndex]);
+  }, intervalMs);
+</script>

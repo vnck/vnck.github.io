@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostEntry from '../components/PostEntry.astro';
+import SplitFlap from '../components/SplitFlap.astro';
+import { getCollection } from 'astro:content';
+import { readingTime, deriveSlug } from '../utils/index';
+
+const noDraft = ({ data }: { data: { draft?: boolean } }) => !data.draft;
+const writings = await getCollection('writings', noDraft);
+const projects = await getCollection('projects', noDraft);
+
+const allPosts = [...writings, ...projects]
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5);
+---
+<BaseLayout>
+  <div class="home">
+    <h1>🌱🌱 IVAN 🌱</h1>
+    <p><SplitFlap phrases={[
+      "Writing to make sense of technology and the cities;",
+      "Digital placemaking;",
+      "Public garden;",
+      "Thinking out into the void;"
+    ]} /></p>
+    <hr />
+
+    <h2>Recently,</h2>
+    <br />
+    <div class="feed">
+      {allPosts.map(post => {
+        const collection = post.collection as 'writings' | 'projects';
+        const slug = deriveSlug(post.id, post.data.permalink);
+        const url = `/${collection}/${slug}`;
+        const rt = readingTime(post.body, post.data.reading_time);
+        return (
+          <PostEntry
+            url={url}
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            modifiedDate={post.data.modified_date}
+            tags={post.data.tags}
+            readingTime={rt}
+            isRedirect={!!post.data.redirect_to}
+          />
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>

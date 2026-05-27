@@ -1,0 +1,15 @@
+---
+interface Props {
+  tags: string[];
+  currentTag?: string;
+}
+
+const { tags, currentTag } = Astro.props;
+const sorted = [...tags].sort();
+---
+<div class="tag-cloud">
+  <a href="/tags/all"><code class="tag">all</code></a>
+  {sorted.map(tag => (
+    <a href={`/tags/${tag}`}><code class="tag">{tag}</code></a>
+  ))}
+</div>
