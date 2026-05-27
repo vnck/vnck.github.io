@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JournalEntry from '../../components/JournalEntry.astro';
 import TagCloud from '../../components/TagCloud.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { getAllTags } from '../../utils/index';
 
 const journal = await getCollection('journal', ({ data }) => !data.draft);
@@ -11,7 +11,7 @@ const tags = getAllTags(journal);
 
 const rendered = await Promise.all(
   sorted.map(async entry => {
-    const { Content } = await entry.render();
+    const { Content } = await render(entry);
     return { entry, Content };
   })
 );

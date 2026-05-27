@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JournalEntry from '../../components/JournalEntry.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { deriveSlug } from '../../utils/index';
 
 export async function getStaticPaths() {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 <BaseLayout title={entry.data.title} description={entry.data.description}>
   <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">

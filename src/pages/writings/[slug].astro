@@ -1,7 +1,7 @@
 ---
 import PostLayout from '../../layouts/PostLayout.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { readingTime, deriveSlug } from '../../utils/index';
 
 export async function getStaticPaths() {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await entry.render();
+const { Content, headings } = await render(entry);
 const rt = readingTime(entry.body, entry.data.reading_time);
 const redirectUrl = entry.data.redirect_to;
 ---
