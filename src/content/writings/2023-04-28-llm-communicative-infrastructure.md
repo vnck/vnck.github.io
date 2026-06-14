@@ -1,9 +1,9 @@
 ---
 title: "LLMs as communicative infrastructure"
 date: 2023-04-28
-tags: [intfrastructure]
+tags: [infrastructure]
 description: "Ruminations on LLMs, communication, and relationships."
-image: /assets/posts/2023-04-28-llm-communicative-infrastructure/twitter-card.jpeg
+image: /assets/posts/2023-04-28-llm-communicative-infrastructure/twitter-card.webp
 permalink: /writing/llm-communicative-infrastructure
 ---
 

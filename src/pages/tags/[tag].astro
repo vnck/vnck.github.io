@@ -34,10 +34,10 @@ function getUrl(entry: AnyEntry): string {
   return `/${entry.collection}/${slug}`;
 }
 
-const writingsAndProjects: AnyEntry[] = [...writings, ...projects];
+const allEntries: AnyEntry[] = [...writings, ...projects, ...journal];
 const filtered = tag === 'all'
-  ? writingsAndProjects
-  : writingsAndProjects.filter(e => e.data.tags.includes(tag));
+  ? allEntries
+  : allEntries.filter(e => e.data.tags.includes(tag));
 
 const sorted = filtered.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const count = sorted.length;

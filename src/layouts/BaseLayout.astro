@@ -1,5 +1,10 @@
 ---
 import '../styles/global.css';
+import '@fontsource/inconsolata/latin-400.css';
+import '@fontsource/source-serif-pro/latin-400.css';
+import '@fontsource/source-serif-pro/latin-400-italic.css';
+import '@fontsource/source-serif-pro/latin-600.css';
+import '@fontsource/source-serif-pro/latin-600-italic.css';
 
 interface Props {
   title?: string;
@@ -13,7 +18,7 @@ const { title, description, image, redirectUrl, ogType = 'website' } = Astro.pro
 const siteTitle = 'vnck';
 const siteDescription = 'Writings about technological and urban systems.';
 const siteUrl = 'https://vnck.xyz';
-const titleImage = `${siteUrl}/assets/headshot.PNG`;
+const titleImage = `${siteUrl}/assets/headshot.webp`;
 const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const currentYear = new Date().getFullYear();
@@ -22,8 +27,9 @@ const currentYear = new Date().getFullYear();
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fdfdfd" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a1a1a" />
   <title>{pageTitle}</title>
   <meta name="description" content={description || siteDescription} />
   <meta name="author" content="Ivan Chuang" />
@@ -31,10 +37,6 @@ const currentYear = new Date().getFullYear();
   <link rel="alternate" type="application/rss+xml" title="vnck" href="/feed.xml" />
 
   {redirectUrl && <meta http-equiv="refresh" content={`3;url=${redirectUrl}`} />}
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Source+Serif+Pro&display=swap" rel="stylesheet" />
 
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
@@ -73,14 +75,6 @@ const currentYear = new Date().getFullYear();
   </script>
 
   <slot name="head-extra" />
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Y729X1TE9"></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2Y729X1TE9');
-  </script>
 </head>
 <body>
   <header class="site-header" role="banner">
@@ -154,13 +148,6 @@ const currentYear = new Date().getFullYear();
     function applyTheme(dark) {
       document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
       localStorage.setItem('theme', dark ? 'dark' : 'light');
-      const iframe = document.querySelector('iframe.utterances-frame');
-      if (iframe) {
-        iframe.contentWindow.postMessage(
-          { type: 'set-theme', theme: dark ? 'github-dark' : 'github-light' },
-          'https://utteranc.es'
-        );
-      }
     }
     btn.addEventListener('click', () => {
       const nowDark = document.documentElement.getAttribute('data-theme') !== 'dark';
@@ -171,7 +158,10 @@ const currentYear = new Date().getFullYear();
     window.addEventListener('scroll', () => {
       topBtn.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
-    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    topBtn.addEventListener('click', () => {
+      const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+    });
   </script>
 </body>
 </html>

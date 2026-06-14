@@ -73,26 +73,7 @@ const jsonLd = JSON.stringify({
     <div class="post-content e-content" itemprop="articleBody">
       <slot />
     </div>
-
-    <div>
-      <hr />
-      <script is:inline>
-        (function() {
-          const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-          const s = document.createElement('script');
-          s.src = 'https://utteranc.es/client.js';
-          s.setAttribute('repo', 'vnck/vnck-comments');
-          s.setAttribute('issue-term', 'url');
-          s.setAttribute('theme', dark ? 'github-dark' : 'github-light');
-          s.setAttribute('crossorigin', 'anonymous');
-          s.async = true;
-          document.currentScript.parentNode.appendChild(s);
-        })();
-      </script>
-    </div>
   </article>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" is:inline></script>
 
   <script is:inline>
     // Heading anchor links

@@ -88,11 +88,18 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     });
   }
 
-  // Animate in first phrase on load, then cycle
-  setTimeout(() => animateTo(phrases[0]), 300);
+  // Respect the user's reduced-motion preference: show static text, no flapping.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    display.textContent = phrases[0];
+    if (a11y) a11y.textContent = phrases[0];
+  } else {
+    // Animate in first phrase on load, then cycle
+    setTimeout(() => animateTo(phrases[0]), 300);
 
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % phrases.length;
-    animateTo(phrases[currentIndex]);
-  }, intervalMs);
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % phrases.length;
+      animateTo(phrases[currentIndex]);
+    }, intervalMs);
+  }
 </script>

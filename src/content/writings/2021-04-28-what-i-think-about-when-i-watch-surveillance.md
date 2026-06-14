@@ -1,9 +1,9 @@
 ---
 title: "What I think about when I watch surveillance cameras"
 date: 2021-04-28
-tags: [codespace, intfrastructure]
+tags: [codespace, infrastructure]
 description: "Or, what I think about when surveillance cameras watch me."
-image: /assets/posts/2021-04-28-what-i-think-about-when-i-watch-surveillance/twitter-card.jpeg
+image: /assets/posts/2021-04-28-what-i-think-about-when-i-watch-surveillance/twitter-card.webp
 permalink: /writings/what-i-think-about-surveillance
 ---
 
@@ -14,7 +14,7 @@ This is a short reflection essay after observing the state-of-the-art surveillan
 Uncle points towards another alley and tells us that the upgraded surveillance cameras are down that way, you know, the cameras that “_follow you_”. So we head there, and come face to face with a black solid sphere mounted high up on a lamppost. As we notice it, so it notices us. With a soft mechanical whirl and a swivel, the gaze of its lens falls onto us. Unlike the older generation of surveillance cameras whose watchful gaze were kept hidden behind tinted glass, this one meets us eye to eye. The message is clear: “_I’m watching you._”
 
 <figure>
-    <img src="https://dispatchesfromthecity.files.wordpress.com/2021/04/img_0519-1.jpg?w=256"/>
+    <img src="../../assets/posts/2021-04-28-what-i-think-about-when-i-watch-surveillance/img-0519.webp"/>
     <figcaption>State-of-the-art surveillance camera installed in Geylang</figcaption>
 </figure>
 
@@ -27,7 +27,7 @@ Still, I could not help but feel a sense of unease towards being so blatantly wa
 First, what exactly do the cameras see? With fuzzy terms like crowd analytics, it’s hard to really know what is being captured beyond our physical image. Deploying models that seek to predict criminality or detect emotions is tempting in the pursuit of predictive policing[^Fussell], but AI researchers have warned how such classification systems share the same treacherous grounds as physiognomy, the unscientific study of physical features to determine social and emotional traits[^Crawford]. The opaqueness of these infrastructures of surveillance only leaves us spinning local myths and folklore on what these cameras can see and cannot see. Such anxieties have no place in public space and undermines the sense of security that these cameras are supposed to afford.
 
 <figure>
-    <img src="https://dispatchesfromthecity.files.wordpress.com/2021/04/img_0520.jpg?w=400"/>
+    <img src="../../assets/posts/2021-04-28-what-i-think-about-when-i-watch-surveillance/img-0520.webp"/>
     <figcaption>An image dataset for predicting criminality from Shanghai Jiao Tong University</figcaption>
 </figure>
 
@@ -36,7 +36,7 @@ Second, it occurred to me that such a network of cameras also constitutes the in
 Finally, while I imagine the landscape of surveillance, the areas that fall under the watchful gaze of the programme, I also wonder about the spaces unseen, the blind spots. Media scholar Shannon Mattern highlights that ‘rendering absence’ and ‘mapping erasure’ presents rich grounds for theoretical work[^Mattern]. What then might these unseen spaces reveal about surveillance? Who knows about these spaces and what they are used for? While the government might have such a mapping, accessibility is an issue. Then, what about Uncle? And all the other residents? Certainly if he has a mapping of where the surveillance cameras are, he has, even if unintentionally, constructed a mapping of blind spots. Such maps constitute a tacit knowledge before it is drawn out in paper, a form of power held by residents and by communities. The Simpsons episode ‘To Surveil With Love’ illustrates a possible future.
 
 <figure>
-    <img src="https://dispatchesfromthecity.files.wordpress.com/2021/04/img_0521.jpg?w=400"/>
+    <img src="../../assets/posts/2021-04-28-what-i-think-about-when-i-watch-surveillance/img-0521.webp"/>
     <figcaption>Screengrab from the Simpsons episode ‘To Surveil With Love’</figcaption>
 </figure>
 

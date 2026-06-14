@@ -3,7 +3,7 @@ title: "An Exploratory Study on Digital Sharing Communities"
 date: 2021-04-29
 tags: [smallworld]
 description: "Applying methods from computational social science to study HDB towns."
-image: /assets/posts/2021-04-29-studying-online-communities/banner.png
+image: /assets/posts/2021-04-29-studying-online-communities/banner.webp
 permalink: /projects/studying-online-communities
 ---
 

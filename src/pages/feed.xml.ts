@@ -34,6 +34,8 @@ export async function GET() {
     <title>vnck</title>
     <description>Writings about technological and urban systems.</description>
     <link>${site}</link>
+    <language>en</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${site}/feed.xml" rel="self" type="application/rss+xml"/>
     ${items}
   </channel>
