@@ -125,7 +125,13 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     return g;
   }
 
-  function randomRamp() {
+  // Blank sub-cells keep the noise from reading as a solid slab. Density builds from sparse specks
+  // towards FILL_MAX as the letter nears its shape.
+  const FILL_MIN = 0.2;
+  const FILL_MAX = 0.6;
+
+  function randomRamp(fill) {
+    if (Math.random() > fill) return ' ';
     return RAMP[1 + Math.floor(Math.random() * (RAMP.length - 1))];
   }
 
@@ -204,7 +210,8 @@ const { phrases, intervalMs = 12000 } = Astro.props;
             block.classList.add('is-shape');
             fillBlock(block, g.shape);
           } else {
-            fillBlock(block, Array.from({ length: g.cols * ROWS }, randomRamp));
+            const fill = FILL_MIN + (FILL_MAX - FILL_MIN) * (count / (numCycles - SHAPE_TICKS));
+            fillBlock(block, Array.from({ length: g.cols * ROWS }, () => randomRamp(fill)));
           }
           count++;
         }, CYCLE_MS);
