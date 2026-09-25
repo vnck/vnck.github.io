@@ -7,11 +7,13 @@ const { phrases, intervalMs = 12000 } = Astro.props;
 ---
 
 <span id="split-flap-display" aria-hidden="true">{' '.repeat(phrases[0].length)}</span>
-<span id="split-flap-a11y" class="split-flap-sr" aria-live="polite">{phrases[0]}</span>
+<span class="split-flap-sr">{phrases[0]}</span>
 
 <style>
   #split-flap-display {
     white-space: pre-wrap;
+    color: var(--faded);
+    font-style: italic;
   }
 
   .split-flap-sr {
@@ -29,11 +31,10 @@ const { phrases, intervalMs = 12000 } = Astro.props;
 
 <script define:vars={{ phrases, intervalMs }}>
   const CHARSET = 'abcdefghijklmnopqrstuvwxyz0123456789.,;:- ';
-  const CYCLE_MS = 55;
-  const STAGGER_MS = 28;
+  const CYCLE_MS = 75;
+  const STAGGER_MS = 34;
 
   const display = document.getElementById('split-flap-display');
-  const a11y = document.getElementById('split-flap-a11y');
   if (!display) throw new Error('split-flap-display not found');
 
   let currentIndex = 0;
@@ -66,7 +67,7 @@ const { phrases, intervalMs = 12000 } = Astro.props;
 
       setTimeout(() => {
         let count = 0;
-        span.style.color = 'var(--grey)';
+        span.style.color = 'var(--rule-strong)';
 
         const tick = setInterval(() => {
           if (count >= numCycles) {
@@ -76,7 +77,6 @@ const { phrases, intervalMs = 12000 } = Astro.props;
             settled++;
             if (settled === spans.length) {
               display.textContent = target;
-              if (a11y) a11y.textContent = target;
               isAnimating = false;
             }
           } else {
@@ -92,7 +92,6 @@ const { phrases, intervalMs = 12000 } = Astro.props;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) {
     display.textContent = phrases[0];
-    if (a11y) a11y.textContent = phrases[0];
   } else {
     // Animate in first phrase on load, then cycle
     setTimeout(() => animateTo(phrases[0]), 300);

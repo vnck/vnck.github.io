@@ -79,6 +79,10 @@ const currentYear = new Date().getFullYear();
   <slot name="head-extra" />
 </head>
 <body>
+  <!-- Shared rough-edge filter for ink doodles -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="ink-edge"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="0.8" /></filter>
+  </svg>
   <header class="site-header" role="banner">
     <div class="wrapper">
       <a class="site-title" rel="author" href="/">vnck</a>
@@ -137,7 +141,7 @@ const currentYear = new Date().getFullYear();
           </ul>
         </div>
         <div class="footer-col footer-col-right">
-          <p>© Ivan Chuang {currentYear}</p>
+          <p>Set in Source Serif 4 &amp; Inconsolata.<br />© Ivan Chuang {currentYear}</p>
         </div>
       </div>
     </div>

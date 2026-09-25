@@ -1,0 +1,101 @@
+---
+// Loose ink doodles that replace emoji. Each has a main stroke, lighter "re-trace" strokes offset
+// from it (a pen going over the line twice), and a small displacement filter for rough ink edges.
+interface Props {
+  name: 'sprout' | 'nib' | 'bulb' | 'wave';
+  flip?: boolean;
+  tilt?: number;
+}
+
+const { name, flip = false, tilt = 0 } = Astro.props;
+
+type Doodle = { main: string[]; retrace: string[]; marks: string[] };
+
+const doodles: Record<Props['name'], Doodle> = {
+  sprout: {
+    main: [
+      'M16.3 29.4c-.6-4.2.4-8.9-.3-13.6',
+      'M16 17.4c-3.7.4-7.9-2.1-8.9-6.8 4.6-.4 8.2 2.2 9.1 6.4',
+      'M16.3 14.9c1-4.7 5.2-7.8 9.7-7.1-.7 4.8-4.8 7.8-9.3 7.6',
+      'M9.8 29.8c3.6-.8 8.9 0 12.6-.7',
+    ],
+    retrace: [
+      'M16.9 28.6c-.4-4 .2-8.4-.2-12.3',
+      'M8 11.4c1.9 3.5 5 5.1 7.6 5.5',
+      'M25.3 8.6c-2.2 3.4-5.1 5.5-8.2 6.1',
+    ],
+    marks: [
+      'M9.6 12.4c2.2 1.3 4.2 2.9 5.8 4.6',
+      'M24.1 9.1c-2.5 1.4-4.9 3.3-7.1 5.3',
+      'M12.4 28.5l-.9-1.9',
+      'M20.6 28.2l.8-1.7',
+    ],
+  },
+  nib: {
+    main: [
+      'M16.1 28.6c-2.6-4.2-5.8-8-5.9-12.6-.1-3.1 1.8-4.8 2.7-6l6.2.1c1.1 1.2 2.8 3 2.6 6.1-.2 4.6-3.3 8.4-5.6 12.3',
+      'M12.7 10l.4-4.9 6.2.2.1 5',
+      'M16 18.4a1.4 1.4 0 1 0 .1-2.9 1.4 1.4 0 1 0-.2 3',
+    ],
+    retrace: [
+      'M11 16.5c.4 4 3 7.2 5 10.6',
+      'M13.5 5.6l5.3.3',
+    ],
+    marks: [
+      'M16.1 27.9 16 19.1',
+      'M13.3 7.7c1.9.2 3.9 0 5.8.1',
+      'M16.2 30.3c-.9.4-1 1.1-.1 1.2.8 0 .9-.7.1-1.2',
+    ],
+  },
+  bulb: {
+    main: [
+      'M12.2 21.3c-2.3-1.8-3.8-4.5-3.6-7.6.3-4.6 3.9-7.9 7.7-7.8 4.2.1 7.2 3.6 6.9 7.9-.1 3-1.8 5.4-3.7 7.3',
+      'M12.1 21.6l7.7-.4',
+      'M12.7 24.2l6.6-.3',
+      'M13.5 26.7c1.6.9 3.6.8 5-.1',
+    ],
+    retrace: [
+      'M9.3 12.6c.5-3.7 3.4-6.1 6.6-6.2',
+      'M22.9 15.1c-.6 2.3-1.9 4.1-3.4 5.6',
+    ],
+    marks: [
+      'M14.1 17.8c.5-2.2 1.2-3.4 1.9-3.2.7.2 1.2 1.5 1.8 3.3',
+      'M20.3 9.9l1.4 1.5',
+      'M20.9 12.4l1.3 1.3',
+      'M16.3 1.8l-.2 1.9',
+      'M26.2 5.7l-1.4 1.3',
+      'M5.9 6.1l1.5 1.2',
+    ],
+  },
+  wave: {
+    main: [
+      'M3 17.6c2.8.2 4.4-4.2 6.6-6.8 2.7-3.2 7.3-2.7 8.6.6 1.1 2.7-1.1 5-3.2 3.9-1.4-.8-.8-3 .9-2.9',
+      'M18.2 11.4c2.7.6 5.1 3 6.8 5.4',
+      'M3.1 22.4c3.8-1.3 6.5 1.1 10.1-.2 3.6-.9 6.1-3.1 9.7-2.3 2.8.6 4.3 2.5 6.3 1.8',
+    ],
+    retrace: [
+      'M3.8 17c2.4-.6 3.9-4.3 6.2-6.7',
+      'M4.2 23.1c3.4-.8 5.9.6 9.1-.3',
+    ],
+    marks: [
+      'M4.7 26.9c3.8-.9 6.4.8 10.1.1 3.4-.7 6.7-1.8 10.1-1',
+      'M26.4 14.3l.4.1',
+      'M27.9 16.8l.4.1',
+      'M25.6 12.2l.3.2',
+    ],
+  },
+};
+
+const d = doodles[name];
+const transform = [
+  flip ? 'translate(32 0) scale(-1 1)' : '',
+  tilt ? `rotate(${tilt} 16 16)` : '',
+].filter(Boolean).join(' ');
+---
+<svg class="doodle" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <g transform={transform || undefined} filter="url(#ink-edge)">
+    {d.main.map(p => <path class="doodle-main" d={p} />)}
+    {d.retrace.map(p => <path class="doodle-retrace" d={p} />)}
+    {d.marks.map(p => <path class="doodle-mark" d={p} />)}
+  </g>
+</svg>
