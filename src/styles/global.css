@@ -845,7 +845,7 @@ details[open] p {
 
   body { font-size: 11pt; line-height: 1.45; }
   .site-header, .site-footer, .toc, #back-to-top, .copy-btn, .heading-anchor,
-  .theme-toggle, .pixel-dissolve { display: none !important; }
+  .theme-toggle, #split-flap-display { display: none !important; }
   .page-content { padding: 0; }
   .wrapper { max-width: none; padding: 0; }
   a { color: #000 !important; }

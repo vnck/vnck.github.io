@@ -1,0 +1,225 @@
+---
+interface Props {
+  phrases: string[];
+  intervalMs?: number;
+}
+const { phrases, intervalMs = 12000 } = Astro.props;
+---
+
+<span id="split-flap-display" aria-hidden="true">{' '.repeat(phrases[0].length)}</span>
+<span class="split-flap-sr">{phrases[0]}</span>
+
+<style>
+  #split-flap-display {
+    white-space: pre-wrap;
+    color: var(--faded);
+    font-style: italic;
+  }
+
+  /* While a letter flips it becomes a low-resolution block of tiny ASCII characters, a digital
+     counterpoint to the hand-drawn doodles. The block is one line tall and as wide as the letter
+     it resolves into, so the line doesn't jump. */
+  #split-flap-display :global(.sf-word) { white-space: nowrap; }
+
+  #split-flap-display :global(.sf-block) {
+    display: inline-grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+    height: 1lh;
+    padding-block: calc((1lh - 0.8em) / 2);
+    vertical-align: top;
+    overflow: hidden;
+    color: var(--rule-strong);
+  }
+
+  /* Sized on the children so 1lh and em above still refer to the tagline's own text. */
+  #split-flap-display :global(.sf-block > span) {
+    font: normal 400 0.36em/1 var(--font-meta);
+  }
+
+  #split-flap-display :global(.sf-block.is-shape) { color: var(--faded); }
+
+  .split-flap-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script define:vars={{ phrases, intervalMs }}>
+  // Sparse to dense: a sub-cell's character stands in for how much ink it holds.
+  const RAMP = ' .:-=+*#%@';
+  const ROWS = 3;
+  const CYCLE_MS = 75;
+  const STAGGER_MS = 34;
+  // The last few ticks before a letter settles draw a coarse ASCII picture of it, so each letter
+  // sharpens from noise, to blocks, to type.
+  const SHAPE_TICKS = 2;
+
+  const display = document.getElementById('split-flap-display');
+  if (!display) throw new Error('split-flap-display not found');
+
+  const measure = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+  const glyphCache = new Map();
+
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  // Width, column count and per-sub-cell ramp characters for one letter in the current font.
+  function glyph(ch) {
+    const style = getComputedStyle(display);
+    const key = `${style.font}|${ch}`;
+    if (glyphCache.has(key)) return glyphCache.get(key);
+
+    const size = parseFloat(style.fontSize);
+    const lineHeight = parseFloat(style.lineHeight) || size * 1.55;
+    measure.font = style.font;
+    const m = measure.measureText(ch);
+    const width = m.width;
+    // Narrow letters (i, l, punctuation) get one column; wider ones two.
+    const cols = width > size * 0.4 ? 2 : 1;
+
+    // Draw the letter where it sits in the line box, then read ink coverage over the same
+    // 0.8em band the block covers.
+    const S = 4;
+    const W = Math.max(1, Math.ceil(width * S));
+    const H = Math.ceil(lineHeight * S);
+    measure.canvas.width = W;
+    measure.canvas.height = H;
+    measure.scale(S, S);
+    measure.font = style.font;
+    const ascent = m.fontBoundingBoxAscent ?? size * 0.9;
+    const descent = m.fontBoundingBoxDescent ?? size * 0.3;
+    measure.fillText(ch, 0, (lineHeight - ascent - descent) / 2 + ascent);
+    const alpha = measure.getImageData(0, 0, W, H).data;
+    const bandTop = ((lineHeight - size * 0.8) / 2) * S;
+    const bandH = size * 0.8 * S;
+
+    const coverage = [];
+    for (let c = 0; c < cols; c++) {
+      for (let r = 0; r < ROWS; r++) {
+        const x0 = Math.floor((c * W) / cols), x1 = Math.floor(((c + 1) * W) / cols);
+        const y0 = Math.floor(bandTop + (r * bandH) / ROWS), y1 = Math.floor(bandTop + ((r + 1) * bandH) / ROWS);
+        let sum = 0;
+        for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) sum += alpha[(y * W + x) * 4 + 3];
+        coverage.push(sum / (255 * Math.max(1, (x1 - x0) * (y1 - y0))));
+      }
+    }
+    // Normalise to the letter's densest sub-cell so thin serif strokes still read as shape.
+    const peak = Math.max(...coverage, 0.01);
+    const shape = coverage.map(v => RAMP[Math.round((v / peak) * (RAMP.length - 1))]);
+
+    const g = { width, cols, shape };
+    glyphCache.set(key, g);
+    return g;
+  }
+
+  function randomRamp() {
+    return RAMP[1 + Math.floor(Math.random() * (RAMP.length - 1))];
+  }
+
+  function fillBlock(block, chars) {
+    const subs = block.children;
+    for (let i = 0; i < subs.length; i++) subs[i].textContent = chars[i];
+  }
+
+  function toBlock(cell, g) {
+    const block = document.createElement('span');
+    block.className = 'sf-block';
+    block.style.width = `${g.width}px`;
+    block.style.gridTemplateColumns = `repeat(${g.cols}, 1fr)`;
+    for (let i = 0; i < g.cols * ROWS; i++) block.appendChild(document.createElement('span'));
+    cell.replaceChildren(block);
+    return block;
+  }
+
+  function animateTo(target) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const currentText = display.textContent || ' ';
+    const maxLen = Math.max(currentText.length, target.length);
+
+    // One cell per position, grouped into no-wrap words (by the target's spaces) so the line
+    // can't break mid-word while letters are blocks.
+    display.replaceChildren();
+    const cells = [];
+    let word = null;
+    for (let i = 0; i < maxLen; i++) {
+      const to = i < target.length ? target[i] : '';
+      const cell = document.createElement('span');
+      cell.textContent = i < currentText.length ? currentText[i] : '';
+      if (to === ' ' || to === '') {
+        word = null;
+        display.appendChild(cell);
+      } else {
+        if (!word) {
+          word = document.createElement('span');
+          word.className = 'sf-word';
+          display.appendChild(word);
+        }
+        word.appendChild(cell);
+      }
+      cells.push({ cell, to });
+    }
+
+    let settled = 0;
+    const settle = (cell, to) => {
+      cell.textContent = to;
+      settled++;
+      if (settled === cells.length) {
+        display.textContent = target;
+        isAnimating = false;
+      }
+    };
+
+    cells.forEach(({ cell, to }, i) => {
+      setTimeout(() => {
+        // Spaces and trailing positions just clear; there's no letter to resolve into.
+        if (to === ' ' || to === '') {
+          settle(cell, to);
+          return;
+        }
+        const g = glyph(to);
+        const block = toBlock(cell, g);
+        const numCycles = 5 + Math.floor(Math.random() * 5);
+        let count = 0;
+
+        const tick = setInterval(() => {
+          if (count >= numCycles) {
+            clearInterval(tick);
+            settle(cell, to);
+          } else if (count >= numCycles - SHAPE_TICKS) {
+            block.classList.add('is-shape');
+            fillBlock(block, g.shape);
+          } else {
+            fillBlock(block, Array.from({ length: g.cols * ROWS }, randomRamp));
+          }
+          count++;
+        }, CYCLE_MS);
+      }, i * STAGGER_MS);
+    });
+  }
+
+  // Respect the user's reduced-motion preference: show static text, no flapping.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    display.textContent = phrases[0];
+  } else {
+    // Animate in first phrase on load, then cycle
+    setTimeout(() => animateTo(phrases[0]), 300);
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % phrases.length;
+      animateTo(phrases[currentIndex]);
+    }, intervalMs);
+  }
+</script>
