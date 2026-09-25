@@ -73,20 +73,43 @@ const { phrases, intervalMs = 12000 } = Astro.props;
   let currentIndex = 0;
   let isAnimating = false;
 
-  // Width, column count and per-sub-cell ramp characters for one letter in the current font.
-  function glyph(ch) {
+  // The tagline's font, read once per phrase rather than once per letter.
+  function textStyle() {
     const style = getComputedStyle(display);
-    // Built by hand: Chrome returns an empty font shorthand here, which would leave the canvas
-    // measuring in its default 10px sans-serif.
-    const font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
-    const key = `${font}|${ch}`;
+    const size = parseFloat(style.fontSize);
+    return {
+      // Built by hand: Chrome returns an empty font shorthand here, which would leave the canvas
+      // measuring in its default 10px sans-serif.
+      font: `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`,
+      size,
+      lineHeight: parseFloat(style.lineHeight) || size * 1.55,
+    };
+  }
+
+  // Letter widths as the page actually lays them out, all read in one layout pass. Measured in the
+  // DOM rather than on the canvas so they match even if the page fell back from the web font.
+  function measureWidths(chars) {
+    const probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre';
+    const spans = chars.map(ch => {
+      const span = document.createElement('span');
+      span.textContent = ch;
+      probe.appendChild(span);
+      return span;
+    });
+    display.appendChild(probe);
+    const widths = new Map(chars.map((ch, i) => [ch, spans[i].getBoundingClientRect().width]));
+    probe.remove();
+    return widths;
+  }
+
+  // Column count and per-sub-cell ramp characters for one letter at a given width.
+  function glyph(ch, width, { font, size, lineHeight }) {
+    const key = `${font}|${ch}|${width.toFixed(1)}`;
     if (glyphCache.has(key)) return glyphCache.get(key);
 
-    const size = parseFloat(style.fontSize);
-    const lineHeight = parseFloat(style.lineHeight) || size * 1.55;
     measure.font = font;
     const m = measure.measureText(ch);
-    const width = m.width;
     // Narrow letters (i, l, punctuation) get one column; wider ones two.
     const cols = width > size * 0.4 ? 2 : 1;
 
@@ -156,6 +179,8 @@ const { phrases, intervalMs = 12000 } = Astro.props;
 
     const currentText = display.textContent || ' ';
     const maxLen = Math.max(currentText.length, target.length);
+    const style = textStyle();
+    const widths = measureWidths([...new Set(target.replaceAll(' ', ''))]);
 
     // One cell per position, grouped into no-wrap words (by the target's spaces) so the line
     // can't break mid-word while letters are blocks.
@@ -197,7 +222,7 @@ const { phrases, intervalMs = 12000 } = Astro.props;
           settle(cell, to);
           return;
         }
-        const g = glyph(to);
+        const g = glyph(to, widths.get(to), style);
         const block = toBlock(cell, g);
         const numCycles = 5 + Math.floor(Math.random() * 5);
         let count = 0;
@@ -228,6 +253,8 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     setTimeout(() => animateTo(phrases[0]), 300);
 
     setInterval(() => {
+      // No point flipping letters nobody can see; background tabs also throttle the timers.
+      if (document.hidden) return;
       currentIndex = (currentIndex + 1) % phrases.length;
       animateTo(phrases[currentIndex]);
     }, intervalMs);
