@@ -1,12 +1,11 @@
 ---
 import Doodle from '../components/Doodle.astro';
 import '../styles/global.css';
-import '@fontsource/inconsolata/latin-400.css';
-import '@fontsource/source-serif-4/latin-400.css';
-import '@fontsource/source-serif-4/latin-400-italic.css';
-import '@fontsource/source-serif-4/latin-600.css';
-import '@fontsource/source-serif-4/latin-600-italic.css';
-import bodyFontUrl from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
+import serif400 from '@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2?url';
+import serif400i from '@fontsource/source-serif-4/files/source-serif-4-latin-400-italic.woff2?url';
+import serif600 from '@fontsource/source-serif-4/files/source-serif-4-latin-600-normal.woff2?url';
+import serif600i from '@fontsource/source-serif-4/files/source-serif-4-latin-600-italic.woff2?url';
+import mono400 from '@fontsource/inconsolata/files/inconsolata-latin-400-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -24,6 +23,21 @@ const titleImage = `${siteUrl}/assets/headshot.webp`;
 const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const currentYear = new Date().getFullYear();
+
+// Declared here rather than via @fontsource CSS so font-display can be 'optional': with the faces
+// preloaded, pages render straight in the web fonts instead of painting a fallback and swapping.
+const fontFaces: [string, string, number, string][] = [
+  ['Source Serif 4', serif400, 400, 'normal'],
+  ['Source Serif 4', serif400i, 400, 'italic'],
+  ['Source Serif 4', serif600, 600, 'normal'],
+  ['Source Serif 4', serif600i, 600, 'italic'],
+  ['Inconsolata', mono400, 400, 'normal'],
+];
+const fontFaceCss = fontFaces
+  .map(([family, url, weight, style]) =>
+    `@font-face{font-family:"${family}";src:url(${url}) format("woff2");font-weight:${weight};font-style:${style};font-display:optional}`)
+  .join('');
+const preloadFonts = [serif400, serif400i, serif600, mono400];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +47,8 @@ const currentYear = new Date().getFullYear();
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffcf6" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1a16" />
   <title>{pageTitle}</title>
-  <link rel="preload" href={bodyFontUrl} as="font" type="font/woff2" crossorigin />
+  {preloadFonts.map(href => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+  <style is:inline set:html={fontFaceCss}></style>
   <meta name="description" content={description || siteDescription} />
   <meta name="author" content="Ivan Chuang" />
   <link rel="canonical" href={canonicalUrl} />
@@ -111,13 +126,13 @@ const currentYear = new Date().getFullYear();
           <ul class="social-media-list">
             <li>
               <a href="https://github.com/vnck" target="_blank" rel="noopener noreferrer">
-                <svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg>
+                <Doodle name="github" />
                 <span class="username">vnck</span>
               </a>
             </li>
             <li>
               <a href="https://www.twitter.com/vvvnck" target="_blank" rel="noopener noreferrer">
-                <svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg>
+                <Doodle name="twitter" />
                 <span class="username">vvvnck</span>
               </a>
             </li>

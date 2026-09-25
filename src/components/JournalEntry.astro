@@ -1,5 +1,6 @@
 ---
 import Tags from './Tags.astro';
+import Doodle from './Doodle.astro';
 import { formatDate } from '../utils/index';
 
 interface Props {
@@ -28,5 +29,5 @@ const { title, date, modifiedDate, tags } = Astro.props;
     <p>&ensp;·&ensp;</p>
     <p><Tags tags={tags} /></p>
   </div>
-  <div class="journal-post-break" aria-hidden="true">* * *</div>
+  <div class="journal-post-break" aria-hidden="true"><Doodle name="asterisk" /><Doodle name="asterisk" tilt={14} /><Doodle name="asterisk" tilt={-9} /></div>
 </div>
