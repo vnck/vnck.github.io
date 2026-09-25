@@ -1,4 +1,5 @@
 ---
+import Doodle from '../components/Doodle.astro';
 import '../styles/global.css';
 import '@fontsource/inconsolata/latin-400.css';
 import '@fontsource/source-serif-4/latin-400.css';
@@ -29,7 +30,7 @@ const currentYear = new Date().getFullYear();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4efe4" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fbf6ea" />
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1a16" />
   <title>{pageTitle}</title>
   <link rel="preload" href={bodyFontUrl} as="font" type="font/woff2" crossorigin />
@@ -79,10 +80,6 @@ const currentYear = new Date().getFullYear();
   <slot name="head-extra" />
 </head>
 <body>
-  <!-- Shared rough-edge filter for ink doodles -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <filter id="ink-edge"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="0.8" /></filter>
-  </svg>
   <header class="site-header" role="banner">
     <div class="wrapper">
       <a class="site-title" rel="author" href="/">vnck</a>
@@ -94,22 +91,8 @@ const currentYear = new Date().getFullYear();
           <a class="page-link" href="/journal">Journal</a>
         </nav>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-        <!-- Sun icon (shown in dark mode to switch to light) -->
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1" x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1" y1="12" x2="3" y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <!-- Moon icon (shown in light mode to switch to dark) -->
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
+        <Doodle name="sun" class="icon-sun" />
+        <Doodle name="moon" class="icon-moon" />
       </button>
     </div>
     </div>
@@ -141,7 +124,7 @@ const currentYear = new Date().getFullYear();
           </ul>
         </div>
         <div class="footer-col footer-col-right">
-          <p>Set in Source Serif 4 &amp; Inconsolata.<br />© Ivan Chuang {currentYear}</p>
+          <p>© Ivan Chuang {currentYear}</p>
         </div>
       </div>
     </div>

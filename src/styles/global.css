@@ -2,14 +2,17 @@
    THEME VARIABLES
    ================== */
 :root {
-  --bg: #f4efe4;
+  --bg: #fbf6ea;
   --ink: #2b2620;
   --faded: #6b6356;
-  --accent: #9a4a26;
+  /* orange links and blue tags carry over from the previous design; green is for the garden */
+  --accent: #b8470d;
+  --blue: #2a5f94;
+  --green: #3b7a36;
   /* --rule is decorative; --rule-strong meets 3:1 for tables, details and buttons */
   --rule: #cfc6b4;
   --rule-strong: #8f8676;
-  --wash: #ebe4d6;
+  --wash: #f1e9d8;
   --font-text: "Source Serif 4", Georgia, serif;
   --font-meta: "Inconsolata", ui-monospace, monospace;
   --measure: 38rem;
@@ -19,7 +22,9 @@
   --bg: #1c1a16;
   --ink: #ddd5c5;
   --faded: #a39a89;
-  --accent: #d9824f;
+  --accent: #f0935a;
+  --blue: #7fb2e5;
+  --green: #8cc47e;
   --rule: #3d3830;
   --rule-strong: #6e675b;
   --wash: #26231e;
@@ -191,20 +196,22 @@ hr {
    INK DOODLES
    ================== */
 .doodle {
-  width: 1.1em;
-  height: 1.1em;
-  vertical-align: -0.14em;
+  width: 1.15em;
+  height: 1.15em;
+  vertical-align: -0.16em;
   margin-right: 0.3em;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
   overflow: visible;
 }
 
-.doodle-main { stroke-width: 2; }
-.doodle-retrace { stroke-width: 1.1; opacity: 0.75; }
-.doodle-mark { stroke-width: 1.3; }
+
+.doodle path { fill: currentColor; }
+.doodle-sprout { color: var(--green); }
+.doodle-nib, .doodle-wave { color: var(--blue); }
+.doodle-bulb, .doodle-sun { color: var(--accent); }
+.doodle-moon { color: var(--blue); }
+
+.theme-toggle .doodle { width: 24px; height: 24px; margin: 0; }
+.theme-toggle:hover .doodle { opacity: 0.75; }
 
 .home-title { font-size: 2.25rem; }
 .home-title .doodle { margin-right: 0.05em; }
@@ -502,7 +509,7 @@ table th {
 /* References: rust numerals without underline, with a larger invisible tap area. */
 .post-content a[data-footnote-ref] {
   position: relative;
-  color: var(--accent);
+  color: var(--blue);
   text-decoration: none;
   font-family: var(--font-meta);
   font-size: 0.8em;
@@ -596,9 +603,9 @@ table th {
 a.tag,
 a.tag:visited {
   font-family: var(--font-meta);
-  color: var(--faded);
+  color: var(--blue);
   text-decoration: underline;
-  text-decoration-color: var(--rule-strong);
+  text-decoration-color: color-mix(in srgb, var(--blue) 45%, transparent);
   text-underline-offset: 0.2em;
 }
 
@@ -809,6 +816,8 @@ details[open] p {
     --ink: #000;
     --faded: #444;
     --accent: #000;
+    --blue: #000;
+    --green: #000;
     --rule: #999;
     --rule-strong: #666;
     --wash: #eee;

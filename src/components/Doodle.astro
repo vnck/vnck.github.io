@@ -1,101 +1,136 @@
 ---
-// Loose ink doodles that replace emoji. Each has a main stroke, lighter "re-trace" strokes offset
-// from it (a pen going over the line twice), and a small displacement filter for rough ink edges.
+// Brush-pen doodles that replace emoji. Each stroke is a hand-plotted line of points that
+// perfect-freehand turns into a tapered, pressure-varying outline at build time (no runtime JS).
+import { getStroke } from 'perfect-freehand';
+
 interface Props {
-  name: 'sprout' | 'nib' | 'bulb' | 'wave';
+  name: 'sprout' | 'nib' | 'bulb' | 'wave' | 'sun' | 'moon';
   flip?: boolean;
   tilt?: number;
+  class?: string;
 }
 
-const { name, flip = false, tilt = 0 } = Astro.props;
+const { name, flip = false, tilt = 0, class: extraClass } = Astro.props;
 
-type Doodle = { main: string[]; retrace: string[]; marks: string[] };
+type Pt = [number, number];
 
-const doodles: Record<Props['name'], Doodle> = {
-  sprout: {
-    main: [
-      'M16.3 29.4c-.6-4.2.4-8.9-.3-13.6',
-      'M16 17.4c-3.7.4-7.9-2.1-8.9-6.8 4.6-.4 8.2 2.2 9.1 6.4',
-      'M16.3 14.9c1-4.7 5.2-7.8 9.7-7.1-.7 4.8-4.8 7.8-9.3 7.6',
-      'M9.8 29.8c3.6-.8 8.9 0 12.6-.7',
-    ],
-    retrace: [
-      'M16.9 28.6c-.4-4 .2-8.4-.2-12.3',
-      'M8 11.4c1.9 3.5 5 5.1 7.6 5.5',
-      'M25.3 8.6c-2.2 3.4-5.1 5.5-8.2 6.1',
-    ],
-    marks: [
-      'M9.6 12.4c2.2 1.3 4.2 2.9 5.8 4.6',
-      'M24.1 9.1c-2.5 1.4-4.9 3.3-7.1 5.3',
-      'M12.4 28.5l-.9-1.9',
-      'M20.6 28.2l.8-1.7',
-    ],
-  },
-  nib: {
-    main: [
-      'M16.1 28.6c-2.6-4.2-5.8-8-5.9-12.6-.1-3.1 1.8-4.8 2.7-6l6.2.1c1.1 1.2 2.8 3 2.6 6.1-.2 4.6-3.3 8.4-5.6 12.3',
-      'M12.7 10l.4-4.9 6.2.2.1 5',
-      'M16 18.4a1.4 1.4 0 1 0 .1-2.9 1.4 1.4 0 1 0-.2 3',
-    ],
-    retrace: [
-      'M11 16.5c.4 4 3 7.2 5 10.6',
-      'M13.5 5.6l5.3.3',
-    ],
-    marks: [
-      'M16.1 27.9 16 19.1',
-      'M13.3 7.7c1.9.2 3.9 0 5.8.1',
-      'M16.2 30.3c-.9.4-1 1.1-.1 1.2.8 0 .9-.7.1-1.2',
-    ],
-  },
-  bulb: {
-    main: [
-      'M12.2 21.3c-2.3-1.8-3.8-4.5-3.6-7.6.3-4.6 3.9-7.9 7.7-7.8 4.2.1 7.2 3.6 6.9 7.9-.1 3-1.8 5.4-3.7 7.3',
-      'M12.1 21.6l7.7-.4',
-      'M12.7 24.2l6.6-.3',
-      'M13.5 26.7c1.6.9 3.6.8 5-.1',
-    ],
-    retrace: [
-      'M9.3 12.6c.5-3.7 3.4-6.1 6.6-6.2',
-      'M22.9 15.1c-.6 2.3-1.9 4.1-3.4 5.6',
-    ],
-    marks: [
-      'M14.1 17.8c.5-2.2 1.2-3.4 1.9-3.2.7.2 1.2 1.5 1.8 3.3',
-      'M20.3 9.9l1.4 1.5',
-      'M20.9 12.4l1.3 1.3',
-      'M16.3 1.8l-.2 1.9',
-      'M26.2 5.7l-1.4 1.3',
-      'M5.9 6.1l1.5 1.2',
-    ],
-  },
-  wave: {
-    main: [
-      'M3 17.6c2.8.2 4.4-4.2 6.6-6.8 2.7-3.2 7.3-2.7 8.6.6 1.1 2.7-1.1 5-3.2 3.9-1.4-.8-.8-3 .9-2.9',
-      'M18.2 11.4c2.7.6 5.1 3 6.8 5.4',
-      'M3.1 22.4c3.8-1.3 6.5 1.1 10.1-.2 3.6-.9 6.1-3.1 9.7-2.3 2.8.6 4.3 2.5 6.3 1.8',
-    ],
-    retrace: [
-      'M3.8 17c2.4-.6 3.9-4.3 6.2-6.7',
-      'M4.2 23.1c3.4-.8 5.9.6 9.1-.3',
-    ],
-    marks: [
-      'M4.7 26.9c3.8-.9 6.4.8 10.1.1 3.4-.7 6.7-1.8 10.1-1',
-      'M26.4 14.3l.4.1',
-      'M27.9 16.8l.4.1',
-      'M25.6 12.2l.3.2',
-    ],
-  },
+// A slightly lopsided loop that overshoots its start, like a circle drawn in one pen movement.
+function handCircle(cx: number, cy: number, r: number): Pt[] {
+  const pts: Pt[] = [];
+  for (let i = 0; i <= 13; i++) {
+    const a = -1.9 + (i / 12) * Math.PI * 2;
+    const wobble = 1 + 0.07 * Math.sin(i * 1.7);
+    pts.push([cx + Math.cos(a) * r * wobble, cy + Math.sin(a) * r * wobble]);
+  }
+  return pts;
+}
+
+// Short rays of uneven length around the sun.
+const sunRays: Pt[][] = [0, 1, 2, 3, 4, 5, 6, 7].map(i => {
+  const a = (i / 8) * Math.PI * 2 + 0.2;
+  const inner = 9.2 + (i % 3) * 0.4;
+  const outer = inner + 2.6 + ((i * 5) % 3) * 0.5;
+  return [[16 + Math.cos(a) * inner, 16 + Math.sin(a) * inner], [16 + Math.cos(a) * outer, 16 + Math.sin(a) * outer]];
+});
+
+const drawings: Record<Props['name'], Pt[][]> = {
+  sprout: [
+    [[16, 30], [16.3, 27.5], [15.8, 24.5], [16.1, 21.5], [15.9, 18.5], [16.2, 16]],
+    [[16.1, 16.4], [14, 16.9], [11.5, 16.2], [9.4, 14.2], [8.2, 11.4], [8.6, 10.6], [11.4, 11], [13.8, 12.6], [15.4, 14.8], [16, 16]],
+    [[16.2, 15.2], [16.8, 12.4], [18.6, 9.8], [21.4, 8.2], [24.6, 7.9], [25.2, 8.6], [24.3, 11.6], [22, 13.8], [19.2, 15], [16.6, 15.3]],
+    [[10.5, 30.3], [13, 29.8], [16, 30], [19, 29.7], [21.6, 29.9]],
+  ],
+  nib: [
+    [[16, 29.5], [14, 26.5], [12, 23], [10.8, 19.5], [10.9, 16.5], [12, 14], [14, 12.3], [16, 11.8], [18, 12.4], [19.9, 14.2], [21, 16.8], [20.9, 19.8], [19.6, 23.2], [17.8, 26.4], [16.2, 29.2]],
+    [[16, 28.4], [16, 25], [16.1, 21.6]],
+    [[12.9, 11.6], [13.3, 9.2], [13.6, 7.8], [16.2, 7.5], [18.8, 7.7], [19.1, 9.4], [19.3, 11.4]],
+  ],
+  bulb: [
+    [[13, 22.5], [10.5, 20.4], [9, 17.4], [9, 14], [10.4, 10.6], [13, 8.2], [16.2, 7.2], [19.4, 7.8], [22, 10], [23.2, 13.4], [22.8, 16.8], [21, 19.8], [19, 22.2]],
+    [[13.3, 24.8], [16, 25.2], [18.9, 24.6]],
+    [[14.3, 27.4], [16, 27.8], [17.7, 27.3]],
+    [[14.6, 19.2], [15.2, 16.4], [16, 15.1], [16.8, 16.4], [17.4, 19.2]],
+    [[25.4, 6.2], [26.4, 5.1], [27.4, 4.1]],
+  ],
+  wave: [
+    [[3, 21], [5.5, 20.2], [7.8, 17.4], [10, 14.2], [12.8, 11.8], [16, 11], [18.6, 12], [19.4, 14.2], [18.4, 16], [16.4, 16.2], [15.4, 14.8], [16.2, 13.6]],
+    [[19.4, 14.4], [21.6, 15.6], [23.4, 17.4], [24.8, 19.2]],
+    [[4, 26], [7, 24.8], [10, 25.6], [13.5, 25.2], [17, 24], [20.5, 23.8], [24, 24.8], [28, 24.4]],
+  ],
+  sun: [handCircle(16, 16, 5.8), ...sunRays],
+  moon: [
+    [[19, 6], [14.5, 6.8], [10.8, 9.6], [8.8, 13.6], [8.9, 18], [10.9, 22], [14.6, 24.9], [19.2, 25.6], [23.4, 24.2], [20.4, 23.2], [17.6, 21.1], [15.9, 18.2], [15.5, 14.8], [16.4, 11.6], [18.4, 8.8], [21, 7]],
+    [[24.6, 9.4], [25.4, 10.6]],
+  ],
 };
 
-const d = doodles[name];
+// Densify sparse hand-plotted points with a Catmull-Rom curve so the outline is smooth.
+function densify(pts: Pt[], steps = 6): Pt[] {
+  if (pts.length < 3) {
+    const [a, b] = [pts[0], pts[pts.length - 1]];
+    return Array.from({ length: steps + 1 }, (_, i) => [a[0] + (b[0] - a[0]) * (i / steps), a[1] + (b[1] - a[1]) * (i / steps)] as Pt);
+  }
+  const out: Pt[] = [];
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(i + 2, pts.length - 1)];
+    for (let s = 0; s < steps; s++) {
+      const t = s / steps, t2 = t * t, t3 = t2 * t;
+      const f = (a: number, b: number, c: number, d: number) =>
+        0.5 * (2 * b + (-a + c) * t + (2 * a - 5 * b + 4 * c - d) * t2 + (-a + 3 * b - 3 * c + d) * t3);
+      out.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]);
+    }
+  }
+  out.push(pts[pts.length - 1]);
+  return out;
+}
+
+const strokeLength = (pts: Pt[]) =>
+  pts.slice(1).reduce((sum, p, i) => sum + Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1]), 0);
+
+// A pen press: light touch-down, fuller through the middle, lifting at the end.
+function penStroke(points: Pt[]) {
+  const dense = densify(points);
+  const len = strokeLength(dense);
+  // Short marks (rays, dots) are dabs: an even, firm press with no lead-in.
+  const isDab = len < 5;
+  const withPressure = dense.map(([x, y], i) =>
+    [x, y, isDab ? 0.85 : 0.35 + 0.55 * Math.sin(Math.PI * (i / (dense.length - 1)) ** 0.8)]);
+  return getStroke(withPressure, {
+    size: 1.4,
+    thinning: 0.65,
+    smoothing: 0.5,
+    streamline: 0.2,
+    simulatePressure: false,
+    // Marks the stroke as finished so the end cap is drawn; short strokes otherwise collapse to nothing.
+    last: true,
+    start: { taper: isDab ? 0 : Math.min(5, len * 0.25), cap: true },
+    end: { taper: Math.min(7, len * 0.35), cap: true },
+  });
+}
+
+// Standard perfect-freehand outline-to-path conversion using quadratic midpoints.
+function toPath(outline: number[][]): string {
+  if (!outline.length) return '';
+  const avg = (a: number, b: number) => ((a + b) / 2).toFixed(2);
+  const [first, ...rest] = outline;
+  let d = `M${first[0].toFixed(2)} ${first[1].toFixed(2)}Q`;
+  for (let i = 0; i < rest.length; i++) {
+    const [x0, y0] = outline[i];
+    const [x1, y1] = outline[(i + 1) % outline.length];
+    d += `${x0.toFixed(2)} ${y0.toFixed(2)} ${avg(x0, x1)} ${avg(y0, y1)} `;
+  }
+  return d + 'Z';
+}
+
+const paths = drawings[name].map(points => toPath(penStroke(points)));
+
 const transform = [
   flip ? 'translate(32 0) scale(-1 1)' : '',
   tilt ? `rotate(${tilt} 16 16)` : '',
 ].filter(Boolean).join(' ');
 ---
-<svg class="doodle" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-  <g transform={transform || undefined} filter="url(#ink-edge)">
-    {d.main.map(p => <path class="doodle-main" d={p} />)}
-    {d.retrace.map(p => <path class="doodle-retrace" d={p} />)}
-    {d.marks.map(p => <path class="doodle-mark" d={p} />)}
+<svg class={['doodle', `doodle-${name}`, extraClass].filter(Boolean).join(' ')} viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+  <g transform={transform || undefined}>
+    {paths.map(d => <path d={d} />)}
   </g>
 </svg>
