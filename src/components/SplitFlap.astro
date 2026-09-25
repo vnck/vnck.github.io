@@ -76,12 +76,15 @@ const { phrases, intervalMs = 12000 } = Astro.props;
   // Width, column count and per-sub-cell ramp characters for one letter in the current font.
   function glyph(ch) {
     const style = getComputedStyle(display);
-    const key = `${style.font}|${ch}`;
+    // Built by hand: Chrome returns an empty font shorthand here, which would leave the canvas
+    // measuring in its default 10px sans-serif.
+    const font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+    const key = `${font}|${ch}`;
     if (glyphCache.has(key)) return glyphCache.get(key);
 
     const size = parseFloat(style.fontSize);
     const lineHeight = parseFloat(style.lineHeight) || size * 1.55;
-    measure.font = style.font;
+    measure.font = font;
     const m = measure.measureText(ch);
     const width = m.width;
     // Narrow letters (i, l, punctuation) get one column; wider ones two.
@@ -95,7 +98,7 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     measure.canvas.width = W;
     measure.canvas.height = H;
     measure.scale(S, S);
-    measure.font = style.font;
+    measure.font = font;
     const ascent = m.fontBoundingBoxAscent ?? size * 0.9;
     const descent = m.fontBoundingBoxDescent ?? size * 0.3;
     measure.fillText(ch, 0, (lineHeight - ascent - descent) / 2 + ascent);
