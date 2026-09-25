@@ -1,0 +1,201 @@
+---
+import tiny5 from '@fontsource/tiny5/files/tiny5-latin-400-normal.woff2?url';
+
+interface Props {
+  phrases: string[];
+  intervalMs?: number;
+}
+const { phrases, intervalMs = 12000 } = Astro.props;
+---
+
+<span class="pixel-dissolve" aria-hidden="true"><canvas id="pixel-dissolve-canvas"></canvas></span>
+<span class="pixel-dissolve-sr">{phrases[0]}</span>
+
+<style>
+  .pixel-dissolve {
+    display: block;
+    width: 100%;
+  }
+
+  .pixel-dissolve canvas {
+    display: block;
+  }
+
+  .pixel-dissolve-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script define:vars={{ phrases, intervalMs, fontUrl: tiny5 }}>
+  // The tagline is drawn as a bitmap rather than text: a deliberately digital counterpoint to the
+  // hand-drawn doodles. Tiny5 is drawn on an 8-unit em, so at FONT_PX each unit is one cell; the
+  // glyphs are rendered SUPERSAMPLE times larger and averaged down, because at 1:1 the browser's
+  // antialiasing smears neighbouring units together. Cells are then scaled up by PIXEL.
+  const FONT_PX = 8;
+  const BASELINE = 7;
+  const LINE_PX = 11;
+  const SUPERSAMPLE = 4;
+  const PIXEL = 3;
+  const DISSOLVE_MS = 1100;
+  // How long a pixel glows in the accent colour before settling, as a fraction of DISSOLVE_MS.
+  const HOT = 0.12;
+
+  const canvas = document.getElementById('pixel-dissolve-canvas');
+  if (!canvas) throw new Error('pixel-dissolve-canvas not found');
+  const wrap = canvas.parentElement;
+  const ctx = canvas.getContext('2d');
+  const scratch = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+
+  let cols = 0;
+  let rows = 0;
+  let current = null; // Uint8Array of lit cells for the phrase on screen
+  let currentIndex = 0;
+  let frame = 0;
+
+  function wrapWords(text) {
+    scratch.font = `${FONT_PX}px Tiny5`;
+    const lines = [];
+    let line = '';
+    for (const word of text.split(' ')) {
+      const next = line ? `${line} ${word}` : word;
+      if (line && scratch.measureText(next).width > cols) {
+        lines.push(line);
+        line = word;
+      } else {
+        line = next;
+      }
+    }
+    lines.push(line);
+    return lines;
+  }
+
+  function rasterise(text) {
+    const lines = wrapWords(text);
+    const S = SUPERSAMPLE;
+    const w = cols * S;
+    const c = scratch.canvas;
+    c.width = w;
+    c.height = rows * S;
+    scratch.font = `${FONT_PX * S}px Tiny5`;
+    scratch.textBaseline = 'alphabetic';
+    scratch.fillStyle = '#000';
+    lines.forEach((l, i) => scratch.fillText(l, 0, (i * LINE_PX + BASELINE) * S));
+    const alpha = scratch.getImageData(0, 0, w, rows * S).data;
+    const cells = new Uint8Array(cols * rows);
+    for (let i = 0; i < cells.length; i++) {
+      const x0 = (i % cols) * S;
+      const y0 = Math.floor(i / cols) * S;
+      let sum = 0;
+      for (let y = y0; y < y0 + S; y++) for (let x = x0; x < x0 + S; x++) sum += alpha[(y * w + x) * 4 + 3];
+      cells[i] = sum >= 128 * S * S ? 1 : 0;
+    }
+    return cells;
+  }
+
+  function lineCount(text) {
+    return wrapWords(text).length;
+  }
+
+  // Size the grid to the container, and to the tallest phrase so cycling never shifts the page.
+  function layout() {
+    cols = Math.floor(wrap.clientWidth / PIXEL);
+    const maxLines = Math.max(...phrases.map(lineCount));
+    rows = maxLines * LINE_PX;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.style.width = `${cols * PIXEL}px`;
+    canvas.style.height = `${rows * PIXEL}px`;
+    canvas.width = Math.round(cols * PIXEL * dpr);
+    canvas.height = Math.round(rows * PIXEL * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function colours() {
+    const s = getComputedStyle(document.documentElement);
+    return { ink: s.getPropertyValue('--faded').trim(), hot: s.getPropertyValue('--accent').trim() };
+  }
+
+  function draw(cells) {
+    const { ink } = colours();
+    ctx.clearRect(0, 0, cols * PIXEL, rows * PIXEL);
+    ctx.fillStyle = ink;
+    for (let i = 0; i < cells.length; i++) {
+      if (cells[i]) ctx.fillRect((i % cols) * PIXEL, Math.floor(i / cols) * PIXEL, PIXEL, PIXEL);
+    }
+  }
+
+  function dissolveTo(text) {
+    cancelAnimationFrame(frame);
+    const from = current || new Uint8Array(cols * rows);
+    const to = rasterise(text);
+    // Only cells that change take part; each gets a random moment to flip, which is what reads
+    // as a dissolve rather than a wipe.
+    const changing = [];
+    for (let i = 0; i < to.length; i++) {
+      if (from[i] !== to[i]) changing.push([i, HOT + Math.random() * (1 - HOT)]);
+    }
+    const steady = [];
+    for (let i = 0; i < to.length; i++) if (from[i] && to[i]) steady.push(i);
+
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / DISSOLVE_MS);
+      // Read per frame so a theme toggle mid-dissolve lands in the right colours.
+      const { ink, hot } = colours();
+      ctx.clearRect(0, 0, cols * PIXEL, rows * PIXEL);
+      ctx.fillStyle = ink;
+      for (const i of steady) ctx.fillRect((i % cols) * PIXEL, Math.floor(i / cols) * PIXEL, PIXEL, PIXEL);
+      for (const [i, flip] of changing) {
+        let fill = null;
+        if (t >= flip) fill = to[i] ? ink : null;
+        else if (t >= flip - HOT) fill = hot;
+        else fill = from[i] ? ink : null;
+        if (!fill) continue;
+        ctx.fillStyle = fill;
+        ctx.fillRect((i % cols) * PIXEL, Math.floor(i / cols) * PIXEL, PIXEL, PIXEL);
+      }
+      if (t < 1) frame = requestAnimationFrame(step);
+    };
+    current = to;
+    frame = requestAnimationFrame(step);
+  }
+
+  function redraw() {
+    cancelAnimationFrame(frame);
+    layout();
+    current = rasterise(phrases[currentIndex]);
+    draw(current);
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const font = new FontFace('Tiny5', `url(${fontUrl})`);
+  font.load().then(() => {
+    document.fonts.add(font);
+    layout();
+    if (reduceMotion) {
+      redraw();
+    } else {
+      dissolveTo(phrases[0]);
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % phrases.length;
+        dissolveTo(phrases[currentIndex]);
+      }, intervalMs);
+    }
+
+    let lastWidth = wrap.clientWidth;
+    new ResizeObserver(() => {
+      if (wrap.clientWidth === lastWidth) return;
+      lastWidth = wrap.clientWidth;
+      redraw();
+    }).observe(wrap);
+    new MutationObserver(() => draw(current))
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  });
+</script>
