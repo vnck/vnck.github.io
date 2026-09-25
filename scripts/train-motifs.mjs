@@ -62,7 +62,7 @@ const hatch = (x0, y0, x1, y1, n, dx = 0, dy = 0) => T(...Array.from({ length: n
 const tickRing = (cx, cy, r0, r1, n, skipEvery = 0) => T(...Array.from({ length: n }, (_, i) => i).filter(i => !skipEvery || i % skipEvery).map(i => { const a = i * 2 * Math.PI / n; return line(cx + Math.sin(a) * r0, cy - Math.cos(a) * r0, cx + Math.sin(a) * r1, cy - Math.cos(a) * r1); }));
 
 const S = {
-  // cup on its saucer: shading down the far side, crema, spoon, steam, the saucer's shadow
+  // cup on its saucer: shading down the far side, crema, spoon, steam
   cup: [
     circle(50, 80, 9, 38), circle(50, 79, 4.5, 17),
     circle(50, 42, 6.5, 23),
@@ -75,9 +75,8 @@ const S = {
     ...T([[48.5, 30], [46.5, 25], [49.5, 20]],
          [[37, 41.4], [43, 39.6], [50, 39.2]],
          [[62, 49], [63.4, 57], [61, 65.5]], [[66, 48], [67.2, 56], [64.8, 64]], [[69.6, 47], [70.4, 54], [68.6, 60.5]]),
-    ...hatch(56, 91.5, 60, 88.4, 7, 4.2, -0.35),
   ],
-  // the station nameboard hung from the ceiling rail: badge, name and reading, the line band hatched
+  // the station nameboard hung from the ceiling rail: badge, name and reading, prev/next arrows
   sign: [
     line(28, 7, 28, 26), line(72, 7, 72, 26),
     box(8, 26, 92, 68, 3),
@@ -87,8 +86,6 @@ const S = {
     line(20, 61.5, 38, 61.5), [[23, 58.5], [19.5, 61.5], [23, 64.5]],
     line(62, 61.5, 80, 61.5), [[77, 58.5], [80.5, 61.5], [77, 64.5]],
     ...T(line(6, 6, 94, 6), box(24.5, 6, 31.5, 9, 0.6), box(68.5, 6, 75.5, 9, 0.6), circle(22, 41, 9.4), line(35, 41.6, 72, 41.6)),
-    ...hatch(42, 66.5, 45, 57, 6, 3, 0),
-    ...T(line(12, 71, 90, 71)),
   ],
   // an announcement pinned askew over another sheet, one corner dog-eared
   notice: [
@@ -100,8 +97,7 @@ const S = {
          ...[40, 47, 54, 61, 68].map((y, i) => rotLine([[33, y], [[66, 60, 68, 52, 44][i], y]], -4, 51, 50)),
          rotLine([[33, 76], [44, 76]], -4, 51, 50), rot([[34, 73], [36.5, 68.5], [38.5, 73], [41, 68], [43, 72.5]], -4, 51, 50),
          rotLine([[78, 16], [84, 16], [84, 94], [30, 94], [30, 90.5]], 5, 57, 55),
-         rotLine([[70, 81], [68, 87.5]], -4, 51, 50), rotLine([[73, 80.5], [69.5, 84.5]], -4, 51, 50),
-         [[52.8, 16.4], [54, 18.2], [53.4, 20]]),
+         rotLine([[70, 81], [68, 87.5]], -4, 51, 50), rotLine([[73, 80.5], [69.5, 84.5]], -4, 51, 50)),
   ],
   // the old woman's book, open, stacked page edges, ribbon, and her glasses on the page
   book: [
@@ -125,11 +121,10 @@ const S = {
     ...Array.from({ length: 12 }, (_, i) => { const a = i * Math.PI / 6; const r0 = i % 3 ? 20.5 : 18.5; return line(50 + Math.sin(a) * r0, 44 - Math.cos(a) * r0, 50 + Math.sin(a) * 23, 44 - Math.cos(a) * 23); }),
     line(50, 44, 50, 27), line(50, 44, 62, 50), circle(50, 44, 1.6),
     ...tickRing(50, 44, 21.8, 23, 60, 5),
-    ...T(circle(50, 44, 27.6), line(50, 50, 38, 26.5), circle(47.1, 38.3, 1.3),
-         [[42, 12], [39, 9], [41, 6.5]], [[58, 12], [61, 9], [59, 6.5]]),
+    ...T(circle(50, 44, 27.6), line(50, 50, 38, 26.5)),
   ],
   // a subway car coming out of the tunnel: shading along the arch, windscreen glints, stripes,
-  // headlight beams, sleepers running in
+  // sleepers running in
   train: [
     { pts: [...sample([[5, 96], [5, 56]]), ...arcPts(50, 56, 45, Math.PI, 2 * Math.PI, 90).slice(1), ...sample([[95, 56], [95, 96]]).slice(1)], exact: true },
     box(26, 24, 74, 84, 7),
@@ -142,10 +137,8 @@ const S = {
     [[14, 99], [29, 90], [34, 87]], [[86, 99], [71, 90], [66, 87]],
     ...T(line(42.5, 30, 50, 30), line(53, 30, 57.5, 30),
          ...Array.from({ length: 13 }, (_, i) => { const a = Math.PI + 0.18 + i * (Math.PI - 0.36) / 12; return line(50 + Math.cos(a) * 44, 56 + Math.sin(a) * 44, 50 + Math.cos(a) * 39, 56 + Math.sin(a) * 39); }),
-         line(9.5, 62, 9.5, 92), line(12.5, 64, 12.5, 90), line(90.5, 62, 90.5, 92), line(87.5, 64, 87.5, 90),
          line(34, 44, 38, 39), line(35, 49, 41, 42), line(60, 44, 64, 39),
          ...[29, 32, 35, 38, 41].map(x => line(x, 62.5, x, 65.5)), ...[59, 62, 65, 68, 71].map(x => line(x, 62.5, x, 65.5)),
-         line(30, 77, 22, 90), line(34.5, 77, 30, 93), line(70, 77, 78, 90), line(65.5, 77, 70, 93),
          line(22, 95.5, 78, 95.5), line(27, 92.5, 73, 92.5), line(31, 90, 69, 90)),
   ],
 };
