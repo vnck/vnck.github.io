@@ -502,6 +502,11 @@ code.tag:hover {
   text-decoration: underline;
 }
 
+[aria-current="page"] code.tag {
+  border-color: var(--tag-color);
+  font-weight: 600;
+}
+
 .tag-header {
   color: var(--tag-color);
   background-color: var(--tag-bg);

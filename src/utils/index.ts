@@ -1,7 +1,12 @@
-export function readingTime(body: string, override?: number): number {
+export function readingTime(body: string | undefined, override?: number): number {
   if (override !== undefined) return override;
-  const chars = body.replace(/\s/g, '').length;
-  return Math.floor(chars / 600) + 1;
+  const prose = (body ?? '')
+    .replace(/^\[\^[^\]]+\]:.*$/gm, '')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/https?:\/\/\S+/g, '');
+  const words = prose.split(/\s+/).filter(Boolean).length;
+  // ~230 wpm: typical adult reading speed for English prose
+  return Math.max(1, Math.round(words / 230));
 }
 
 export function formatDate(date: Date): string {
