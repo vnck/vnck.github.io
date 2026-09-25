@@ -228,6 +228,28 @@ hr::before {
 .home-title { font-size: 2.25rem; }
 .home-title .doodle { margin-right: 0.05em; }
 
+/* Every so often the sprouts sway and bob from the base of the stem, one after another; the dance
+   takes the first ~1.4s of each 10s cycle and they rest for the remainder. */
+.home-title .doodle-sprout {
+  transform-origin: 50% 92%;
+  animation: sprout-dance 10s ease-in-out 2s infinite;
+}
+.home-title .doodle-sprout:nth-of-type(2) { animation-delay: 2.15s; }
+.home-title .doodle-sprout:nth-of-type(3) { animation-delay: 2.4s; }
+
+@keyframes sprout-dance {
+  0%, 14%, 100% { transform: rotate(0) scaleY(1); }
+  2% { transform: rotate(-9deg) scaleY(0.94); }
+  4.5% { transform: rotate(8deg) scaleY(1.05); }
+  7% { transform: rotate(-6deg) scaleY(0.97); }
+  9.5% { transform: rotate(4deg) scaleY(1.02); }
+  12% { transform: rotate(-1.5deg) scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-title .doodle-sprout { animation: none; }
+}
+
 .archive-link {
   font-family: var(--font-meta);
   font-size: 0.9375rem;
