@@ -2,7 +2,7 @@
    THEME VARIABLES
    ================== */
 :root {
-  --bg: #fbf6ea;
+  --bg: #fffcf6;
   --ink: #2b2620;
   --faded: #6b6356;
   /* orange links and blue tags carry over from the previous design; green is for the garden */
@@ -10,9 +10,9 @@
   --blue: #2a5f94;
   --green: #3b7a36;
   /* --rule is decorative; --rule-strong meets 3:1 for tables, details and buttons */
-  --rule: #cfc6b4;
+  --rule: #e2dbcc;
   --rule-strong: #8f8676;
-  --wash: #f1e9d8;
+  --wash: #f7f1e4;
   --font-text: "Source Serif 4", Georgia, serif;
   --font-meta: "Inconsolata", ui-monospace, monospace;
   --measure: 38rem;
@@ -205,10 +205,6 @@ hr {
 
 
 .doodle path { fill: currentColor; }
-.doodle-sprout { color: var(--green); }
-.doodle-nib, .doodle-wave { color: var(--blue); }
-.doodle-bulb, .doodle-sun { color: var(--accent); }
-.doodle-moon { color: var(--blue); }
 
 .theme-toggle .doodle { width: 24px; height: 24px; margin: 0; }
 .theme-toggle:hover .doodle { opacity: 0.75; }
@@ -690,13 +686,15 @@ details[open] p {
   align-items: center;
 }
 
+/* Journal entries are notes: a step below essay text, titles set apart by weight not size. */
 .journal-post-title {
-  font-size: 1.25rem;
-  padding-bottom: 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
   align-self: flex-start;
 }
 
-.journal-post-content { width: 100%; }
+.journal-post-content { width: 100%; font-size: 1rem; }
 
 .journal-post-footer {
   display: flex;
