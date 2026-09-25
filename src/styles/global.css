@@ -179,24 +179,24 @@ pre.astro-code code {
   font-weight: var(--shiki-dark-font-weight) !important;
 }
 
-/* ASCII rule: a row of monospace dots, echoing the tagline's ASCII flap. The run is longer than any
-   measure and clipped to a whole number of "· " pairs (1em each in the monospace face) so no dot
-   is cut in half; where round() is unsupported it falls back to clipping at the column edge. */
+/* Straight rule finished with an ASCII asterisk, a small nod to the tagline's ASCII flap. */
 hr {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
   border: none;
   margin: 2rem 0;
-  overflow: hidden;
-  white-space: nowrap;
-  font: 700 1.375rem/1 var(--font-meta);
+  font: 400 1.125rem/1 var(--font-meta);
   color: var(--faded);
 }
 
 hr::before {
-  content: "· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·";
-  display: block;
-  width: round(down, 100%, 1em);
-  overflow: hidden;
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--rule-strong);
 }
+
+hr::after { content: "*"; }
 
 .wrapper {
   max-width: calc(var(--measure) + 60px);
