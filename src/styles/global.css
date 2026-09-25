@@ -91,6 +91,19 @@ figure > img {
   margin: 0 auto;
 }
 
+/* Project charts have white backgrounds; multiply lets the paper show through in light mode.
+   Scoped to projects so essay photographs keep their true colours. */
+:root:not([data-theme="dark"]) article[data-collection="projects"] .post-content figure img {
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .post-content img { filter: brightness(0.88); }
+
+[data-theme="dark"] article[data-collection="projects"] .post-content figure img {
+  background: #ddd5c5;
+  padding: 8px;
+}
+
 figcaption {
   margin-top: 0.5rem;
   font-size: 0.875rem;
