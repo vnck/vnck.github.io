@@ -6,7 +6,7 @@ interface Props {
 const { phrases, intervalMs = 12000 } = Astro.props;
 ---
 
-<span id="split-flap-display" aria-hidden="true">{' '.repeat(phrases[0].length)}</span>
+<span id="split-flap-display" aria-hidden="true">{phrases[0]}</span>
 <span class="split-flap-sr">{phrases[0]}</span>
 
 <style>
@@ -16,10 +16,18 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     font-style: italic;
   }
 
+  /* The first phrase is in the HTML so it shows without JavaScript; when scripts will run, it's
+     held back until the script takes over and flaps it in. */
+  @media (scripting: enabled) {
+    #split-flap-display:not(.is-live) { visibility: hidden; }
+  }
+
   /* While a letter flips it becomes a low-resolution block of tiny ASCII characters, a digital
      counterpoint to the hand-drawn doodles. The block is one line tall and as wide as the letter
      it resolves into, so the line doesn't jump. */
-  #split-flap-display :global(.sf-word) { white-space: nowrap; }
+  /* inline-block as well as nowrap: with nowrap alone WebKit wraps words onto new lines that
+     would fit, pushing settled letters about while later ones flip. */
+  #split-flap-display :global(.sf-word) { display: inline-block; white-space: nowrap; }
 
   #split-flap-display :global(.sf-block) {
     display: inline-grid;
@@ -180,7 +188,7 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     const currentText = display.textContent || ' ';
     const maxLen = Math.max(currentText.length, target.length);
     const style = textStyle();
-    const widths = measureWidths([...new Set(target.replaceAll(' ', ''))]);
+    const widths = measureWidths([...new Set((target + currentText).replaceAll(' ', ''))]);
 
     // One cell per position, grouped into no-wrap words (by the target's spaces) so the line
     // can't break mid-word while letters are blocks.
@@ -217,9 +225,27 @@ const { phrases, intervalMs = 12000 } = Astro.props;
 
     cells.forEach(({ cell, to }, i) => {
       setTimeout(() => {
-        // Spaces and trailing positions just clear; there's no letter to resolve into.
+        const from = i < currentText.length ? currentText[i] : '';
+        // A letter going to a space or off the end dissolves out: noise thinning at its old width.
         if (to === ' ' || to === '') {
-          settle(cell, to);
+          if (from === ' ' || from === '' || from === to) {
+            settle(cell, to);
+            return;
+          }
+          const g = glyph(from, widths.get(from), style);
+          const block = toBlock(cell, g);
+          const numCycles = 3 + Math.floor(Math.random() * 3);
+          let count = 0;
+          const tick = setInterval(() => {
+            if (count >= numCycles) {
+              clearInterval(tick);
+              settle(cell, to);
+            } else {
+              const fill = FILL_MAX - (FILL_MAX - FILL_MIN) * (count / numCycles);
+              fillBlock(block, Array.from({ length: g.cols * ROWS }, () => randomRamp(fill)));
+            }
+            count++;
+          }, CYCLE_MS);
           return;
         }
         const g = glyph(to, widths.get(to), style);
@@ -244,12 +270,14 @@ const { phrases, intervalMs = 12000 } = Astro.props;
     });
   }
 
-  // Respect the user's reduced-motion preference: show static text, no flapping.
+  // Respect the user's reduced-motion preference: keep the static first phrase, no flapping.
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) {
-    display.textContent = phrases[0];
+    display.classList.add('is-live');
   } else {
-    // Animate in first phrase on load, then cycle
+    // Clear the server-rendered phrase, animate it in on load, then cycle
+    display.textContent = ' '.repeat(phrases[0].length);
+    display.classList.add('is-live');
     setTimeout(() => animateTo(phrases[0]), 300);
 
     setInterval(() => {
