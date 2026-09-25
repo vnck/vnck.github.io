@@ -179,14 +179,20 @@ pre.astro-code code {
   font-weight: var(--shiki-dark-font-weight) !important;
 }
 
-/* Hand-drawn rule: an ink line masked from --ink-line, so it follows the theme colour. */
+/* ASCII rule: a row of monospace dots, echoing the tagline's ASCII flap. The run is longer than any
+   measure and clipped, so it always spans the column. */
 hr {
   border: none;
-  height: 8px;
   margin: 2rem 0;
-  background: var(--rule-strong);
-  -webkit-mask: var(--ink-line) center / 100% 100% no-repeat;
-  mask: var(--ink-line) center / 100% 100% no-repeat;
+  overflow: hidden;
+  white-space: nowrap;
+  font: 400 1rem/1 var(--font-meta);
+  color: var(--rule-strong);
+}
+
+hr::before {
+  content: "· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·";
+  letter-spacing: 0.25em;
 }
 
 .wrapper {
