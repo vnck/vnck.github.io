@@ -16,7 +16,7 @@ In February earlier this year, news broke that [a section of forested land in Kr
 There was no data. Turn on satellite view and you can see that the trees are clearly there (or were there), but no interaction is afforded to us, not for these trees.
 
 <figure>
-    <img src="../assets/posts/2021-06-05-the-data-justifies-the-tree/kranji-woodlands.webp"/>
+    <img src="../../assets/posts/2021-06-05-the-data-justifies-the-tree/kranji-woodlands.webp"/>
     <figcaption>Only the trees that surround Kranji Woodlands are recorded as green dots, everything within is empty. (Screenshot from trees.sg)</figcaption>
 </figure>
 
@@ -27,7 +27,7 @@ To construct a dataset is to make a negotiation between what should be included 
 We should also recognise that datasets are a method of generating an aesthetic order, the construction of a data-driven imaginary. Nothing is more telling than the fact that our dataset of trees visualised inexplicitly becomes indistinguishable from a visualisation of the city's road network. Dataset logic leaves little room sparred for messy realities, a shared sentiment with our political ethos of discipline and control over the garden city. But the pursuit of tidiness and comprehensiveness necessarily leaves gaps that are equally deserving of care, and we should be wary of our data blind spots.
 
 <figure>
-    <img src="../assets/posts/2021-06-05-the-data-justifies-the-tree/explore-trees.webp"/>
+    <img src="../../assets/posts/2021-06-05-the-data-justifies-the-tree/explore-trees.webp"/>
     <figcaption>A constellation of data trees, but also full of voids. (Screenshot from exploretrees.sg)</figcaption>
 </figure>
 
