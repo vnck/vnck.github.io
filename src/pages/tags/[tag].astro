@@ -50,7 +50,7 @@ const pageTitle = tag === 'all' ? 'All posts' : `Tag: ${tag}`;
       <h1 class="post-title">
         {tag === 'all'
           ? `All posts (${count})`
-          : <span>Tag: <code class="tag-header">{tag}</code> ({count})</span>
+          : <span>Tag: <span class="tag-header">{tag}</span> ({count})</span>
         }
       </h1>
     </header>

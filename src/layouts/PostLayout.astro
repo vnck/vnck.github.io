@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Tags from '../components/Tags.astro';
 import { formatDate } from '../utils/index';
 
 interface Props {
@@ -11,10 +12,11 @@ interface Props {
   modifiedDate?: Date;
   readingTime: number;
   headings?: { depth: number; slug: string; text: string }[];
+  collection?: 'writings' | 'projects';
 }
 
-const { title, date, tags = [], description, image, modifiedDate, readingTime, headings = [] } = Astro.props;
-const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+const { title, date, tags = [], description, image, modifiedDate, readingTime, headings = [], collection } = Astro.props;
+const tocHeadings = headings.filter(h => (h.depth === 2 || h.depth === 3) && h.slug !== 'footnote-label');
 const showToc = tocHeadings.length >= 3;
 
 const jsonLd = JSON.stringify({
@@ -34,7 +36,7 @@ const jsonLd = JSON.stringify({
     <script type="application/ld+json" set:html={jsonLd} />
   </Fragment>
 
-  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <article class="post h-entry" data-collection={collection} itemscope itemtype="http://schema.org/BlogPosting">
     <header class="post-header">
       <h1 class="post-title p-name" itemprop="name headline">{title}</h1>
       <div class="post-meta">
@@ -49,11 +51,7 @@ const jsonLd = JSON.stringify({
         <p>&ensp;·&ensp;</p>
         <p>{readingTime} min</p>
         <p>&ensp;·&ensp;</p>
-        <p>
-          {tags.map(tag => (
-            <a href={`/tags/${tag}`}><code class="tag">{tag}</code></a>
-          ))}
-        </p>
+        <p><Tags tags={tags} label="filed under" /></p>
       </div>
     </header>
 

@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import rehypeImgAttrs from './src/plugins/rehype-img-attrs.mjs';
+import rehypeTableScroll from './src/plugins/rehype-table-scroll.mjs';
 
 export default defineConfig({
   site: 'https://vnck.xyz',
@@ -14,7 +15,11 @@ export default defineConfig({
   },
   markdown: {
     // Astro 7 defaults to its native Markdown pipeline; unified() keeps rehype plugins working.
-    processor: unified({ rehypePlugins: [rehypeImgAttrs] }),
+    processor: unified({
+      rehypePlugins: [rehypeImgAttrs, rehypeTableScroll],
+      // The default ↩ is missing from both site fonts; ↑ is in both.
+      remarkRehype: { footnoteBackContent: '↑' },
+    }),
     shikiConfig: {
       themes: {
         light: 'github-light',

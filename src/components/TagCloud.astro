@@ -8,8 +8,8 @@ const { tags, currentTag } = Astro.props;
 const sorted = [...tags].sort();
 ---
 <div class="tag-cloud">
-  <a href="/tags/all" aria-current={currentTag === 'all' ? 'page' : undefined}><code class="tag">all</code></a>
+  <a class="tag" href="/tags/all" aria-current={currentTag === 'all' ? 'page' : undefined}>all</a>
   {sorted.map(tag => (
-    <a href={`/tags/${tag}`} aria-current={tag === currentTag ? 'page' : undefined}><code class="tag">{tag}</code></a>
+    <a class="tag" href={`/tags/${tag}`} aria-current={tag === currentTag ? 'page' : undefined}>{tag}</a>
   ))}
 </div>

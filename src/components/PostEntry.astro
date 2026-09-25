@@ -1,4 +1,5 @@
 ---
+import Tags from './Tags.astro';
 import { formatDate } from '../utils/index';
 
 interface Props {
@@ -32,10 +33,6 @@ const { url, title, description, date, modifiedDate, tags, readingTime, isRedire
     <p>&ensp;·&ensp;</p>
     <p>{readingTime} min</p>
     <p>&ensp;·&ensp;</p>
-    <p>
-      {tags.map(tag => (
-        <a href={`/tags/${tag}`}><code class="tag">{tag}</code></a>
-      ))}
-    </p>
+    <p><Tags tags={tags} /></p>
   </div>
 </div>

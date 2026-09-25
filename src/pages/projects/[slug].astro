@@ -28,6 +28,7 @@ const redirectUrl = entry.data.redirect_to;
   </BaseLayout>
 ) : (
   <PostLayout
+    collection="projects"
     title={entry.data.title}
     date={entry.data.date}
     tags={entry.data.tags}

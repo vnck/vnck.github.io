@@ -1,4 +1,5 @@
 ---
+import Tags from './Tags.astro';
 import { formatDate } from '../utils/index';
 
 interface Props {
@@ -25,11 +26,7 @@ const { title, date, modifiedDate, tags } = Astro.props;
       <p>{formatDate(date)}</p>
     )}
     <p>&ensp;·&ensp;</p>
-    <p>
-      {tags.map(tag => (
-        <a href={`/tags/${tag}`}><code class="tag">{tag}</code></a>
-      ))}
-    </p>
+    <p><Tags tags={tags} /></p>
   </div>
-  <div class="journal-post-break">* * *</div>
+  <div class="journal-post-break" aria-hidden="true">* * *</div>
 </div>
