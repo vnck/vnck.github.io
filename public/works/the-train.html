@@ -79,9 +79,23 @@ tw-sidebar { display: none; }
   mask: var(--doodle) center / contain no-repeat;
 }
 
-/* Objects from the story recur as motifs, each heading the passage it belongs to like a spot
-   illustration at the top of a chapter. */
-.doodle-spot { display: block; width: 6.5em; height: 6.5em; margin: 0 auto 1.5rem; }
+/* Objects from the story recur as motifs: a large, pale matcha drawing behind the top of the
+   passage it belongs to, offset and turned slightly, taking no space in the text. The passage
+   isolates so the drawing sits behind its words but above the page's background. */
+tw-passage { isolation: isolate; }
+tw-story { overflow-x: clip; }
+.doodle-spot {
+  position: absolute;
+  z-index: -1;
+  top: -2.5em;
+  right: -1.5em;
+  width: min(11em, 60vw);
+  height: min(11em, 60vw);
+  color: var(--accent);
+  opacity: 0.2;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
 .doodle-hero { display: block; width: 7.5em; height: 7.5em; margin: 0 auto 0.75rem; }
 /* A small matcha asterisk marks each ending, like a section break. */
 .doodle-ornament { display: block; width: 0.9em; height: 0.9em; margin: 0.5rem 0 0.25rem; color: var(--accent); }
