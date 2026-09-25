@@ -179,24 +179,29 @@ pre.astro-code code {
   font-weight: var(--shiki-dark-font-weight) !important;
 }
 
-/* Straight rule finished with an ASCII asterisk, a small nod to the tagline's ASCII flap. */
+/* Straight rule finished with an ASCII asterisk in the accent colour, a small nod to the tagline's
+   ASCII flap. The asterisk is nudged up because its ink sits low in the monospace em box. */
 hr {
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.35em;
   border: none;
   margin: 2rem 0;
-  font: 400 1.125rem/1 var(--font-meta);
-  color: var(--faded);
+  font: 700 1.375rem/1 var(--font-meta);
+  color: var(--accent);
 }
 
 hr::before {
   content: "";
   flex: 1;
-  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid var(--faded);
 }
 
-hr::after { content: "*"; }
+hr::after {
+  content: "*";
+  position: relative;
+  top: -0.1em;
+}
 
 .wrapper {
   max-width: calc(var(--measure) + 60px);
