@@ -798,6 +798,8 @@ details[open] p {
 /* ==================
    ABOUT PAGE
    ================== */
+.about-name { font-size: 1.17em; }
+
 .about-headshot {
   max-width: 160px;
   height: auto;

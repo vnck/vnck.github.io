@@ -10,7 +10,7 @@ const { tags, label } = Astro.props;
   <span class="tags">
     {label && <span class="tags-label">{label} </span>}
     {tags.map((tag, i) => (
-      <>{i > 0 && ', '}<a class="tag" href={`/tags/${tag}`}>{tag}</a></>
+      <>{i > 0 && ', '}<a class="tag" href={`/tags/${encodeURIComponent(tag)}`}>{tag}</a></>
     ))}
   </span>
 )}

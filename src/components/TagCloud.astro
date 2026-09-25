@@ -10,6 +10,6 @@ const sorted = [...tags].sort();
 <div class="tag-cloud">
   <a class="tag" href="/tags/all" aria-current={currentTag === 'all' ? 'page' : undefined}>all</a>
   {sorted.map(tag => (
-    <a class="tag" href={`/tags/${tag}`} aria-current={tag === currentTag ? 'page' : undefined}>{tag}</a>
+    <a class="tag" href={`/tags/${encodeURIComponent(tag)}`} aria-current={tag === currentTag ? 'page' : undefined}>{tag}</a>
   ))}
 </div>

@@ -8,12 +8,15 @@ interface Props {
   date: Date;
   modifiedDate?: Date;
   tags: string[];
+  // 1 when the entry is the whole page, so the page has a top-level heading; 2 in the journal list.
+  headingLevel?: 1 | 2;
 }
 
-const { title, date, modifiedDate, tags } = Astro.props;
+const { title, date, modifiedDate, tags, headingLevel = 2 } = Astro.props;
+const Heading = headingLevel === 1 ? 'h1' : 'h2';
 ---
 <div class="journal-post">
-  <h2 class="journal-post-title">{title}</h2>
+  <Heading class="journal-post-title">{title}</Heading>
   <div class="journal-post-content">
     <slot />
   </div>

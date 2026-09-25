@@ -19,6 +19,7 @@ const { Content } = await render(entry);
   <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
     <div class="post-content e-content" itemprop="articleBody">
       <JournalEntry
+        headingLevel={1}
         title={entry.data.title}
         date={entry.data.date}
         modifiedDate={entry.data.modified_date}
