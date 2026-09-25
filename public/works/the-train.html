@@ -96,7 +96,20 @@ tw-story { overflow-x: clip; }
   transform: rotate(-8deg);
   pointer-events: none;
 }
-.doodle-hero { display: block; width: 7.5em; height: 7.5em; margin: 0 auto 0.75rem; }
+/* On the title page the train is the same kind of watermark, centred behind the title so the
+   tunnel arch frames it; a shade fainter, since the lettering sits right on top of it. */
+.doodle-hero {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: min(15em, 80vw);
+  height: min(15em, 80vw);
+  color: var(--accent);
+  opacity: 0.15;
+  transform: translate(-50%, -54%);
+  pointer-events: none;
+}
 /* A small matcha asterisk marks each ending, like a section break. */
 .doodle-ornament { display: block; width: 0.9em; height: 0.9em; margin: 0.5rem 0 0.25rem; color: var(--accent); }
 
