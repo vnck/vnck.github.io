@@ -3,7 +3,7 @@
    ================== */
 :root {
   --bg: #fffcf6;
-  --ink: #2b2620;
+  --ink: #3d372f;
   --faded: #6b6356;
   /* orange links and blue tags carry over from the previous design; green is for the garden */
   --accent: #b8470d;
@@ -21,7 +21,7 @@
 
 [data-theme="dark"] {
   --bg: #1c1a16;
-  --ink: #ddd5c5;
+  --ink: #cdc5b5;
   --faded: #a39a89;
   --accent: #f0935a;
   --blue: #7fb2e5;
@@ -51,6 +51,9 @@ body {
   color: var(--ink);
   background-color: var(--bg);
   -webkit-text-size-adjust: 100%;
+  /* macOS thickens glyphs by default, which makes the serif read heavy, most of all light-on-dark */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-kerning: normal;
   display: flex;
   min-height: 100vh;
