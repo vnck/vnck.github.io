@@ -455,7 +455,9 @@ table th {
 
 /* Prose links: ink text with a permanent rust underline, so links never rely on colour alone. */
 .post-content a,
-.post-content a:visited {
+.post-content a:visited,
+.journal-post-content a,
+.journal-post-content a:visited {
   color: var(--ink);
   text-decoration: underline;
   text-decoration-color: var(--accent);
@@ -463,7 +465,8 @@ table th {
   text-underline-offset: 0.2em;
 }
 
-.post-content a:hover {
+.post-content a:hover,
+.journal-post-content a:hover {
   color: var(--accent);
   text-decoration-thickness: 2px;
 }
