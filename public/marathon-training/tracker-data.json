@@ -1,0 +1,99 @@
+{
+  "race": "BYD Singapore International Marathon",
+  "raceDate": "2026-12-06",
+  "planStart": "2026-09-28",
+  "updated": "2026-09-28",
+  "log": {},
+  "weeks": [
+    {"phase": "Rebuild", "focus": "Rebuild, then race the 10K", "sessions": [
+      {"date": "2026-09-28", "type": "Strength", "title": "Strength", "km": 0, "steps": [["3 × 15", "Calf raises", "slow down"], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 12", "Glute bridge", "pause"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
+      {"date": "2026-09-29", "type": "Easy", "title": "Easy with strides", "km": 7, "steps": [["6.5 km", "Easy", "conversational"], ["6 × 20 s", "Strides", "fast, relaxed"]]},
+      {"date": "2026-09-30", "type": "Easy", "title": "Easy", "km": 6, "steps": [["6 km", "Easy", "conversational"]]},
+      {"date": "2026-10-01", "type": "Quality", "title": "3 × 1 km at 10K race pace", "km": 7, "steps": [["2 km", "Warm-up", "conversational"], ["3 × 1 km", "10K race pace, 2′ jog", ""], ["2 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-02", "type": "Rest", "title": "Rest", "km": 0, "steps": []},
+      {"date": "2026-10-03", "type": "Race", "title": "HomeTeamNS REAL Run 10K", "km": 10, "steps": [["0–5 km", "Controlled", "10K race pace"], ["5–10 km", "Push if able", "race effort"]]},
+      {"date": "2026-10-04", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"], ["at 40 min", "Gel", "race brand"]]}
+    ]},
+    {"phase": "Rebuild", "focus": "Threshold and a first taste of marathon pace", "sessions": [
+      {"date": "2026-10-05", "type": "Strength", "title": "Strength", "km": 0, "steps": [["3 × 15", "Calf raises", "slow down"], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 12", "Glute bridge", "pause"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
+      {"date": "2026-10-06", "type": "Quality", "title": "Threshold 3 × 2 km", "km": 10, "steps": [["2.5 km", "Warm-up", "conversational"], ["3 × 2 km", "Threshold, 2′ jog", "≈1-hour race effort"], ["1.5 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-07", "type": "Easy", "title": "Easy", "km": 7, "steps": [["7 km", "Easy", "conversational"]]},
+      {"date": "2026-10-08", "type": "Quality", "title": "4 km at marathon pace", "km": 8, "steps": [["2 km", "Warm-up", "conversational"], ["4 km", "Marathon pace", ""], ["2 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-09", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-10-10", "type": "Recovery", "title": "Run club (recovery)", "km": 5, "steps": [["5 km", "Run club", "very easy"]]},
+      {"date": "2026-10-11", "type": "Long", "title": "Long run, all easy", "km": 20, "steps": [["20 km", "Easy", "steady"], ["every 35 min", "Gel", "race brand"]]}
+    ]},
+    {"phase": "Rebuild", "focus": "Longer runs", "sessions": [
+      {"date": "2026-10-12", "type": "Strength", "title": "Strength", "km": 0, "steps": [["3 × 15", "Calf raises", "slow down"], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 12", "Glute bridge", "pause"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
+      {"date": "2026-10-13", "type": "Quality", "title": "Norwegian 4 × 4 min", "km": 10, "steps": [["2.5 km", "Warm-up", "conversational"], ["4 × 4 min", "Hard, 3′ jog", "hard, 5K effort"], ["1.5 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-14", "type": "Easy", "title": "Easy", "km": 7, "steps": [["7 km", "Easy", "conversational"]]},
+      {"date": "2026-10-15", "type": "Quality", "title": "5 km at marathon pace", "km": 9, "steps": [["2 km", "Warm-up", "conversational"], ["5 km", "Marathon pace", ""], ["2 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-16", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-10-17", "type": "Recovery", "title": "Run club (recovery)", "km": 5, "steps": [["5 km", "Run club", "very easy"]]},
+      {"date": "2026-10-18", "type": "Long", "title": "Long run, all easy", "km": 23, "steps": [["23 km", "Easy", "steady"], ["every 35 min", "Gel and drink", "race brand"]]}
+    ]},
+    {"phase": "Absorb", "focus": "Absorb", "sessions": [
+      {"date": "2026-10-19", "type": "Strength", "title": "Strength", "km": 0, "steps": [["3 × 15", "Calf raises", "slow down"], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 12", "Glute bridge", "pause"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
+      {"date": "2026-10-20", "type": "Quality", "title": "Threshold 3 × 1 km", "km": 8, "steps": [["2.5 km", "Warm-up", "conversational"], ["3 × 1 km", "Threshold, 2′ jog", "≈1-hour race effort"], ["2.5 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-21", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"]]},
+      {"date": "2026-10-22", "type": "Easy", "title": "Easy with strides", "km": 7, "steps": [["6.5 km", "Easy", "conversational"], ["6 × 20 s", "Strides", "fast, relaxed"]]},
+      {"date": "2026-10-23", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-10-24", "type": "Rest", "title": "Rest", "km": 0, "steps": [["optional", "Jog 20 min", "very easy"]]},
+      {"date": "2026-10-25", "type": "Long", "title": "Long run, all easy", "km": 16, "steps": [["16 km", "Easy", "steady"]]}
+    ]},
+    {"phase": "Build", "focus": "First 4:30am rehearsal", "sessions": [
+      {"date": "2026-10-26", "type": "Strength", "title": "Strength", "km": 0, "steps": [["3 × 15", "Calf raises", "slow down"], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 12", "Glute bridge", "pause"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
+      {"date": "2026-10-27", "type": "Quality", "title": "Cruise intervals 3 × 3 km", "km": 11, "steps": [["2 km", "Warm-up", "conversational"], ["3 × 3 km", "Threshold, 90″ jog", "≈1-hour race effort"], ["1 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-28", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"]]},
+      {"date": "2026-10-29", "type": "Quality", "title": "6 km at marathon pace", "km": 10, "steps": [["2 km", "Warm-up", "conversational"], ["6 km", "Marathon pace", ""], ["2 km", "Cool-down", "conversational"]]},
+      {"date": "2026-10-30", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-10-31", "type": "Rest", "title": "Rest", "km": 0, "steps": [["6:30pm", "Race dinner", ""], ["8:30pm", "Bed, alarm 2:30am", ""]]},
+      {"date": "2026-11-01", "type": "Long", "title": "26 km at 4:30am", "km": 26, "steps": [["2:30am", "Race breakfast", "100–150 g"], ["26 km", "Easy from 4:30", "steady"], ["every 30 min", "Gel", "60 g/h"]]}
+    ]},
+    {"phase": "Build", "focus": "Marathon pace inside the long run", "sessions": [
+      {"date": "2026-11-02", "type": "Mobility", "title": "Mobility", "km": 0, "steps": [["15 min", "Mobility", "calves, hips"], ["20 min", "Easy walk", ""]]},
+      {"date": "2026-11-03", "type": "Quality", "title": "Norwegian 4 × 4 min", "km": 11, "steps": [["3 km", "Warm-up", "conversational"], ["4 × 4 min", "Hard, 3′ jog", "hard, 5K effort"], ["2 km", "Cool-down", "conversational"]]},
+      {"date": "2026-11-04", "type": "Easy", "title": "Easy", "km": 9, "steps": [["9 km", "Easy", "conversational"]]},
+      {"date": "2026-11-05", "type": "Easy", "title": "Easy with strides", "km": 10, "steps": [["9.5 km", "Easy", "conversational"], ["6 × 20 s", "Strides", "fast, relaxed"]]},
+      {"date": "2026-11-06", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-11-07", "type": "Rest", "title": "Rest", "km": 0, "steps": [["optional", "Jog 20 min", "very easy"]]},
+      {"date": "2026-11-08", "type": "Long", "title": "24 km with 2 × 6 km at marathon pace", "km": 24, "steps": [["6 km", "Easy", "steady"], ["6 km", "Marathon pace", ""], ["2 km", "Easy", "steady"], ["6 km", "Marathon pace", ""], ["4 km", "Easy", "steady"]]}
+    ]},
+    {"phase": "Build", "focus": "Peak week", "sessions": [
+      {"date": "2026-11-09", "type": "Strength", "title": "Strength", "km": 0, "steps": [["3 × 15", "Calf raises", "slow down"], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 12", "Glute bridge", "pause"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
+      {"date": "2026-11-10", "type": "Quality", "title": "Threshold 4 × 2 km", "km": 11, "steps": [["2 km", "Warm-up", "conversational"], ["4 × 2 km", "Threshold, 90″ jog", "≈1-hour race effort"], ["1 km", "Cool-down", "conversational"]]},
+      {"date": "2026-11-11", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"]]},
+      {"date": "2026-11-12", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"]]},
+      {"date": "2026-11-13", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-11-14", "type": "Recovery", "title": "Run club (optional)", "km": 5, "steps": [["5 km", "Run club", "very easy"]]},
+      {"date": "2026-11-15", "type": "Long", "title": "30 km dress rehearsal", "km": 30, "steps": [["22 km", "Easy, race kit", "steady"], ["8 km", "Marathon pace", ""], ["every 30 min", "Gel", "60–75 g/h"], ["3h30", "Time cap", ""]]}
+    ]},
+    {"phase": "Build", "focus": "Last long block", "sessions": [
+      {"date": "2026-11-16", "type": "Mobility", "title": "Mobility", "km": 0, "steps": [["15 min", "Mobility", "calves, hips"], ["20 min", "Easy walk", ""]]},
+      {"date": "2026-11-17", "type": "Quality", "title": "Cruise intervals 3 × 3 km", "km": 10, "steps": [["2 km", "Warm-up", "conversational"], ["3 × 3 km", "Threshold, 90″ jog", "≈1-hour race effort"], ["1 km", "Cool-down", "conversational"]]},
+      {"date": "2026-11-18", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"]]},
+      {"date": "2026-11-19", "type": "Easy", "title": "Easy with strides", "km": 9, "steps": [["8.5 km", "Easy", "conversational"], ["6 × 20 s", "Strides", "fast, relaxed"]]},
+      {"date": "2026-11-20", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-11-21", "type": "Rest", "title": "Rest", "km": 0, "steps": [["optional", "Jog 20 min", "very easy"]]},
+      {"date": "2026-11-22", "type": "Long", "title": "22 km with 10 km at marathon pace", "km": 22, "steps": [["8 km", "Easy", "steady"], ["10 km", "Marathon pace", ""], ["4 km", "Easy", "steady"]]}
+    ]},
+    {"phase": "Taper", "focus": "Taper begins", "sessions": [
+      {"date": "2026-11-23", "type": "Strength", "title": "Light strength", "km": 0, "steps": [["2 × 15", "Calf raises", "slow down"], ["2 × 8/side", "1-leg RDL", "light"], ["2 × 8/side", "Split squat", "bodyweight"], ["2 × 30s/side", "Side plank", ""]]},
+      {"date": "2026-11-24", "type": "Quality", "title": "Threshold 4 × 1 km", "km": 9, "steps": [["2.5 km", "Warm-up", "conversational"], ["4 × 1 km", "Threshold, 2′ jog", "≈1-hour race effort"], ["2.5 km", "Cool-down", "conversational"]]},
+      {"date": "2026-11-25", "type": "Easy", "title": "Easy", "km": 7, "steps": [["7 km", "Easy", "conversational"]]},
+      {"date": "2026-11-26", "type": "Quality", "title": "4 km at marathon pace", "km": 8, "steps": [["2 km", "Warm-up", "conversational"], ["4 km", "Marathon pace", ""], ["2 km", "Cool-down", "conversational"]]},
+      {"date": "2026-11-27", "type": "Rest", "title": "Rest", "km": 0, "steps": []},
+      {"date": "2026-11-28", "type": "Rest", "title": "Rest", "km": 0, "steps": [["optional", "Jog 20 min", "very easy"]]},
+      {"date": "2026-11-29", "type": "Long", "title": "14 km with 5 km at marathon pace", "km": 14, "steps": [["7 km", "Easy", "steady"], ["5 km", "Marathon pace", ""], ["2 km", "Easy", "steady"]]}
+    ]},
+    {"phase": "Taper", "focus": "Race week", "sessions": [
+      {"date": "2026-11-30", "type": "Rest", "title": "Rest", "km": 0, "steps": []},
+      {"date": "2026-12-01", "type": "Quality", "title": "3 × 1.5 km at marathon pace", "km": 8, "steps": [["2 km", "Warm-up", "conversational"], ["3 × 1.5 km", "Marathon pace, 1 km easy", ""], ["0.5 km", "Cool-down", "conversational"]]},
+      {"date": "2026-12-02", "type": "Easy", "title": "Easy", "km": 6, "steps": [["6 km", "Easy", "conversational"]]},
+      {"date": "2026-12-03", "type": "Easy", "title": "Easy with strides", "km": 5, "steps": [["4.5 km", "Easy", "conversational"], ["6 × 20 s", "Strides", "fast, relaxed"]]},
+      {"date": "2026-12-04", "type": "Rest", "title": "Rest and carb-load", "km": 0, "steps": [["all day", "Carb-load", "8–10 g carbs per kg"]]},
+      {"date": "2026-12-05", "type": "Recovery", "title": "Shakeout", "km": 3, "steps": [["3 km", "Very easy", ""], ["3 × 20 s", "Strides", ""], ["by 6:30pm", "Dinner", "low fibre"]]},
+      {"date": "2026-12-06", "type": "Race", "title": "BYD Marathon", "km": 42.2, "steps": [["10 km", "Start – 10 km", "just slower than marathon pace"], ["32.2 km", "10 km – finish", "marathon pace"], ["every 30 min", "Gel from 0:40", ""]]}
+    ]}
+  ]
+}
