@@ -100,6 +100,16 @@ figure > img {
   margin: 0 auto;
 }
 
+/* A live page embedded in a post, e.g. the marathon plan in the journal. Scrolls inside its own frame. */
+figure > iframe {
+  display: block;
+  width: 100%;
+  height: min(75vh, 720px);
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  background: var(--wash);
+}
+
 /* Project charts have white backgrounds; multiply lets the paper show through in light mode.
    Scoped to projects so essay photographs keep their true colours. */
 :root:not([data-theme="dark"]) article[data-collection="projects"] .post-content figure img {
