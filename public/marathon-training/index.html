@@ -383,13 +383,14 @@ fetch('tracker-data.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw ne
   // ---- Image sheet: show the week as a real <img> so phones can long-press to save or share it.
   var sheet=$('sheet'), shot=$('shot'), lastBlob=null, lastName='', opener=null;
   var touch=matchMedia('(pointer:coarse)').matches;
-  function openSheet(){opener=document.activeElement;sheet.hidden=false;root.classList.add('locked');$('shotClose').focus()}
+  function openSheet(){sheet.hidden=false;root.classList.add('locked');$('shotClose').focus()}
   function closeSheet(){sheet.hidden=true;root.classList.remove('locked');if(opener&&opener.focus)opener.focus()}
   $('shotClose').addEventListener('click',closeSheet);
   sheet.addEventListener('click',function(e){if(e.target===sheet)closeSheet()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!sheet.hidden)closeSheet()});
   $('save').addEventListener('click',function(){
-    var n=cur, btn=this;btn.disabled=true;
+    // remember the opener before disabling it: a disabled button drops focus, and Close should hand it back
+    var n=cur, btn=this;opener=btn;btn.disabled=true;
     var ready=document.fonts&&document.fonts.load?Promise.all(['800 190px "Big Shoulders Display"','600 33px Archivo','500 31px Archivo','500 22px "DM Mono"','400 19px "DM Mono"'].map(function(f){return document.fonts.load(f)})).catch(function(){}):Promise.resolve();
     ready.then(function(){
       var cv=poster(n);
