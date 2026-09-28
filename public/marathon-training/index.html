@@ -53,7 +53,6 @@ main{padding-top:24px;display:flex;flex-direction:column;gap:14px}
 .sheet{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));background:rgba(8,9,14,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .sheet-card{display:flex;flex-direction:column;align-items:center;gap:12px;max-height:100%;width:min(100%,30rem)}
 .sheet img{display:block;max-width:100%;max-height:calc(100vh - 150px);width:auto;height:auto;border-radius:var(--r-m);box-shadow:0 24px 60px -20px rgba(0,0,0,.6);-webkit-touch-callout:default;user-select:auto}
-.sheet .lbl{color:#E7E9EE;text-align:center}
 .sheet-row{display:flex;gap:8px}
 .sheet .btn{color:#E7E9EE;border-color:rgba(255,255,255,.35)}
 .sheet .btn:hover{background:rgba(255,255,255,.1);border-color:#fff}
@@ -116,7 +115,6 @@ html.locked{overflow:hidden}
     <div class="picker"><div class="wrap wks" id="picker" role="group" aria-label="Choose week. Column height shows weekly distance."></div></div>
     <div class="reg" aria-live="polite">
       <div class="whead">
-        <span class="lbl" id="wlbl"></span>
         <h2 id="wtitle"></h2>
         <div class="hbar">
           <div class="wstats">
@@ -125,7 +123,7 @@ html.locked{overflow:hidden}
           </div>
           <button class="btn" id="save" type="button">
             <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M2.5 13.5h11" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-            Save week as image
+            Save image
           </button>
         </div>
         <div class="meter" aria-hidden="true"><i id="meter"></i></div>
@@ -138,10 +136,9 @@ html.locked{overflow:hidden}
     </div>
   </section>
 </main>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shotHint" hidden>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Week image" hidden>
   <div class="sheet-card">
     <img id="shot" alt="">
-    <p class="lbl" id="shotHint"></p>
     <div class="sheet-row"><button class="btn" id="shotClose" type="button">Close</button><button class="btn ok" id="shotSave" type="button">Save image</button></div>
   </div>
 </div>
@@ -233,8 +230,7 @@ html.locked{overflow:hidden}
     n=Math.max(1,Math.min(W.length,n));cur=n;
     var w=W[n-1], c=checkable(w), d=doneOf(w);
     [].forEach.call(document.querySelectorAll('.wk'),function(b){b.setAttribute('aria-pressed',String(+b.dataset.w===n))});
-    $('wlbl').textContent='Wk '+pad(n)+' / '+w.phase+' / '+range(w.start,w.end);
-    $('wtitle').textContent=w.focus;
+    $('wtitle').textContent='Week '+n;
     $('sDone').innerHTML=d+'<small>/'+c.length+'</small>';
     $('sKm').innerHTML=w.doneKm+'<small>/'+w.plannedKm+'</small>';
     $('meter').style.width=(c.length?d/c.length*100:0)+'%';
@@ -293,7 +289,9 @@ html.locked{overflow:hidden}
     var rr=function(X,Y,Wd,Hd,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+Wd,Y,X+Wd,Y+Hd,r);x.arcTo(X+Wd,Y+Hd,X,Y+Hd,r);x.arcTo(X,Y+Hd,X,Y,r);x.arcTo(X,Y,X+Wd,Y,r);x.closePath()};
     var plus=function(cx,cy,r,col,lw){x.strokeStyle=col;x.lineWidth=lw;x.beginPath();x.moveTo(cx,cy-r);x.lineTo(cx,cy+r);x.moveTo(cx-r,cy);x.lineTo(cx+r,cy);x.stroke()};
     // chip: filled label, returns its width
-    var chip=function(label,X,Y,bg,fg){font('500 18px '+M,1.6);var tw=x.measureText(label).width,cw=tw+22;x.fillStyle=bg;rr(X,Y,cw,32,4);x.fill();x.fillStyle=fg;x.fillText(label,X+11,Y+7);return cw};
+    // Measured without letter-spacing and the spacing added by hand: not every browser counts it in measureText.
+    var CH=34, chip=function(label,X,Y,bg,fg){font('500 18px '+M);var tw=x.measureText(label).width+1.6*(label.length-1),cw=tw+26;
+      x.fillStyle=bg;rr(X,Y,cw,CH,4);x.fill();font('500 18px '+M,1.6);x.fillStyle=fg;x.textBaseline='middle';x.fillText(label,X+13,Y+CH/2+1);x.textBaseline='top';return cw};
 
     // ground: plus grid, same 22px rhythm as the page
     x.fillStyle=C.bg;x.fillRect(0,0,S,H);
@@ -305,13 +303,19 @@ html.locked{overflow:hidden}
     // header
     plus(P+8,P+14,8,C.ink,2.4);
     font('500 26px '+M,2);x.fillStyle=C.ink;x.fillText('SGIM 2026 TRAINING PLAN',P+30,P+1);
-    x.textAlign='right';x.fillStyle=C.ink2;x.fillText('WEEK '+pad(n)+' / '+pad(W.length),S-P,P+1);x.textAlign='left';
-    var y=P+76;
-    font('500 22px '+M,2.4);x.fillStyle=C.ink2;x.fillText((w.phase+'  /  '+range(w.start,w.end)).toUpperCase(),P,y);
-    y+=44;
-    font('600 66px '+U,-1.2);x.fillStyle=C.ink;
-    wrap(w.focus,S-2*P,2).forEach(function(line){x.fillText(line,P-3,y);y+=74});
-    y+=10;
+    var y=P+80;
+    // the 70-day calendar sits top-right beside the title: row per week, this week at full strength
+    var sq=10, g=3, calW=7*(sq+g)-g;
+    W.forEach(function(wk,wi){wk.sessions.forEach(function(s,di){
+      var X=S-P-calW+di*(sq+g), Y=y+2+wi*(sq+g);
+      x.globalAlpha=wi===n-1?1:.45;
+      if(s.status==='rest'){x.fillStyle=C.hair2;x.beginPath();x.arc(X+sq/2,Y+sq/2,1.6,0,7);x.fill()}
+      else if(s.status==='done'){x.fillStyle=s.type==='Race'?C.blood:C.ink;x.fillRect(X,Y,sq,sq)}
+      else{x.strokeStyle=s.type==='Race'?C.blood:C.ink;x.lineWidth=1.2;if(x.setLineDash)x.setLineDash(s.status==='missed'?[2,2]:[]);x.strokeRect(X+.6,Y+.6,sq-1.2,sq-1.2);if(x.setLineDash)x.setLineDash([])}
+      x.globalAlpha=1;
+    })});
+    font('600 76px '+U,-1.4);x.fillStyle=C.ink;x.fillText('Week '+n,P-4,y-4);
+    y+=96;
     var c=checkable(w), d=doneOf(w);
     font('200 44px '+U,-.5);x.fillStyle=C.ink;var t1=d+'',t2=w.doneKm+'';
     x.fillText(t1,P,y);var a=x.measureText(t1).width;
@@ -322,45 +326,40 @@ html.locked{overflow:hidden}
     x.fillStyle=C.hair;x.fillRect(P,y,S-2*P,5);x.fillStyle=C.blood;x.fillRect(P,y,(S-2*P)*(c.length?d/c.length:0),5);
     y+=34;
 
-    // one row per day; the footer calendar takes the bottom band
-    var calTop=H-P-(10*10+9*3), rowH=(calTop-40-y)/7, gap=10;
+    // one row per day, filling the space down to the address line; content is centred in each row
+    var rowH=(H-P-56-y)/7, gap=12;
     w.sessions.forEach(function(s,i){
       var ry=y+i*rowH, h=rowH-gap, rest=s.status==='rest'&&s.date!==today, isToday=s.date===today;
       if(rest){x.fillStyle=C.glass;rr(P,ry,S-2*P,h,20);x.fill();x.strokeStyle=C.glassHi;x.lineWidth=1.5;x.beginPath();x.moveTo(P+20,ry+.75);x.lineTo(S-P-20,ry+.75);x.stroke()}
       else{x.fillStyle=C.panel;rr(P,ry,S-2*P,h,20);x.fill();if(isToday){x.strokeStyle=C.link;x.lineWidth=3;rr(P+1.5,ry+1.5,S-2*P-3,h-3,19);x.stroke()}}
-      // date
-      font('500 17px '+M,1.6);x.fillStyle=C.ink2;x.fillText(s.day.toUpperCase(),P+26,ry+18);
-      font('200 46px '+U,-1);x.fillStyle=rest?C.ink2:C.ink;x.fillText(String(+s.date.slice(8,10)),P+23,ry+40);
-      var tx=P+118, tw=S-2*P-118-80;
-      // title
+      var note=rest?(s.steps||[]).map(function(r){return r[1]+(r[2]?' ('+r[2]+')':'')}).join(' · '):'';
+      // date block: day label over the number
+      var dy=ry+(h-70)/2;
+      font('500 17px '+M,1.6);x.fillStyle=C.ink2;x.fillText(s.day.toUpperCase(),P+28,dy);
+      font('200 46px '+U,-1);x.fillStyle=rest?C.ink2:C.ink;x.fillText(String(+s.date.slice(8,10)),P+25,dy+24);
+      var tx=P+124, tw=S-2*P-124-84;
+      // title over a second line; the pair is centred vertically
+      var blockH=rest&&!note?34:34+14+CH, ty=ry+(h-blockH)/2;
       font((rest?'500 32px ':'600 34px ')+U,-.2);x.fillStyle=rest||s.status==='missed'?C.ink2:C.ink;
-      var title=fit(s.title,tw);x.fillText(title,tx,ry+18);
-      if(s.status==='done'){x.fillStyle=C.blood;x.fillRect(tx,ry+37,x.measureText(title).width,3)}
+      var title=fit(s.title,tw);x.fillText(title,tx,ty);
+      if(s.status==='done'){x.fillStyle=C.blood;x.fillRect(tx,ty+19,x.measureText(title).width,3)}
       // second line: chips, km, then a short summary of the main sets
-      var lx=tx, ly=ry+62;
-      if(rest){var note=(s.steps||[]).map(function(r){return r[1]+(r[2]?' ('+r[2]+')':'')}).join(' · ');font('400 19px '+M);x.fillStyle=C.ink2;if(note)x.fillText(fit(note,tw),lx,ly+6);return}
-      if(isToday)lx+=chip('TODAY',lx,ly,C.blue,'#fff')+8;
-      if(wantChip(s)){var k=CHIP[s.type]||'';lx+=chip((s.type==='Long'?'LONG RUN':s.type.toUpperCase()),lx,ly,k==='key'?C.ink:k==='race'?C.blood:C.hair,k==='key'?C.bg:k==='race'?'#fff':C.ink)+8}
-      if(s.km){font('500 21px '+M);x.fillStyle=C.ink;x.fillText(s.km+' km',lx+4,ly+5);lx+=x.measureText(s.km+' km').width+24}
+      var lx=tx, ly=ty+48, gapX=14, mid=ly+CH/2+1;
+      var text=function(t,f,col){font(f);x.fillStyle=col;x.textBaseline='middle';x.fillText(t,lx,mid);x.textBaseline='top';lx+=x.measureText(t).width+gapX};
+      if(rest){if(note)text(fit(note,tw),'400 19px '+M,C.ink2);return}
+      if(isToday)lx+=chip('TODAY',lx,ly,C.blue,'#fff')+10;
+      if(wantChip(s)){var k=CHIP[s.type]||'';lx+=chip((s.type==='Long'?'LONG RUN':s.type.toUpperCase()),lx,ly,k==='key'?C.ink:k==='race'?C.blood:C.hair,k==='key'?C.bg:k==='race'?'#fff':C.ink)+10}
+      if(s.km){lx+=2;text(s.km+' km','500 21px '+M,C.ink);lx+=4}
       var core=(s.steps||[]).filter(function(r){return !/warm-up|cool-down|gel|breakfast|dinner|bed|time cap/i.test(r[1])});
       var sum=core.length===1&&s.km&&parseFloat(core[0][0])===s.km?'':core.map(function(r){return s.type==='Strength'||s.type==='Mobility'?r[1]:r[0]+' '+r[1]}).join(' · ');
-      if(sum&&tx+tw-lx>80){font('400 19px '+M);x.fillStyle=C.ink2;x.fillText(fit(sum,tx+tw-lx),lx,ly+6)}
+      font('400 19px '+M);if(sum&&tx+tw-lx>80)text(fit(sum,tx+tw-lx),'400 19px '+M,C.ink2);
       // done square
       var bx=S-P-26-30, by=ry+h/2-15;
       if(s.status==='done'){x.fillStyle=C.blood;x.fillRect(bx,by,30,30);x.strokeStyle='#fff';x.lineWidth=3.5;x.beginPath();x.moveTo(bx+7,by+16);x.lineTo(bx+13,by+22);x.lineTo(bx+24,by+9);x.stroke()}
       else{x.strokeStyle=s.status==='missed'?C.ink2:C.ink;x.lineWidth=2.5;if(x.setLineDash)x.setLineDash(s.status==='missed'?[5,4]:[]);x.strokeRect(bx+1.25,by+1.25,27.5,27.5);if(x.setLineDash)x.setLineDash([])}
     });
 
-    // footer: the 70-day calendar (row per week, this week at full strength) and the address
-    var sq=10, g=3;
-    W.forEach(function(wk,wi){wk.sessions.forEach(function(s,di){
-      var X=P+di*(sq+g), Y=calTop+wi*(sq+g);
-      x.globalAlpha=wi===n-1?1:.5;
-      if(s.status==='rest'){x.fillStyle=C.hair2;x.beginPath();x.arc(X+sq/2,Y+sq/2,1.6,0,7);x.fill()}
-      else if(s.status==='done'){x.fillStyle=s.type==='Race'?C.blood:C.ink;x.fillRect(X,Y,sq,sq)}
-      else{x.strokeStyle=s.type==='Race'?C.blood:C.ink;x.lineWidth=1.2;if(x.setLineDash)x.setLineDash(s.status==='missed'?[2,2]:[]);x.strokeRect(X+.6,Y+.6,sq-1.2,sq-1.2);if(x.setLineDash)x.setLineDash([])}
-      x.globalAlpha=1;
-    })});
+    // footer: the address
     x.textBaseline='bottom';font('500 22px '+M,2);x.fillStyle=C.ink2;x.textAlign='right';x.fillText('VNCK.XYZ/MARATHON-TRAINING',S-P,H-P+4);x.textAlign='left';
     return cv;
   }
@@ -368,7 +367,6 @@ html.locked{overflow:hidden}
   // ---- Image sheet: show the week as a real <img> so phones can long-press to save or share it.
   var sheet=$('sheet'), shot=$('shot'), lastBlob=null, lastName='', opener=null;
   var touch=matchMedia('(pointer:coarse)').matches;
-  $('shotHint').textContent=touch?'Press and hold the image to save or share it':'Right-click the image to copy it, or save it below';
   function openSheet(){opener=document.activeElement;sheet.hidden=false;root.classList.add('locked');$('shotClose').focus()}
   function closeSheet(){sheet.hidden=true;root.classList.remove('locked');if(opener&&opener.focus)opener.focus()}
   $('shotClose').addEventListener('click',closeSheet);
@@ -382,7 +380,7 @@ html.locked{overflow:hidden}
       lastName='sgim-week-'+pad(n)+'.png';
       // a data: URL, not blob:, so long-press "Save to Photos" works across mobile browsers
       shot.src=cv.toDataURL('image/png');
-      shot.alt='Week '+n+' of the SGIM 2026 training plan: '+W[n-1].focus;
+      shot.alt='Week '+n+' of the SGIM 2026 training plan';
       cv.toBlob(function(blob){lastBlob=blob;btn.disabled=false;openSheet()},'image/png');
     });
   });
