@@ -58,7 +58,6 @@ const rotLine = (pts, deg, cx, cy) => steps(rot(pts, deg, cx, cy));
 // Fine-pen detail (hatching, glints, minute ticks) is drawn thinner than the outlines.
 const thin = el => (Array.isArray(el) ? { pts: el, thin: true } : { ...el, thin: true });
 const T = (...els) => els.map(thin);
-const hatch = (x0, y0, x1, y1, n, dx = 0, dy = 0) => T(...Array.from({ length: n }, (_, i) => line(x0 + i * dx, y0 + i * dy, x1 + i * dx, y1 + i * dy)));
 const tickRing = (cx, cy, r0, r1, n, skipEvery = 0) => T(...Array.from({ length: n }, (_, i) => i).filter(i => !skipEvery || i % skipEvery).map(i => { const a = i * 2 * Math.PI / n; return line(cx + Math.sin(a) * r0, cy - Math.cos(a) * r0, cx + Math.sin(a) * r1, cy - Math.cos(a) * r1); }));
 
 const S = {

@@ -7,7 +7,7 @@ const { phrases, intervalMs = 12000 } = Astro.props;
 ---
 
 <span id="split-flap-display" aria-hidden="true">{phrases[0]}</span>
-<span class="split-flap-sr">{phrases[0]}</span>
+<span class="sr-only">{phrases[0]}</span>
 
 <style>
   #split-flap-display {
@@ -48,18 +48,6 @@ const { phrases, intervalMs = 12000 } = Astro.props;
   }
 
   #split-flap-display :global(.sf-block.is-shape) { color: var(--faded); }
-
-  .split-flap-sr {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
 </style>
 
 <script define:vars={{ phrases, intervalMs }}>

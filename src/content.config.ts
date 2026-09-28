@@ -13,8 +13,6 @@ const postSchema = z.object({
   redirect_to: z.string().optional(),
   permalink: z.string().optional(),
   reading_time: z.number().optional(),
-  jekyll_layout: z.string().optional(),
-  categories: z.union([z.string(), z.array(z.string())]).optional(),
 });
 
 export const collections = {

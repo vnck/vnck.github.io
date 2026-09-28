@@ -3,15 +3,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Doodle from '../../components/Doodle.astro';
 import JournalEntry from '../../components/JournalEntry.astro';
 import TagCloud from '../../components/TagCloud.astro';
-import { getCollection, render } from 'astro:content';
-import { getAllTags } from '../../utils/index';
+import { render } from 'astro:content';
+import { byDateDesc, getAllTags, getPublished } from '../../utils/index';
 
-const journal = await getCollection('journal', ({ data }) => !data.draft);
-const sorted = journal.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const journal = (await getPublished('journal')).sort(byDateDesc);
 const tags = getAllTags(journal);
 
 const rendered = await Promise.all(
-  sorted.map(async entry => {
+  journal.map(async entry => {
     const { Content } = await render(entry);
     return { entry, Content };
   })

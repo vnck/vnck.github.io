@@ -18,7 +18,7 @@ interface Props {
 const { title, description, image, redirectUrl, ogType = 'website' } = Astro.props;
 const siteTitle = 'vnck';
 const siteDescription = 'Writings about technological and urban systems.';
-const siteUrl = 'https://vnck.xyz';
+const siteUrl = Astro.site!.origin;
 const titleImage = `${siteUrl}/assets/headshot.webp`;
 const pageTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
@@ -85,7 +85,9 @@ const preloadFonts = [serif400, serif400i, serif600, mono400];
   <!-- Apply saved theme before first paint -->
   <script is:inline>
     (function() {
-      const saved = localStorage.getItem('theme');
+      // Storage access throws when site data is blocked; fall back to the system preference.
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch {}
       if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
       }
@@ -106,10 +108,10 @@ const preloadFonts = [serif400, serif400i, serif600, mono400];
           <a class="page-link" href="/journal">Journal</a>
         </nav>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-        <Doodle name="sun" class="icon-sun" />
-        <Doodle name="moon" class="icon-moon" />
-      </button>
-    </div>
+          <Doodle name="sun" class="icon-sun" />
+          <Doodle name="moon" class="icon-moon" />
+        </button>
+      </div>
     </div>
   </header>
 
@@ -151,7 +153,7 @@ const preloadFonts = [serif400, serif400i, serif600, mono400];
     const btn = document.getElementById('theme-toggle');
     function applyTheme(dark) {
       document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
+      try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch {}
     }
     btn.addEventListener('click', () => {
       const nowDark = document.documentElement.getAttribute('data-theme') !== 'dark';

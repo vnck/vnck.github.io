@@ -1,22 +1,13 @@
-import { getCollection } from 'astro:content';
-import { deriveSlug } from '../utils/index';
+import type { APIContext } from 'astro';
+import { byDateDesc, getPublished, postUrl } from '../utils/index';
 
-export async function GET() {
-  const noDraft = ({ data }: { data: { draft?: boolean } }) => !data.draft;
-  const [writings, projects] = await Promise.all([
-    getCollection('writings', noDraft),
-    getCollection('projects', noDraft),
-  ]);
-
-  const posts = [...writings, ...projects]
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-    .slice(0, 20);
-
-  const site = 'https://vnck.xyz';
+export async function GET({ site: siteUrl }: APIContext) {
+  const [writings, projects] = await Promise.all([getPublished('writings'), getPublished('projects')]);
+  const posts = [...writings, ...projects].sort(byDateDesc).slice(0, 20);
+  const site = siteUrl!.origin;
 
   const items = posts.map(post => {
-    const slug = deriveSlug(post.id, post.data.permalink);
-    const url = post.data.redirect_to || `${site}/${post.collection}/${slug}`;
+    const url = post.data.redirect_to || `${site}${postUrl(post)}`;
     const date = post.data.date.toUTCString();
     return `
     <item>

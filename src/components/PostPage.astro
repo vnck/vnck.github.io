@@ -1,0 +1,39 @@
+---
+// A writing or project page: the full post, or a stub that forwards to where the post now lives.
+import PostLayout from '../layouts/PostLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { render, type CollectionEntry } from 'astro:content';
+import { readingTime } from '../utils/index';
+
+interface Props {
+  entry: CollectionEntry<'writings' | 'projects'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, redirect_to: redirectUrl } = entry.data;
+const { Content, headings } = await render(entry);
+---
+{redirectUrl ? (
+  <BaseLayout title={title} description={description} redirectUrl={redirectUrl}>
+    <div class="redirect-page">
+      <h1>{title}</h1>
+      {description && <p class="redirect-meta">{description}</p>}
+      <p class="redirect-meta">Redirecting in 3 seconds&hellip;</p>
+      <p class="redirect-link"><a href={redirectUrl}>Continue reading &rarr;</a></p>
+    </div>
+  </BaseLayout>
+) : (
+  <PostLayout
+    collection={entry.collection}
+    title={title}
+    date={entry.data.date}
+    tags={entry.data.tags}
+    description={description}
+    image={entry.data.image}
+    modifiedDate={entry.data.modified_date}
+    readingTime={readingTime(entry.body, entry.data.reading_time)}
+    headings={headings}
+  >
+    <Content />
+  </PostLayout>
+)}

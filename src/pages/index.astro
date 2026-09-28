@@ -3,16 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PostEntry from '../components/PostEntry.astro';
 import SplitFlap from '../components/SplitFlap.astro';
 import Doodle from '../components/Doodle.astro';
-import { getCollection } from 'astro:content';
-import { readingTime, deriveSlug } from '../utils/index';
+import { byDateDesc, getPublished } from '../utils/index';
 
-const noDraft = ({ data }: { data: { draft?: boolean } }) => !data.draft;
-const writings = await getCollection('writings', noDraft);
-const projects = await getCollection('projects', noDraft);
-
-const allPosts = [...writings, ...projects]
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 5);
+const [writings, projects] = await Promise.all([getPublished('writings'), getPublished('projects')]);
+const recent = [...writings, ...projects].sort(byDateDesc).slice(0, 5);
 ---
 <BaseLayout>
   <div class="home">
@@ -28,24 +22,7 @@ const allPosts = [...writings, ...projects]
     <h2>Recently,</h2>
     <br />
     <div class="feed">
-      {allPosts.map(post => {
-        const collection = post.collection as 'writings' | 'projects';
-        const slug = deriveSlug(post.id, post.data.permalink);
-        const url = `/${collection}/${slug}`;
-        const rt = readingTime(post.body, post.data.reading_time);
-        return (
-          <PostEntry
-            url={url}
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            modifiedDate={post.data.modified_date}
-            tags={post.data.tags}
-            readingTime={rt}
-            isRedirect={!!post.data.redirect_to}
-          />
-        );
-      })}
+      {recent.map(post => <PostEntry post={post} />)}
     </div>
     <p class="archive-link"><a href="/writings">all writings ›</a> &ensp; <a href="/projects">all projects ›</a></p>
   </div>

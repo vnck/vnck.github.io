@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import JournalEntry from '../../components/JournalEntry.astro';
-import { getCollection, render } from 'astro:content';
-import { deriveSlug } from '../../utils/index';
+import { render } from 'astro:content';
+import { deriveSlug, getPublished } from '../../utils/index';
 
 export async function getStaticPaths() {
-  const journal = await getCollection('journal', ({ data }) => !data.draft);
+  const journal = await getPublished('journal');
   return journal.map(entry => ({
     params: { slug: deriveSlug(entry.id) },
     props: { entry },

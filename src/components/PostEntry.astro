@@ -1,27 +1,21 @@
 ---
 import Tags from './Tags.astro';
-import { formatDate } from '../utils/index';
+import { formatDate, postUrl, readingTime, type Post } from '../utils/index';
 
 interface Props {
-  url: string;
-  title: string;
-  description?: string;
-  date: Date;
-  modifiedDate?: Date;
-  tags: string[];
-  readingTime: number;
-  isRedirect?: boolean;
+  post: Post;
 }
 
-const { url, title, description, date, modifiedDate, tags, readingTime, isRedirect } = Astro.props;
+const { post } = Astro.props;
+const { title, description, date, modified_date: modifiedDate, tags, redirect_to, reading_time } = post.data;
 ---
 <div class="post-item">
   <h4>
-    <a href={url}>{title}</a>
+    <a href={postUrl(post)}>{title}</a>
   </h4>
   {description && <p class="caption">{description}</p>}
   <div class="caption-container">
-    {isRedirect && <><p>[ Redirect ]</p><p>&ensp;·&ensp;</p></>}
+    {redirect_to && <><p>[ Redirect ]</p><p>&ensp;·&ensp;</p></>}
     {modifiedDate ? (
       <>
         <p style="text-decoration:line-through;">{formatDate(date)}</p>
@@ -31,7 +25,7 @@ const { url, title, description, date, modifiedDate, tags, readingTime, isRedire
       <p>{formatDate(date)}</p>
     )}
     <p>&ensp;·&ensp;</p>
-    <p>{readingTime} min</p>
+    <p>{readingTime(post.body, reading_time)} min</p>
     <p>&ensp;·&ensp;</p>
     <p><Tags tags={tags} /></p>
   </div>
