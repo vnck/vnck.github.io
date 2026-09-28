@@ -775,9 +775,10 @@ details[open] p {
 .journal-post-break {
   color: var(--faded);
   margin: 1.5rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
-
-.journal-post-break .doodle { width: 0.8em; height: 0.8em; margin: 0 0.45em; stroke-width: 4.6; }
 
 /* ==================
    SOCIAL / FOOTER ICONS

@@ -161,7 +161,16 @@ let strokeSeed = 0;
 const toPath = el => {
   const raw = el.exact ? el.pts : densify(el.pts ?? el, 5);
   const pts = wobble(raw, el.thin ? 0.28 : 0.45, ++strokeSeed);
-  return pts.map(([x, y], i) => `${i ? 'L' : 'M'}${f1(x)} ${f1(y)}`).join('');
+  // Relative moves between points already rounded to 0.1, so the drawing lands on exactly the same
+  // points as absolute coordinates would, in well under half the bytes.
+  const q = pts.map(([x, y]) => [Math.round(f1(x) * 10), Math.round(f1(y) * 10)]);
+  const nums = [q[0][0], q[0][1]];
+  for (let i = 1; i < q.length; i++) nums.push(q[i][0] - q[i - 1][0], q[i][1] - q[i - 1][1]);
+  return nums.reduce((d, t, i) => {
+    const s = (t < 0 ? '-' : '') + String(Math.abs(t) / 10).replace(/^0\./, '.');
+    const sep = i === 0 || i === 2 || s[0] === '-' || (s[0] === '.' && /\.\d*$/.test(d)) ? '' : ' ';
+    return d + (i === 2 ? 'l' : '') + sep + s;
+  }, 'M');
 };
 const SW = 1.2;
 const SW_FINE = 0.7;
