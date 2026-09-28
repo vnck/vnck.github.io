@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SGIM 2026 Training Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;300;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="sgim.css">
+<style>
+/* Page-only styles. Shared tokens and components live in sgim.css. */
+main{padding-top:24px;display:flex;flex-direction:column;gap:14px}
+
+/* 1 · headline numbers + a static 70-day calendar (row per week, Mon to Sun left to right) */
+.overview{padding:18px 0}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto}
+.kpi{padding:0 18px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-width:0}
+.kpi+.kpi{border-left:1px solid var(--hair)}
+.kpi b{font:200 clamp(40px,11vw,64px)/.9 var(--disp);letter-spacing:-.035em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi b small,.wstats b small{font:400 13px var(--mono);letter-spacing:.02em;color:var(--ink-2);margin-left:2px}
+.kpi .lbl{white-space:nowrap}
+.cal{display:grid;grid-template-columns:repeat(7,8px);grid-auto-rows:8px;gap:2px}
+.cal i{border:1px solid var(--hair-2)}
+.cal i.done{background:var(--ink);border-color:var(--ink)}
+.cal i.missed{border-style:dashed;border-color:var(--ink-2)}
+.cal i.rest{border:0;background:radial-gradient(circle,var(--hair-2) 1.2px,transparent 1.5px)}
+.cal i.race{border-color:var(--blood)}
+.cal i.race.done{background:var(--blood)}
+.cal i.tdd{outline:1.5px solid var(--link);outline-offset:1px}
+
+/* 2 · today */
+.trow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tbody{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:6px 16px;margin-top:18px}
+.tmeta{display:flex;align-items:center;gap:10px;margin-top:8px}
+.tmeta:empty{display:none}
+.today .steps{margin-top:16px}
+.today.rest .tname{color:var(--ink-2);font-weight:500}
+
+/* 3 · week */
+.wsec{display:flex;flex-direction:column;gap:10px;margin-top:10px;scroll-margin-top:var(--nav-h)}
+.hbar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 20px;margin-top:4px}
+.wstats{display:flex;gap:18px;font:400 13px/1.4 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.wstats b{display:block;font:200 26px/1 var(--disp);letter-spacing:-.02em;color:var(--ink);text-transform:none;font-variant-numeric:tabular-nums}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px;padding-top:12px;border-top:1px solid var(--hair)}
+.key{display:flex;gap:14px;flex-wrap:wrap}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.key .chk{width:11px;height:11px;background-size:8px}
+.key .done .chk{border-color:var(--blood);background-color:var(--blood);background-image:var(--check)}
+.key .missed .chk{border-style:dashed;border-color:var(--ink-2)}
+
+@media (max-width:640px){
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .kpi.plan{grid-column:1/-1;border-left:0;margin-top:16px;padding-top:16px;border-top:1px solid var(--hair);flex-direction:row;align-items:flex-end;justify-content:space-between}
+}
+@media (max-width:420px){
+  .kpi{padding:0 13px}
+  .wstats{gap:14px}
+  .tname{font-size:21px}
+}
+</style>
+<meta name="description" content="Ten-week training plan and checklist for the BYD Singapore Marathon, updated weekly.">
+<meta property="og:title" content="SGIM 2026 Training Plan">
+<meta property="og:description" content="Ten-week training plan and checklist for the BYD Singapore Marathon, updated weekly.">
+<meta property="og:url" content="https://vnck.xyz/marathon-training/">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <span class="mark"><i class="x"></i>SGIM 2026 Training Plan</span>
+  <button class="btn mode" id="mode" type="button" aria-label="Switch light or dark mode"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M8 1.8a6.2 6.2 0 0 1 0 12.4z" fill="currentColor"/></svg></button>
+</div></nav>
+<main class="wrap">
+  <section class="panel overview" aria-label="Progress">
+    <div class="kpis">
+      <div class="kpi"><b id="kDays"></b><span class="lbl" id="kDaysL">Days to race</span></div>
+      <div class="kpi"><b id="kRuns"></b><span class="lbl">Runs done</span></div>
+      <div class="kpi"><b id="kKm"></b><span class="lbl">Km run</span></div>
+      <div class="kpi plan"><div class="cal" id="cal" role="img"></div><span class="lbl">10 weeks</span></div>
+    </div>
+  </section>
+
+  <section class="todaywrap" aria-label="Workout">
+    <div class="field" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="today" id="today">
+      <div class="trow">
+        <span class="lbl" id="tDate"></span>
+        <div class="seg" role="group" aria-label="Day">
+          <button type="button" data-o="0" aria-pressed="true">Today</button>
+          <button type="button" data-o="1" aria-pressed="false">Tomorrow</button>
+        </div>
+      </div>
+      <div class="tbody">
+        <div>
+          <div class="tname" id="tName"></div>
+          <div class="tmeta" id="tMeta"></div>
+        </div>
+        <div class="big" id="tKm"></div>
+      </div>
+      <table class="steps" id="tSteps" hidden></table>
+    </div>
+  </section>
+
+  <section class="wsec" id="week" aria-label="Weekly schedule">
+    <div class="picker"><div class="wrap wks" id="picker" role="group" aria-label="Choose week. Column height shows weekly distance."></div></div>
+    <div class="reg" aria-live="polite">
+      <div class="whead">
+        <span class="lbl" id="wlbl"></span>
+        <h2 id="wtitle"></h2>
+        <div class="hbar">
+          <div class="wstats">
+            <span><b id="sDone"></b>Done</span>
+            <span><b id="sKm"></b>Km</span>
+          </div>
+          <button class="btn" id="save" type="button">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M2.5 13.5h11" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+            Save week as image
+          </button>
+        </div>
+        <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+      </div>
+    </div>
+    <ol class="days" id="days"></ol>
+    <div class="foot lbl">
+      <span id="updated"></span>
+      <span class="key"><span class="done"><i class="chk"></i>Done</span><span class="missed"><i class="chk"></i>Missed</span><span><i class="chk"></i>To do</span></span>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script id="tracker-data" type="application/json">{"race":"BYD Singapore International Marathon","raceDate":"2026-12-06","planStart":"2026-09-28","updated":"2026-09-28","weeks":[{"week":1,"start":"2026-09-28","end":"2026-10-04","phase":"Rebuild","focus":"Rebuild, then race the 10K","plannedKm":38,"doneKm":0,"sessions":[{"date":"2026-09-28","day":"Mon","type":"Strength","title":"Strength","km":0,"status":"planned","steps":[["3 × 15","Calf raises","slow down"],["3 × 8/side","1-leg RDL",""],["3 × 8/side","Split squat",""],["3 × 12","Glute bridge","pause"],["3 × 40s/side","Side plank",""],["10 min","Mobility",""]],"adjusted":false},{"date":"2026-09-29","day":"Tue","type":"Easy","title":"Easy with strides","km":7,"status":"planned","steps":[["6.5 km","Easy","conversational"],["6 × 20 s","Strides","fast, relaxed"]],"adjusted":false},{"date":"2026-09-30","day":"Wed","type":"Easy","title":"Easy","km":6,"status":"planned","steps":[["6 km","Easy","conversational"]],"adjusted":false},{"date":"2026-10-01","day":"Thu","type":"Quality","title":"3 × 1 km at 10K race pace","km":7,"status":"planned","steps":[["2 km","Warm-up","conversational"],["3 × 1 km","10K race pace, 2′ jog",""],["2 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-02","day":"Fri","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[],"adjusted":false},{"date":"2026-10-03","day":"Sat","type":"Race","title":"HomeTeamNS REAL Run 10K","km":10,"status":"planned","steps":[["0–5 km","Controlled","10K race pace"],["5–10 km","Push if able","race effort"]],"adjusted":false},{"date":"2026-10-04","day":"Sun","type":"Easy","title":"Easy","km":8,"status":"planned","steps":[["8 km","Easy","conversational"],["at 40 min","Gel","race brand"]],"adjusted":false}]},{"week":2,"start":"2026-10-05","end":"2026-10-11","phase":"Rebuild","focus":"Threshold and a first taste of marathon pace","plannedKm":50,"doneKm":0,"sessions":[{"date":"2026-10-05","day":"Mon","type":"Strength","title":"Strength","km":0,"status":"planned","steps":[["3 × 15","Calf raises","slow down"],["3 × 8/side","1-leg RDL",""],["3 × 8/side","Split squat",""],["3 × 12","Glute bridge","pause"],["3 × 40s/side","Side plank",""],["10 min","Mobility",""]],"adjusted":false},{"date":"2026-10-06","day":"Tue","type":"Quality","title":"Threshold 3 × 2 km","km":10,"status":"planned","steps":[["2.5 km","Warm-up","conversational"],["3 × 2 km","Threshold, 2′ jog","≈1-hour race effort"],["1.5 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-07","day":"Wed","type":"Easy","title":"Easy","km":7,"status":"planned","steps":[["7 km","Easy","conversational"]],"adjusted":false},{"date":"2026-10-08","day":"Thu","type":"Quality","title":"4 km at marathon pace","km":8,"status":"planned","steps":[["2 km","Warm-up","conversational"],["4 km","Marathon pace",""],["2 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-09","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-10-10","day":"Sat","type":"Recovery","title":"Run club (recovery)","km":5,"status":"planned","steps":[["5 km","Run club","very easy"]],"adjusted":false},{"date":"2026-10-11","day":"Sun","type":"Long","title":"Long run, all easy","km":20,"status":"planned","steps":[["20 km","Easy","steady"],["every 35 min","Gel","race brand"]],"adjusted":false}]},{"week":3,"start":"2026-10-12","end":"2026-10-18","phase":"Rebuild","focus":"Longer runs","plannedKm":54,"doneKm":0,"sessions":[{"date":"2026-10-12","day":"Mon","type":"Strength","title":"Strength","km":0,"status":"planned","steps":[["3 × 15","Calf raises","slow down"],["3 × 8/side","1-leg RDL",""],["3 × 8/side","Split squat",""],["3 × 12","Glute bridge","pause"],["3 × 40s/side","Side plank",""],["10 min","Mobility",""]],"adjusted":false},{"date":"2026-10-13","day":"Tue","type":"Quality","title":"Norwegian 4 × 4 min","km":10,"status":"planned","steps":[["2.5 km","Warm-up","conversational"],["4 × 4 min","Hard, 3′ jog","hard, 5K effort"],["1.5 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-14","day":"Wed","type":"Easy","title":"Easy","km":7,"status":"planned","steps":[["7 km","Easy","conversational"]],"adjusted":false},{"date":"2026-10-15","day":"Thu","type":"Quality","title":"5 km at marathon pace","km":9,"status":"planned","steps":[["2 km","Warm-up","conversational"],["5 km","Marathon pace",""],["2 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-16","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-10-17","day":"Sat","type":"Recovery","title":"Run club (recovery)","km":5,"status":"planned","steps":[["5 km","Run club","very easy"]],"adjusted":false},{"date":"2026-10-18","day":"Sun","type":"Long","title":"Long run, all easy","km":23,"status":"planned","steps":[["23 km","Easy","steady"],["every 35 min","Gel and drink","race brand"]],"adjusted":false}]},{"week":4,"start":"2026-10-19","end":"2026-10-25","phase":"Absorb","focus":"Absorb","plannedKm":39,"doneKm":0,"sessions":[{"date":"2026-10-19","day":"Mon","type":"Strength","title":"Strength","km":0,"status":"planned","steps":[["3 × 15","Calf raises","slow down"],["3 × 8/side","1-leg RDL",""],["3 × 8/side","Split squat",""],["3 × 12","Glute bridge","pause"],["3 × 40s/side","Side plank",""],["10 min","Mobility",""]],"adjusted":false},{"date":"2026-10-20","day":"Tue","type":"Quality","title":"Threshold 3 × 1 km","km":8,"status":"planned","steps":[["2.5 km","Warm-up","conversational"],["3 × 1 km","Threshold, 2′ jog","≈1-hour race effort"],["2.5 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-21","day":"Wed","type":"Easy","title":"Easy","km":8,"status":"planned","steps":[["8 km","Easy","conversational"]],"adjusted":false},{"date":"2026-10-22","day":"Thu","type":"Easy","title":"Easy with strides","km":7,"status":"planned","steps":[["6.5 km","Easy","conversational"],["6 × 20 s","Strides","fast, relaxed"]],"adjusted":false},{"date":"2026-10-23","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-10-24","day":"Sat","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[["optional","Jog 20 min","very easy"]],"adjusted":false},{"date":"2026-10-25","day":"Sun","type":"Long","title":"Long run, all easy","km":16,"status":"planned","steps":[["16 km","Easy","steady"]],"adjusted":false}]},{"week":5,"start":"2026-10-26","end":"2026-11-01","phase":"Build","focus":"First 4:30am rehearsal","plannedKm":55,"doneKm":0,"sessions":[{"date":"2026-10-26","day":"Mon","type":"Strength","title":"Strength","km":0,"status":"planned","steps":[["3 × 15","Calf raises","slow down"],["3 × 8/side","1-leg RDL",""],["3 × 8/side","Split squat",""],["3 × 12","Glute bridge","pause"],["3 × 40s/side","Side plank",""],["10 min","Mobility",""]],"adjusted":false},{"date":"2026-10-27","day":"Tue","type":"Quality","title":"Cruise intervals 3 × 3 km","km":11,"status":"planned","steps":[["2 km","Warm-up","conversational"],["3 × 3 km","Threshold, 90″ jog","≈1-hour race effort"],["1 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-28","day":"Wed","type":"Easy","title":"Easy","km":8,"status":"planned","steps":[["8 km","Easy","conversational"]],"adjusted":false},{"date":"2026-10-29","day":"Thu","type":"Quality","title":"6 km at marathon pace","km":10,"status":"planned","steps":[["2 km","Warm-up","conversational"],["6 km","Marathon pace",""],["2 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-10-30","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-10-31","day":"Sat","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[["6:30pm","Race dinner",""],["8:30pm","Bed, alarm 2:30am",""]],"adjusted":false},{"date":"2026-11-01","day":"Sun","type":"Long","title":"26 km at 4:30am","km":26,"status":"planned","steps":[["2:30am","Race breakfast","100–150 g"],["26 km","Easy from 4:30","steady"],["every 30 min","Gel","60 g/h"]],"adjusted":false}]},{"week":6,"start":"2026-11-02","end":"2026-11-08","phase":"Build","focus":"Marathon pace inside the long run","plannedKm":54,"doneKm":0,"sessions":[{"date":"2026-11-02","day":"Mon","type":"Mobility","title":"Mobility","km":0,"status":"planned","steps":[["15 min","Mobility","calves, hips"],["20 min","Easy walk",""]],"adjusted":false},{"date":"2026-11-03","day":"Tue","type":"Quality","title":"Norwegian 4 × 4 min","km":11,"status":"planned","steps":[["3 km","Warm-up","conversational"],["4 × 4 min","Hard, 3′ jog","hard, 5K effort"],["2 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-11-04","day":"Wed","type":"Easy","title":"Easy","km":9,"status":"planned","steps":[["9 km","Easy","conversational"]],"adjusted":false},{"date":"2026-11-05","day":"Thu","type":"Easy","title":"Easy with strides","km":10,"status":"planned","steps":[["9.5 km","Easy","conversational"],["6 × 20 s","Strides","fast, relaxed"]],"adjusted":false},{"date":"2026-11-06","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-11-07","day":"Sat","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[["optional","Jog 20 min","very easy"]],"adjusted":false},{"date":"2026-11-08","day":"Sun","type":"Long","title":"24 km with 2 × 6 km at marathon pace","km":24,"status":"planned","steps":[["6 km","Easy","steady"],["6 km","Marathon pace",""],["2 km","Easy","steady"],["6 km","Marathon pace",""],["4 km","Easy","steady"]],"adjusted":false}]},{"week":7,"start":"2026-11-09","end":"2026-11-15","phase":"Build","focus":"Peak week","plannedKm":62,"doneKm":0,"sessions":[{"date":"2026-11-09","day":"Mon","type":"Strength","title":"Strength","km":0,"status":"planned","steps":[["3 × 15","Calf raises","slow down"],["3 × 8/side","1-leg RDL",""],["3 × 8/side","Split squat",""],["3 × 12","Glute bridge","pause"],["3 × 40s/side","Side plank",""],["10 min","Mobility",""]],"adjusted":false},{"date":"2026-11-10","day":"Tue","type":"Quality","title":"Threshold 4 × 2 km","km":11,"status":"planned","steps":[["2 km","Warm-up","conversational"],["4 × 2 km","Threshold, 90″ jog","≈1-hour race effort"],["1 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-11-11","day":"Wed","type":"Easy","title":"Easy","km":8,"status":"planned","steps":[["8 km","Easy","conversational"]],"adjusted":false},{"date":"2026-11-12","day":"Thu","type":"Easy","title":"Easy","km":8,"status":"planned","steps":[["8 km","Easy","conversational"]],"adjusted":false},{"date":"2026-11-13","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-11-14","day":"Sat","type":"Recovery","title":"Run club (optional)","km":5,"status":"planned","steps":[["5 km","Run club","very easy"]],"adjusted":false},{"date":"2026-11-15","day":"Sun","type":"Long","title":"30 km dress rehearsal","km":30,"status":"planned","steps":[["22 km","Easy, race kit","steady"],["8 km","Marathon pace",""],["every 30 min","Gel","60–75 g/h"],["3h30","Time cap",""]],"adjusted":false}]},{"week":8,"start":"2026-11-16","end":"2026-11-22","phase":"Build","focus":"Last long block","plannedKm":49,"doneKm":0,"sessions":[{"date":"2026-11-16","day":"Mon","type":"Mobility","title":"Mobility","km":0,"status":"planned","steps":[["15 min","Mobility","calves, hips"],["20 min","Easy walk",""]],"adjusted":false},{"date":"2026-11-17","day":"Tue","type":"Quality","title":"Cruise intervals 3 × 3 km","km":10,"status":"planned","steps":[["2 km","Warm-up","conversational"],["3 × 3 km","Threshold, 90″ jog","≈1-hour race effort"],["1 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-11-18","day":"Wed","type":"Easy","title":"Easy","km":8,"status":"planned","steps":[["8 km","Easy","conversational"]],"adjusted":false},{"date":"2026-11-19","day":"Thu","type":"Easy","title":"Easy with strides","km":9,"status":"planned","steps":[["8.5 km","Easy","conversational"],["6 × 20 s","Strides","fast, relaxed"]],"adjusted":false},{"date":"2026-11-20","day":"Fri","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-11-21","day":"Sat","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[["optional","Jog 20 min","very easy"]],"adjusted":false},{"date":"2026-11-22","day":"Sun","type":"Long","title":"22 km with 10 km at marathon pace","km":22,"status":"planned","steps":[["8 km","Easy","steady"],["10 km","Marathon pace",""],["4 km","Easy","steady"]],"adjusted":false}]},{"week":9,"start":"2026-11-23","end":"2026-11-29","phase":"Taper","focus":"Taper begins","plannedKm":38,"doneKm":0,"sessions":[{"date":"2026-11-23","day":"Mon","type":"Strength","title":"Light strength","km":0,"status":"planned","steps":[["2 × 15","Calf raises","slow down"],["2 × 8/side","1-leg RDL","light"],["2 × 8/side","Split squat","bodyweight"],["2 × 30s/side","Side plank",""]],"adjusted":false},{"date":"2026-11-24","day":"Tue","type":"Quality","title":"Threshold 4 × 1 km","km":9,"status":"planned","steps":[["2.5 km","Warm-up","conversational"],["4 × 1 km","Threshold, 2′ jog","≈1-hour race effort"],["2.5 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-11-25","day":"Wed","type":"Easy","title":"Easy","km":7,"status":"planned","steps":[["7 km","Easy","conversational"]],"adjusted":false},{"date":"2026-11-26","day":"Thu","type":"Quality","title":"4 km at marathon pace","km":8,"status":"planned","steps":[["2 km","Warm-up","conversational"],["4 km","Marathon pace",""],["2 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-11-27","day":"Fri","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[],"adjusted":false},{"date":"2026-11-28","day":"Sat","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[["optional","Jog 20 min","very easy"]],"adjusted":false},{"date":"2026-11-29","day":"Sun","type":"Long","title":"14 km with 5 km at marathon pace","km":14,"status":"planned","steps":[["7 km","Easy","steady"],["5 km","Marathon pace",""],["2 km","Easy","steady"]],"adjusted":false}]},{"week":10,"start":"2026-11-30","end":"2026-12-06","phase":"Taper","focus":"Race week","plannedKm":22,"doneKm":0,"sessions":[{"date":"2026-11-30","day":"Mon","type":"Rest","title":"Rest","km":0,"status":"rest","steps":[],"adjusted":false},{"date":"2026-12-01","day":"Tue","type":"Quality","title":"3 × 1.5 km at marathon pace","km":8,"status":"planned","steps":[["2 km","Warm-up","conversational"],["3 × 1.5 km","Marathon pace, 1 km easy",""],["0.5 km","Cool-down","conversational"]],"adjusted":false},{"date":"2026-12-02","day":"Wed","type":"Easy","title":"Easy","km":6,"status":"planned","steps":[["6 km","Easy","conversational"]],"adjusted":false},{"date":"2026-12-03","day":"Thu","type":"Easy","title":"Easy with strides","km":5,"status":"planned","steps":[["4.5 km","Easy","conversational"],["6 × 20 s","Strides","fast, relaxed"]],"adjusted":false},{"date":"2026-12-04","day":"Fri","type":"Rest","title":"Rest and carb-load","km":0,"status":"rest","steps":[["all day","Carb-load","8–10 g carbs per kg"]],"adjusted":false},{"date":"2026-12-05","day":"Sat","type":"Recovery","title":"Shakeout","km":3,"status":"planned","steps":[["3 km","Very easy",""],["3 × 20 s","Strides",""],["by 6:30pm","Dinner","low fibre"]],"adjusted":false},{"date":"2026-12-06","day":"Sun","type":"Race","title":"BYD Marathon","km":42.2,"status":"planned","steps":[["10 km","Start – 10 km","just slower than marathon pace"],["32.2 km","10 km – finish","marathon pace"],["every 30 min","Gel from 0:40",""]],"adjusted":false}]}]}</script>
+<script>
+(function(){
+  var D=JSON.parse(document.getElementById('tracker-data').textContent);
+  var W=D.weeks, MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var $=function(id){return document.getElementById(id)};
+  var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+  var dm=function(iso){return +iso.slice(8,10)+' '+MON[+iso.slice(5,7)-1]};
+  var range=function(a,b){return a.slice(5,7)===b.slice(5,7)?(+a.slice(8,10))+'–'+dm(b):dm(a)+' – '+dm(b)};
+  var pad=function(n){return String(n).padStart(2,'0')};
+  var DAY=864e5;
+  var addDay=function(iso,n){return new Date(Date.parse(iso)+n*DAY).toISOString().slice(0,10)};
+  // Today in Singapore, where the race is.
+  var today=new Date(Date.now()+8*36e5).toISOString().slice(0,10);
+  var idx=Math.floor((Date.parse(today)-Date.parse(D.planStart))/DAY);
+  var nowWeek=Math.max(1,Math.min(W.length,Math.floor(idx/7)+1));
+  var togo=Math.round((Date.parse(D.raceDate)-Date.parse(today))/DAY);
+  var all=[].concat.apply([],W.map(function(w){return w.sessions}));
+  var byDate={};all.forEach(function(s){byDate[s.date]=s});
+  var runs=all.filter(function(s){return s.km>0&&s.date!==D.raceDate});
+  var runsDone=runs.filter(function(s){return s.status==='done'});
+  var kmDone=Math.round(runsDone.reduce(function(a,s){return a+s.km},0));
+  var kmAll=Math.round(runs.reduce(function(a,s){return a+s.km},0));
+  var checkable=function(w){return w.sessions.filter(function(s){return s.status!=='rest'})};
+  var doneOf=function(w){return checkable(w).filter(function(s){return s.status==='done'}).length};
+  var hasRace=function(w){return w.sessions.some(function(s){return s.date===D.raceDate})};
+
+  $('kDays').textContent=Math.max(0,togo);
+  if(togo===0)$('kDaysL').textContent='Race day';
+  $('kRuns').innerHTML=runsDone.length+'<small>/'+runs.length+'</small>';
+  $('kKm').innerHTML=kmDone+'<small>/'+kmAll+'</small>';
+  $('updated').textContent='Last updated '+dm(D.updated);
+
+  // Calendar: a row per week, a square per day. Read-only.
+  var sqClass=function(s){return (s.status+(s.type==='Race'?' race':'')+(s.date===today?' tdd':'')).trim()};
+  $('cal').innerHTML=all.map(function(s){return '<i class="'+sqClass(s)+'"></i>'}).join('');
+  $('cal').setAttribute('aria-label','70-day plan: '+all.filter(function(s){return s.status==='done'}).length+' of '+all.filter(function(s){return s.status!=='rest'}).length+' sessions done');
+
+  // Week picker: one halftone column per week, a square per 5 km; ink = run, faint = still to run.
+  function dots(planned,done){
+    var full=Math.floor(planned/5), rem=(planned%5)/5, df=Math.floor(done/5), c=[];
+    for(var r=0;r<full;r++)c.push('<b'+(r>=df?' class="todo"':'')+'></b>');
+    if(rem>0.1)c.push('<b class="part'+(done>=planned?'':' todo')+'" data-f="'+rem.toFixed(2)+'"><i></i></b>');
+    var rows='';for(var i=0;i<c.length;i+=2)rows+='<span>'+c[i]+(c[i+1]||'')+'</span>';
+    return rows;
+  }
+  $('picker').innerHTML=W.map(function(w){
+    var race=hasRace(w);
+    return '<button type="button" class="wk'+(w.week===nowWeek?' now':'')+'" data-w="'+w.week+'" aria-label="Week '+w.week+', '+w.doneKm+' of '+w.plannedKm+' km run'+(race?' plus race':'')+(w.week===nowWeek?', this week':'')+'">'+
+      '<span class="dots" aria-hidden="true">'+dots(w.plannedKm,w.doneKm)+'</span><span class="n">'+pad(w.week)+'</span><span class="k">'+(race?'RACE':w.plannedKm)+'</span></button>';
+  }).join('');
+  [].forEach.call(document.querySelectorAll('.dots b.part'),function(b){var s=b.getBoundingClientRect().width;var px=Math.max(2,Math.round(s*Math.sqrt(+b.dataset.f)));b.firstChild.style.width=px+'px';b.firstChild.style.height=px+'px'});
+
+  function stepsHTML(st){
+    return '<tbody>'+(st||[]).map(function(r){return '<tr><td class="a">'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td class="t plain wrap">'+esc(r[2]||'')+'</td></tr>'}).join('')+'</tbody>';
+  }
+  var showType=function(s){return s.title.toLowerCase().indexOf(s.type.toLowerCase())!==0&&!/strength/i.test(s.title)};
+  var CHIP={Long:'key',Quality:'key',Race:'race',Recovery:'rec',Strength:'rest',Mobility:'rest',Rest:'rest'};
+  var chip=function(s){return '<span class="chip '+(CHIP[s.type]||'')+'">'+esc(s.type==='Long'?'Long run':s.type)+'</span>'};
+  // Filled chips (long, quality, race) always show; others only when the title doesn't already say it.
+  var wantChip=function(s){return /^(key|race)$/.test(CHIP[s.type]||"")||showType(s)};
+
+  var DOWL=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var sheen=false;
+  function showDay(o){
+    var date=addDay(today,o), s=byDate[date], el=$('today');
+    [].forEach.call(document.querySelectorAll('.today .seg button'),function(b){b.setAttribute('aria-pressed',String(+b.dataset.o===o))});
+    $('tDate').textContent=DOWL[new Date(date).getUTCDay()]+' '+dm(date);
+    el.className='today '+(s?s.status:'rest')+(sheen?'':' sheen');sheen=true;
+    $('tSteps').hidden=true;
+    if(!s){$('tName').textContent=date<D.planStart?'Plan starts '+dm(D.planStart):'Block complete';$('tMeta').innerHTML='';$('tKm').innerHTML='';return}
+    $('tName').textContent=s.title;
+    var bits=[];
+    if(s.status!=="rest"&&wantChip(s))bits.push(chip(s));
+    if(s.status==='done')bits.push('<span class="lbl" style="color:var(--blood)">Done</span>');
+    $('tMeta').innerHTML=bits.join('');
+    $('tKm').innerHTML=s.km?s.km+'<small>KM</small>':'';
+    if(s.status!=='rest'&&s.steps&&s.steps.length){$('tSteps').innerHTML=stepsHTML(s.steps);$('tSteps').hidden=false}
+  }
+  document.querySelector('.today .seg').addEventListener('click',function(e){var b=e.target.closest('button');if(b)showDay(+b.dataset.o)});
+  showDay(0);
+
+  var cur=0;
+  function show(n){
+    n=Math.max(1,Math.min(W.length,n));cur=n;
+    var w=W[n-1], c=checkable(w), d=doneOf(w);
+    [].forEach.call(document.querySelectorAll('.wk'),function(b){b.setAttribute('aria-pressed',String(+b.dataset.w===n))});
+    $('wlbl').textContent='Wk '+pad(n)+' / '+w.phase+' / '+range(w.start,w.end);
+    $('wtitle').textContent=w.focus;
+    $('sDone').innerHTML=d+'<small>/'+c.length+'</small>';
+    $('sKm').innerHTML=w.doneKm+'<small>/'+w.plannedKm+'</small>';
+    $('meter').style.width=(c.length?d/c.length*100:0)+'%';
+    $('days').innerHTML=w.sessions.map(function(s){
+      var isToday=s.date===today, mon=MON[+s.date.slice(5,7)-1];
+      var dd='<div class="dd"><span class="lbl">'+s.day+'</span><b>'+(+s.date.slice(8,10))+'</b><span class="lbl">'+mon+'</span></div>';
+      var state={done:'done',missed:'missed',planned:'to do',rest:'rest day'}[s.status];
+      var label=' aria-label="'+esc(s.day+' '+dm(s.date)+': '+s.title+(s.km?', '+s.km+' km':'')+', '+state)+'"';
+      if(s.status==='rest'&&!isToday){
+        var note=(s.steps||[]).map(function(r){return r[1]+(r[2]?' ('+r[2]+')':'')}).join(' · ');
+        return '<li class="day rest slim"'+label+'>'+dd+'<div class="dmain"><div class="dname">'+esc(s.title)+'</div>'+(note?'<p class="slimnote">'+esc(note)+'</p>':'')+'</div></li>';
+      }
+      var cls=['day','panel',s.status];
+      if(isToday)cls.push('is-today');
+      var head=(isToday?'<span class="chip tdy">Today</span>':'')+(wantChip(s)?chip(s):"")+(s.km?'<span class="dkm">'+s.km+' km</span>':'');
+      var st=s.status!=='rest'&&s.steps&&s.steps.length?'<table class="steps">'+stepsHTML(s.steps)+'</table>':'';
+      return '<li class="'+cls.join(' ')+'"'+label+'>'+dd+
+        '<div class="dmain"><div class="dhead">'+head+'</div><div class="dname">'+esc(s.title)+'</div>'+st+'</div>'+
+        (s.status==='rest'?'':'<i class="chk" aria-hidden="true"></i>')+'</li>';
+    }).join('');
+    try{history.replaceState(null,'','#w'+n)}catch(e){}
+  }
+  $('picker').addEventListener('click',function(e){var b=e.target.closest('.wk');if(b)show(+b.dataset.w)});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.key==='ArrowRight')show(cur+1);else if(e.key==='ArrowLeft')show(cur-1);
+  });
+  var m=/^#w(\d+)$/.exec(location.hash);
+  show(m?+m[1]:nowWeek);
+
+  // Theme follows the system until the reader picks one.
+  var root=document.documentElement, KEY='sgim-theme';
+  try{var saved=localStorage.getItem(KEY)||localStorage.getItem('sgim-tracker-theme');if(saved)root.setAttribute('data-theme',saved)}catch(e){}
+  $('mode').addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')?root.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    var next=dark?'light':'dark';root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next)}catch(e){}
+  });
+
+  function toast(msg){var t=$('toast');t.textContent=msg;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove('on')},2400)}
+
+  // ---- Instagram poster: 1080 × 1350 (4:5), drawn on canvas in the current theme.
+  function poster(n){
+    var w=W[n-1], cs=getComputedStyle(root), v=function(k){return cs.getPropertyValue(k).trim()};
+    var dark=v('--silver').toLowerCase()==='#14161b';
+    var C={bg:v('--silver'),ink:v('--ink'),ink2:v('--ink-2'),blood:v('--blood'),blue:dark?'#A9B8FF':'#0000AA',
+      panel:dark?'#20232B':'#ECEEF1',hair:dark?'rgba(255,255,255,.22)':'rgba(11,13,26,.26)',dot:dark?'rgba(255,255,255,.10)':'rgba(11,13,26,.13)'};
+    var S=1080,H=1350,cv=document.createElement('canvas');cv.width=S;cv.height=H;
+    var x=cv.getContext('2d'), U='Urbanist, "Helvetica Neue", Arial, sans-serif', M='"DM Mono", ui-monospace, Menlo, monospace';
+    var ls=function(px){if('letterSpacing' in x)x.letterSpacing=px+'px'};
+    var fit=function(t,max){if(x.measureText(t).width<=max)return t;while(t.length&&x.measureText(t+'…').width>max)t=t.slice(0,-1);return t.replace(/[\s·]+$/,'')+'…'};
+    var rr=function(X,Y,Wd,Hd,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+Wd,Y,X+Wd,Y+Hd,r);x.arcTo(X+Wd,Y+Hd,X,Y+Hd,r);x.arcTo(X,Y+Hd,X,Y,r);x.arcTo(X,Y,X+Wd,Y,r);x.closePath()};
+    x.fillStyle=C.bg;x.fillRect(0,0,S,H);
+    x.strokeStyle=C.dot;x.lineWidth=1.2;x.beginPath();for(var gy=11;gy<H;gy+=22)for(var gx=11;gx<S;gx+=22){x.moveTo(gx,gy-3);x.lineTo(gx,gy+3);x.moveTo(gx-3,gy);x.lineTo(gx+3,gy)}x.stroke();
+    var P=72;x.textBaseline='top';
+    // header
+    x.strokeStyle=C.ink;x.lineWidth=2.4;x.beginPath();x.moveTo(P+8,P+7);x.lineTo(P+8,P+23);x.moveTo(P,P+15);x.lineTo(P+16,P+15);x.stroke();
+    ls(2);x.fillStyle=C.ink;x.font='500 30px '+M;x.fillText('SGIM 2026',P+30,P);
+    x.textAlign='right';x.fillStyle=C.ink2;x.fillText('WEEK '+pad(n)+' / '+pad(W.length),S-P,P);x.textAlign='left';
+    ls(-2);x.fillStyle=C.ink;x.font='600 92px '+U;x.fillText(range(w.start,w.end),P-4,P+62);
+    var c=checkable(w);
+    ls(2);x.font='500 24px '+M;x.fillStyle=C.ink2;
+    x.fillText((w.phase||'').toUpperCase()+'  ·  '+doneOf(w)+'/'+c.length+' DONE  ·  '+w.doneKm+'/'+w.plannedKm+' KM',P,P+176);
+    // one row per day
+    var top=P+236, rowH=(H-top-150)/7, gap=10;
+    w.sessions.forEach(function(s,i){
+      var y=top+i*rowH, h=rowH-gap, rest=s.status==='rest';
+      if(!rest){x.fillStyle=C.panel;rr(P,y,S-2*P,h,18);x.fill();
+        if(s.date===today){x.strokeStyle=C.blue;x.lineWidth=3;x.stroke()}}
+      ls(2);x.fillStyle=C.ink2;x.font='500 19px '+M;x.fillText(s.day.toUpperCase(),P+28,y+20);
+      ls(-1);x.fillStyle=rest?C.ink2:C.ink;x.font='200 52px '+U;x.fillText(String(+s.date.slice(8,10)),P+24,y+46);
+      var tx=P+132, tw=S-2*P-132-96;
+      ls(0);x.font=(rest?'500 34px ':'600 36px ')+U;x.fillStyle=rest||s.status==='missed'?C.ink2:C.ink;
+      var title=fit(s.title,tw);x.fillText(title,tx,y+(rest?34:20));
+      if(s.status==='done'){x.fillStyle=C.blood;x.fillRect(tx,y+40,x.measureText(title).width,4)}
+      if(rest)return;
+      var core=(s.steps||[]).filter(function(r){return !/warm-up|cool-down|gel|breakfast|dinner|bed|time cap/i.test(r[1])});
+      var sum=core.length===1&&s.km&&parseFloat(core[0][0])===s.km?'':core.map(function(r){return s.type==='Strength'||s.type==='Mobility'?r[1]:r[0]+' '+r[1]}).join(' · ');
+      var bits=[];if(showType(s))bits.push(s.type.toUpperCase());if(s.km)bits.push(s.km+' KM');
+      var mt=bits.join(' · ');
+      ls(1.5);x.font='500 20px '+M;x.fillStyle=s.type==='Race'?C.blood:C.ink2;if(mt&&sum)mt+=' ·';x.fillText(mt,tx,y+70);
+      var mw=mt?x.measureText(mt).width+14:0;
+      ls(0);x.font='400 20px '+M;x.fillStyle=C.ink2;if(sum)x.fillText(fit(sum,tw-mw),tx+mw,y+70);
+      var bx=S-P-28-34, by=y+h/2-17;
+      if(s.status==='done'){x.fillStyle=C.blood;x.fillRect(bx,by,34,34);x.strokeStyle='#fff';x.lineWidth=4;x.beginPath();x.moveTo(bx+8,by+18);x.lineTo(bx+15,by+25);x.lineTo(bx+27,by+10);x.stroke()}
+      else{x.strokeStyle=s.status==='missed'?C.ink2:C.ink;x.lineWidth=3;if(x.setLineDash)x.setLineDash(s.status==='missed'?[6,5]:[]);x.strokeRect(bx+1.5,by+1.5,31,31);if(x.setLineDash)x.setLineDash([])}
+    });
+    // footer: the 70-square grid, this week highlighted, and the address
+    var sq=9, g=3, fy=H-P-7*(sq+g)+g;
+    W.forEach(function(wk,wi){wk.sessions.forEach(function(s,di){
+      var X=P+wi*(sq+g+5), Y=fy+di*(sq+g);
+      x.globalAlpha=wi===n-1?1:.6;
+      if(s.status==='rest'){x.fillStyle=C.hair;x.beginPath();x.arc(X+sq/2,Y+sq/2,1.5,0,7);x.fill()}
+      else if(s.status==='done'){x.fillStyle=s.type==='Race'?C.blood:C.ink;x.fillRect(X,Y,sq,sq)}
+      else{x.strokeStyle=s.type==='Race'?C.blood:C.ink;x.lineWidth=1.4;x.strokeRect(X+.7,Y+.7,sq-1.4,sq-1.4)}
+      x.globalAlpha=1;
+    })});
+    x.textBaseline='bottom';ls(2);x.font='500 24px '+M;x.fillStyle=C.ink2;x.textAlign='right';x.fillText('VNCK.XYZ/MARATHON-TRAINING',S-P,H-P+2);x.textAlign='left';
+    return cv;
+  }
+  $('save').addEventListener('click',function(){
+    var n=cur, btn=this;btn.disabled=true;
+    var ready=document.fonts&&document.fonts.load?Promise.all(['600 92px Urbanist','200 52px Urbanist','500 24px "DM Mono"','400 20px "DM Mono"'].map(function(f){return document.fonts.load(f)})).catch(function(){}):Promise.resolve();
+    ready.then(function(){
+      var name='sgim-week-'+pad(n)+'.png';
+      poster(n).toBlob(function(blob){
+        btn.disabled=false;
+        if(!blob){toast('Could not make the image');return}
+        // Inside Claude the viewer confirms the save; on the web, phones get the share sheet, desktops a download.
+        var claudeSave=window.claude&&window.claude.use?window.claude.use('downloads'):Promise.resolve(null);
+        claudeSave.then(function(dl){
+          if(dl)return dl.save({filename:name,data:blob}).then(function(){toast('Saved '+name)},function(e){if(!e||e.code!=='declined')toast('Could not save here')});
+          var file=typeof File==='function'?new File([blob],name,{type:'image/png'}):null;
+          if(file&&navigator.canShare&&navigator.canShare({files:[file]})&&matchMedia('(pointer:coarse)').matches)return navigator.share({files:[file]}).catch(function(){});
+          var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();
+          setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1000);toast('Saved '+name);
+        });
+      },'image/png');
+    });
+  });
+  window.__poster=poster;
+})();
+</script>
+</body>
+</html>
