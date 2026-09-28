@@ -19,6 +19,8 @@ const { title, date, tags = [], description, image, modifiedDate, readingTime, h
 const tocHeadings = headings.filter(h => (h.depth === 2 || h.depth === 3) && h.slug !== 'footnote-label');
 const showToc = tocHeadings.length >= 3;
 
+// set:html writes this raw into a <script>, so escape '<' to keep a '</script>' in a title or
+// description from closing the tag early.
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -29,7 +31,7 @@ const jsonLd = JSON.stringify({
   author: { '@type': 'Person', name: 'Ivan Chuang', url: 'https://vnck.xyz/about' },
   publisher: { '@type': 'Person', name: 'Ivan Chuang', url: 'https://vnck.xyz' },
   ...(image && { image: `https://vnck.xyz${image}` }),
-});
+}).replaceAll('<', '\\u003c');
 ---
 <BaseLayout title={title} description={description} image={image} ogType="article">
   <Fragment slot="head-extra">

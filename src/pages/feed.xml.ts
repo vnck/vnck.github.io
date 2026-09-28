@@ -1,6 +1,11 @@
 import type { APIContext } from 'astro';
 import { byDateDesc, getPublished, postUrl } from '../utils/index';
 
+// Escaped rather than wrapped in CDATA: a ']]>' in a title would end a CDATA section, and a bare
+// '&' in a redirect URL would make the feed invalid XML.
+const xml = (s: string) =>
+  s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[c]!);
+
 export async function GET({ site: siteUrl }: APIContext) {
   const [writings, projects] = await Promise.all([getPublished('writings'), getPublished('projects')]);
   const posts = [...writings, ...projects].sort(byDateDesc).slice(0, 20);
@@ -11,11 +16,11 @@ export async function GET({ site: siteUrl }: APIContext) {
     const date = post.data.date.toUTCString();
     return `
     <item>
-      <title><![CDATA[${post.data.title}]]></title>
-      <link>${url}</link>
-      <guid>${url}</guid>
+      <title>${xml(post.data.title)}</title>
+      <link>${xml(url)}</link>
+      <guid>${xml(url)}</guid>
       <pubDate>${date}</pubDate>
-      ${post.data.description ? `<description><![CDATA[${post.data.description}]]></description>` : ''}
+      ${post.data.description ? `<description>${xml(post.data.description)}</description>` : ''}
     </item>`;
   }).join('');
 
