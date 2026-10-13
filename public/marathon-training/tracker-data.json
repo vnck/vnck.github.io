@@ -29,7 +29,7 @@
       {"date": "2026-10-14", "type": "Strength", "title": "Full-body strength", "km": 0, "steps": [["3 × 12", "Goblet squat", ""], ["3 × 8/side", "1-leg RDL", ""], ["3 × 8/side", "Split squat", ""], ["3 × 15", "Calf raises", "slow down"], ["3 × 40s/side", "Side plank", ""], ["10 min", "Mobility", ""]]},
       {"date": "2026-10-15", "type": "Quality", "title": "Over and unders 2 × 2 km", "km": 8, "steps": [["2 km", "Warm-up", "conversational"], ["2 × 1 km", "Steady", "just under threshold"], ["2 × 1 km", "Threshold", "≈1-hour race effort"], ["90 s", "Walk", "between sets"], ["2 km", "Cool-down", "conversational"]]},
       {"date": "2026-10-16", "type": "Strength", "title": "Legs & core strength", "km": 0, "steps": [["3 × 8/side", "Step-ups", ""], ["3 × 15", "Calf raises", "slow down"], ["3 × 12", "Glute bridge", "pause"], ["3 × 10/side", "Dead bug", ""], ["3 × 30s/side", "Side plank", ""]]},
-      {"date": "2026-10-17", "type": "Recovery", "title": "Run club (recovery)", "km": 5, "steps": [["5 km", "Run club", "very easy"], ["25 min", "Stretch & stability", ""]]},
+      {"date": "2026-10-17", "type": "Recovery", "title": "Recovery run", "km": 5, "steps": [["5 km", "Very easy", ""], ["25 min", "Stretch & stability", ""]]},
       {"date": "2026-10-18", "type": "Easy", "title": "Easy", "km": 8, "steps": [["8 km", "Easy", "conversational"]]}
     ]},
     {"phase": "Absorb", "focus": "Absorb", "sessions": [
