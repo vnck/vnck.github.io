@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
   return ['all', ...allTags].map(tag => ({
     params: { tag },
-    props: { posts: tag === 'all' ? all : all.filter(e => e.data.tags.includes(tag)), allTags },
+    props: { posts: tag === 'all' ? all : all.filter(e => (e.data.tags as string[]).includes(tag)), allTags },
   }));
 }
 

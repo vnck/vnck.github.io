@@ -1,10 +1,10 @@
 ---
 title: "LLMs as communicative infrastructure"
 date: 2023-04-28
-tags: [infrastructure]
 description: "Ruminations on LLMs, communication, and relationships."
+tags: [infrastructure]
 image: /assets/posts/2023-04-28-llm-communicative-infrastructure/twitter-card.webp
-permalink: /writing/llm-communicative-infrastructure
+permalink: /writings/llm-communicative-infrastructure
 ---
 
 I personally believe that artificial intelligence, as a human technology, should be used to flourish human relationships. This is also a thesis expounded on in Ivan Illich's [Tools for Conviviality](https://en.wikipedia.org/wiki/Tools_for_Conviviality). A convivial society, Illich claims, is one where "individual freedom [is] realized in personal interdependence", and because "an individual relates himself... to his society through the use of tools", so it goes that technology has the capacity to shape human relationships, setting an imperative to assess them.

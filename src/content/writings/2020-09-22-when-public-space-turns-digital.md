@@ -1,8 +1,8 @@
 ---
 title: "When public space turns digital"
 date: 2020-09-22
-tags: [codespace]
 description: "A reflection on living digitally during a pandemic lockdown."
+tags: [codespace]
 permalink: /writings/public-space-digital
 ---
 

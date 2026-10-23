@@ -7,6 +7,4 @@ node_modules/
 .env.*
 !.env.example
 .claude
-
-# Draft posts — files in any _drafts/ subfolder stay local only
 src/content/**/_drafts/

@@ -1,13 +1,12 @@
 ---
 title: "Fair value of the public commute monthly pass"
 date: 2026-09-30
-tags: [smallworld]
 description: "Is the adult monthly pass more worth than ever with the latest fare hike?"
+tags: [smallworld]
+styles: [sg-fare-hikes/fares.css]
+scripts: [sg-fare-hikes/fares.js]
 permalink: /projects/sg-fare-hikes-vs-cpi
 ---
-
-<link rel="stylesheet" href="/sg-fare-hikes/fares.css?v=27">
-<script src="/sg-fare-hikes/fares.js?v=27" defer></script>
 
 On 29 September the Public Transport Council announced its sixth consecutive annual fare increase.[^ptc2026] From 26 December, adult card fares rise by 12 to 13 cents per trip (7.0% overall), while the monthly pass stays at $122. Every round of increases prompts the same questions. Are fares really rising faster than prices, or does it only feel that way? Who decides by how much, and by what rule? And for those of us who tap in nearly every day, is the monthly pass now worth buying?
 

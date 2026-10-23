@@ -1,8 +1,8 @@
 ---
 title: "Deriving ridership demand from online hitch communities"
 date: 2021-09-20
-tags: [smallworld, codespace]
 description: "Deriving hitch ridership demand from a Singapore-based telegram group."
+tags: [smallworld, codespace]
 image: /assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-avgdistsubzone.webp
 permalink: /projects/deriving-hitch-ridership-demand
 ---
@@ -18,7 +18,7 @@ _tldr_; one private Telegram group made 491,809 hitch requests in a year, with d
 Despite the ban on hitch telegram groups, these communities have still been very much active. Within a year, a total of 491,809 trip requests were made in this one Telegram community.
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/hitchdemand-yearmonthhour.webp" alt="Three line charts of hitch demand. By month, requests rise from about 2,000 in August 2020 to a peak of about 76,000 in February 2021, then fall to about 31,000 by August 2021. By day of the week, demand is highest on Saturday (about 92,000) and lowest on Tuesday (about 52,000). By hour, it peaks at 6pm (about 39,000) and 10pm (about 35,000) and is lowest at 5am (about 6,500)."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/hitchdemand-yearmonthhour.webp" alt="Three line charts of hitch demand. By month, requests rise from about 2,000 in August 2020 to a peak of about 76,000 in February 2021, then fall to about 31,000 by August 2021. By day of the week, demand is highest on Saturday (about 92,000) and lowest on Tuesday (about 52,000). By hour, it peaks at 6pm (about 39,000) and 10pm (about 35,000) and is lowest at 5am (about 6,500)."/>
     <figcaption>Figure 1. Left: Hitch demand by month. Middle: Hitch demand by day of the week. Right: Hitch demand by hour.</figcaption>
 </figure>
 
@@ -27,7 +27,7 @@ Hitch ridership demand peaks across the weekends and during the off-work rush ho
 Hitch ridership demand peaked at 76,084 in February 2021, primarily because of the Chinese New Year weekend (as seen below). However, the impact of soft lockdowns onto ridership demand is also visible such as the dip in demand in July (see below) as a result of heightened safety measures between 22 July to 18 August 2021.[^heightened-alert]
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/hitchdemand-febjuly21.webp" alt="Two line charts of daily hitch demand. In February 2021 it peaks at about 6,400 on Sunday 14 February, the Chinese New Year weekend. In July 2021 it stays between about 800 and 1,700 a day and falls after the restrictions of 22 July."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/hitchdemand-febjuly21.webp" alt="Two line charts of daily hitch demand. In February 2021 it peaks at about 6,400 on Sunday 14 February, the Chinese New Year weekend. In July 2021 it stays between about 800 and 1,700 a day and falls after the restrictions of 22 July."/>
     <figcaption>Figure 2. Daily hitch demand for Feb'21 and July'21.</figcaption>
 </figure>
 
@@ -36,12 +36,12 @@ Hitch ridership demand peaked at 76,084 in February 2021, primarily because of t
 The geospatial visualisations below were produced in QGIS. The following two figures depict the aggregated counts of origins and destinations by subzone level.
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-orgnsubzone.webp" alt="Map of Singapore shaded by the number of hitch requests originating in each subzone, in five classes from 0 to 100 (red) up to 10,000 to 17,576 (dark green). A handful of subzones in the north, north-east, east and west reach the top class."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-orgnsubzone.webp" alt="Map of Singapore shaded by the number of hitch requests originating in each subzone, in five classes from 0 to 100 (red) up to 10,000 to 17,576 (dark green). A handful of subzones in the north, north-east, east and west reach the top class."/>
     <figcaption>Figure 3. Origin counts by subzone.</figcaption>
 </figure>
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-destsubzone.webp" alt="Map of Singapore shaded by the number of hitch requests ending in each subzone, in five classes from low counts to high counts."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-destsubzone.webp" alt="Map of Singapore shaded by the number of hitch requests ending in each subzone, in five classes from low counts to high counts."/>
     <figcaption>Figure 4. Destination counts by subzone.</figcaption>
 </figure>
 
@@ -50,24 +50,24 @@ From the figures above, we can see that residential districts such as the bedok 
 Alternatively, the origin and destination counts can be aggregated into a grid of 400m wide hexagon for higher granularity, as seen in the following two figures. However, in this instance, the use of centroids as placeholder locations for certain OD trips distorts visualisation using this approach, though this could be resolved through a smoothing function over hexagons belonging to the same planning area.
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-orgnhex.webp" alt="Map of Singapore in a grid of 400 m hexagons shaded by the number of hitch requests originating in each hexagon."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-orgnhex.webp" alt="Map of Singapore in a grid of 400 m hexagons shaded by the number of hitch requests originating in each hexagon."/>
     <figcaption>Figure 5. Origin counts by 400 m hexagon.</figcaption>
 </figure>
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-desthex.webp" alt="Map of Singapore in a grid of 400 m hexagons shaded by the number of hitch requests ending in each hexagon."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-desthex.webp" alt="Map of Singapore in a grid of 400 m hexagons shaded by the number of hitch requests ending in each hexagon."/>
     <figcaption>Figure 6. Destination counts by 400 m hexagon.</figcaption>
 </figure>
 
 We can also visualise the average trip distance from origin to destination. As seen below, trips that originate from the edges of Singapore such as Changi, Tuas or Woodlands have on average larger trip distane than trips originating from heartlands such as the Ang Mo Kio and Bishan region.
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-avgdistsubzone.webp" alt="Map of Singapore shaded by the average distance of hitch trips starting in each subzone, from short to long. Subzones at the edges of the island tend to have longer average trips."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-avgdistsubzone.webp" alt="Map of Singapore shaded by the average distance of hitch trips starting in each subzone, from short to long. Subzones at the edges of the island tend to have longer average trips."/>
     <figcaption>Figure 7. Average trip distance (km) from origin to destination, by subzone.</figcaption>
 </figure>
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-avgdisthex.webp" alt="Map of Singapore in a grid of 400 m hexagons shaded by the average distance of hitch trips from 0.9 to 32.8 km. Short trips (red) cluster in the central and east-central heartlands, and long trips (dark green) in the north, west and east edges."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/sg-hitch-avgdisthex.webp" alt="Map of Singapore in a grid of 400 m hexagons shaded by the average distance of hitch trips from 0.9 to 32.8 km. Short trips (red) cluster in the central and east-central heartlands, and long trips (dark green) in the north, west and east edges."/>
     <figcaption>Figure 8. Average trip distance (km) from origin to destination, by 400 m hexagon.</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ Interestingly enough, the Central Business District performs average as a trip g
 Our data was collected from a private hitch telegram supergroup through the Telegram client which allows exporting of the message history of public groups in JSON format. The message history between August 2020 to August 2021 was extracted, providing a year’s worth of data. Among the messages, hitch requests are of primary interest. Below depicts a typical hitch request.
 
 <figure>
-    <img src="../../assets/posts/2021-09-20-hitch-ridership-demand/typical-hitch-request.webp" alt="A Telegram message reading 'hitcher looking for driver', with pick up: sentosa, drop off: tanah merah, date: today, time: now, pax: 1."/>
+    <img src="/assets/posts/2021-09-20-hitch-ridership-demand/typical-hitch-request.webp" alt="A Telegram message reading 'hitcher looking for driver', with pick up: sentosa, drop off: tanah merah, date: today, time: now, pax: 1."/>
     <figcaption>Figure 9. A typical hitch request message.</figcaption>
 </figure>
 

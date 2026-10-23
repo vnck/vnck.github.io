@@ -1,8 +1,8 @@
 ---
 title: "Messages from online dating"
 date: 2020-12-16
-tags: [databodies, codespace]
 description: "Field notes from the dating site."
+tags: [databodies, codespace]
 permalink: /writings/messages-online-dating
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "Foundation models as social infrastructure"
 date: 2026-09-25
-tags: [infrastructure, ai]
 description: "An evolving process of infrastructure."
+tags: [infrastructure, ai]
 permalink: /writings/foundation-models-social-infrastructure
 ---
 

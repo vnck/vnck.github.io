@@ -12,6 +12,14 @@ interface Props {
 const { entry } = Astro.props;
 const { title, description, redirect_to: redirectUrl } = entry.data;
 const { Content, headings } = await render(entry);
+
+// Files under src/assets/ resolve to hashed URLs, so a changed file is never served stale from cache.
+const assetUrls = import.meta.glob<string>('../assets/**/*.{css,js}', { query: '?url', import: 'default', eager: true });
+const assetUrl = (name: string) => {
+  const url = assetUrls[`../assets/${name}`];
+  if (!url) throw new Error(`${entry.id}: no file at src/assets/${name}`);
+  return url;
+};
 ---
 {redirectUrl ? (
   <BaseLayout title={title} description={description} redirectUrl={redirectUrl}>
@@ -33,6 +41,8 @@ const { Content, headings } = await render(entry);
     modifiedDate={entry.data.modified_date}
     readingTime={readingTime(entry.body, entry.data.reading_time)}
     headings={headings}
+    styles={entry.data.styles.map(assetUrl)}
+    scripts={entry.data.scripts.map(assetUrl)}
   >
     <Content />
   </PostLayout>

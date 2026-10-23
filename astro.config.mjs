@@ -3,10 +3,15 @@ import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import rehypeImgAttrs from './src/plugins/rehype-img-attrs.mjs';
 import rehypeTableScroll from './src/plugins/rehype-table-scroll.mjs';
+import { redirectStubPaths } from './src/plugins/redirect-stub-urls.mjs';
+
+const redirectStubs = redirectStubPaths();
 
 export default defineConfig({
   site: 'https://vnck.xyz',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: page => !redirectStubs.has(new URL(page).pathname) })],
+  // Never inline assets as data: URIs; per-post scripts and styles must stay separate hashed files.
+  vite: { build: { assetsInlineLimit: 0 } },
   // Astro 7 defaults to 'jsx', which strips whitespace between inline elements.
   compressHTML: true,
   prefetch: {

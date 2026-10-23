@@ -1,8 +1,8 @@
 ---
 title: "Visualising the talk in Singapore's anti-vax communities"
 date: 2021-08-18
-tags: [smallworld]
 description: "Exploring Singaporean anti-vax communities through network visualisation."
+tags: [smallworld]
 image: /assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-b.webp
 permalink: /projects/visualising-singapore-anti-vax-communities
 ---
@@ -30,7 +30,7 @@ Out of the three communities, two were of similar in age and size, while the thi
 When we plot the activity of unique users over time however, we see positive growth across all three communities.
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/actors-time.webp" alt="Three line charts, one for each community, of the number of unique actors per day. All three rise over time, with a spike in late July or early August 2021: to about 57 in community A, 124 in community B and 900 in community C."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/actors-time.webp" alt="Three line charts, one for each community, of the number of unique actors per day. All three rise over time, with a spike in late July or early August 2021: to about 57 in community A, 124 in community B and 900 in community C."/>
     <figcaption>Figure 1. Number of unique actors over time, by community.</figcaption>
 </figure>
 
@@ -41,17 +41,17 @@ In a social network, each actor in the community is represented by a node. The n
 The social networks of each of the communities are thus presented.
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social-network-a.webp" alt="Network diagram of community A. Nodes are actors, coloured by cluster and sized by out-degree: a dense green cluster on the left, a blue cluster on the right and a smaller red cluster at the bottom, with actors 60, 75 and 2 the largest nodes."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social-network-a.webp" alt="Network diagram of community A. Nodes are actors, coloured by cluster and sized by out-degree: a dense green cluster on the left, a blue cluster on the right and a smaller red cluster at the bottom, with actors 60, 75 and 2 the largest nodes."/>
     <figcaption>Figure 2. Social network of community A.</figcaption>
 </figure>
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social-network-b.webp" alt="Network diagram of community B, with orange, blue and green clusters of similar size and a smaller pink cluster at the upper right. Actor 85 is the largest node, followed by 126, 92 and 65."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social-network-b.webp" alt="Network diagram of community B, with orange, blue and green clusters of similar size and a smaller pink cluster at the upper right. Actor 85 is the largest node, followed by 126, 92 and 65."/>
     <figcaption>Figure 3. Social network of community B.</figcaption>
 </figure>
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social-network-c.webp" alt="Network diagram of community C, far larger and denser than A or B, with green, orange and purple clusters and actor 597 as the largest node."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/social-network-c.webp" alt="Network diagram of community C, far larger and denser than A or B, with green, orange and purple clusters and actor 597 as the largest node."/>
     <figcaption>Figure 4. Social network of community C.</figcaption>
 </figure>
 
@@ -68,21 +68,21 @@ Would removing these active users halt misinformation within the group? For a sm
 Beyond the social structure of these communities, network visualisation can also provide insight into the conversations that happen within a community, we can use a word co-occurrence network[^cooccurrence] to visualise how words are used in relation to each other in the community. This allows us to identify key topics of conversation, revealing the diversity of topics within the community.
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-a.webp" alt="Word co-occurrence network of community A. An olive-green cluster on the left holds medical and vaccine terms, a pink cluster on the right and bottom holds everyday requests and opinions, and small blue-green clusters at the edges hold news and media terms. The largest words are 'people', 'like', 'ha' and 'one'."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-a.webp" alt="Word co-occurrence network of community A. An olive-green cluster on the left holds medical and vaccine terms, a pink cluster on the right and bottom holds everyday requests and opinions, and small blue-green clusters at the edges hold news and media terms. The largest words are 'people', 'like', 'ha' and 'one'."/>
     <figcaption>Figure 5. Word co-occurrence network of community A.</figcaption>
 </figure>
 
 Within community A, three clusters can be observed, though it appears no particular keyword anchors the conversation of the community. The green cluster pertains to medical information such as information on vaccines and the covid virus. A pink cluster reveals community actions, including asking for advice, personal opinions, and informal requests. A third cluster in blue pertains to the news and media, a staple source of information for these communities.
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-b.webp" alt="Word co-occurrence network of community B in three distinct clusters: yellow at the top (food, ingredients and home remedies), green at the bottom (vaccines, cases and reports) and pink at the sides (symptoms and reactions). The largest words are 'ha', 'people', 'get' and 'one'."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-b.webp" alt="Word co-occurrence network of community B in three distinct clusters: yellow at the top (food, ingredients and home remedies), green at the bottom (vaccines, cases and reports) and pink at the sides (symptoms and reactions). The largest words are 'ha', 'people', 'get' and 'one'."/>
     <figcaption>Figure 6. Word co-occurrence network of community B.</figcaption>
 </figure>
 
 Community B exhibits more visibly distinct clustering. A green cluster pertains to information on vaccines and the pandemic, such as death counts, vaccination reports, and case updates. The yellow cluster is particularly unique to this community, pertaining to alternative medicine and home remedies, evidenced by the names of organic ingredients and household chemicals. The pink cluster, on the other hand, relates to symptoms and negative reactions from vaccines. It becomes clear that community B has a specific interest in alternative remedies and distrust and anxiety over side-effects and potential harm from the vaccine.
 
 <figure>
-    <img src="../../assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-c.webp" alt="Word co-occurrence network of community C, with orange, green and blue words blended into one mass instead of separate clusters. The larger words include 'covid', 'jab', 'people' and 'one'."/>
+    <img src="/assets/posts/2021-08-18-visualising-sg-anti-vax-communities/word-network-c.webp" alt="Word co-occurrence network of community C, with orange, green and blue words blended into one mass instead of separate clusters. The larger words include 'covid', 'jab', 'people' and 'one'."/>
     <figcaption>Figure 7. Word co-occurrence network of community C.</figcaption>
 </figure>
 

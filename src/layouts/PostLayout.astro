@@ -13,9 +13,11 @@ interface Props {
   readingTime: number;
   headings?: { depth: number; slug: string; text: string }[];
   collection?: 'writings' | 'projects';
+  styles?: string[];
+  scripts?: string[];
 }
 
-const { title, date, tags = [], description, image, modifiedDate, readingTime, headings = [], collection } = Astro.props;
+const { title, date, tags = [], description, image, modifiedDate, readingTime, headings = [], collection, styles = [], scripts = [] } = Astro.props;
 const tocHeadings = headings.filter(h => (h.depth === 2 || h.depth === 3) && h.slug !== 'footnote-label');
 const showToc = tocHeadings.length >= 3;
 
@@ -36,6 +38,8 @@ const jsonLd = JSON.stringify({
 <BaseLayout title={title} description={description} image={image} ogType="article">
   <Fragment slot="head-extra">
     <script type="application/ld+json" set:html={jsonLd} />
+    {styles.map(href => <link rel="stylesheet" href={href} />)}
+    {scripts.map(src => <script src={src} defer></script>)}
   </Fragment>
 
   <article class="post h-entry" data-collection={collection} itemscope itemtype="http://schema.org/BlogPosting">
