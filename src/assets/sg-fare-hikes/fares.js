@@ -20,6 +20,8 @@
     core: { 2015: 84.612, 2016: 85.377, 2017: 86.618, 2018: 88.077, 2019: 88.997, 2020: 88.872, 2021: 89.71, 2022: 93.418, 2023: 97.316, 2024: 100, 2025: 100.707, 2026: 102.064 },
     fare: { 2015: 85.614, 2016: 84.834, 2017: 81.302, 2018: 79.573, 2019: 83.075, 2020: 88.858, 2021: 88.887, 2022: 90.823, 2023: 93.592, 2024: 100, 2025: 106.004 },
   };
+  // Average monthly earnings, all employees, nominal dollars (MOM, annual national average).
+  const WAGES = { 2015: 4892, 2016: 5074, 2017: 5229, 2018: 5410, 2019: 5549, 2020: 5629, 2021: 5832, 2022: 6227, 2023: 6555, 2024: 6908 };
   const REF_KM = 10.2; // the reference journey for the chart: the middle of the fare table
 
   // ---------- fare model ----------
@@ -41,7 +43,7 @@
   const SPEED = 17;            // km/h door to door, walking and waiting included
   const SOCIAL_TRIPS = 12;     // round trips a month, 30 minutes each way
   const SMRT_RATE = 0.05, SMRT_CAP = 50; // 5% back, capped at $600 a year, once $500 a month is spent on the card
-  const DAYS = { 3: 13, 5: 22 };
+  const DAYS = { 3: 11, 5: 19 };
 
   function monthly(officeDays, commuteMin, after) {
     const fare = km => fareAfter(after ? 2026 : 2025, Math.min(km, 60)) / 100;
@@ -213,16 +215,18 @@
       points: yrs.filter(y => y <= 2026).map(y => [y, rebase(CPI.all, y), y === 2026]) };
     const core = { key: 'core', label: 'MAS core CPI', short: 'Core CPI', color: 'var(--rule-strong)', width: 1.5,
       points: yrs.filter(y => y <= 2026).map(y => [y, rebase(CPI.core, y), y === 2026]) };
+    const wages = { key: 'wages', label: 'Average monthly earnings', short: 'Earnings', color: 'var(--s2)', width: 2,
+      points: yrs.filter(y => y <= 2024).map(y => [y, rebase(WAGES, y), false]) };
     const g = (s, y) => { const p = s.points.find(q => q[0] === y); return p ? p[1].toFixed(1) : '–'; };
     root.replaceChildren();
-    h('p', 'fv-title', 'Fares lagged prices until 2019, then pulled ahead', root);
-    h('p', 'fv-sub', 'Bus and train fares against consumer prices, normalised to 2015', root);
+    h('p', 'fv-title', 'Earnings outran fares and prices; fares pulled ahead of prices after 2019', root);
+    h('p', 'fv-sub', 'Bus and train fares against consumer prices and average earnings, normalised to 2015', root);
     lineChart(h('div', null, null, root), {
       xLabel: 'Year', yLabel: 'Index (2015 = 100)',
-      series: [fares, all, core], hline: { y: 100, label: '2015 = 100' },
+      series: [fares, all, core, wages], hline: { y: 100, label: '2015 = 100' },
       xFull: v => v === 2026 ? '2026 (fare table; CPI to August)' : v === 2027 ? '2027 (announced fares)' : String(v),
-      aria: 'Index chart, 2015 = 100, of bus and train fares against consumer prices, 2015 to 2027.',
-      table: { headers: ['Year', 'Fares', 'All items', 'Core'], rows: yrs.map(y => [String(y), g(fares, y), g(all, y), g(core, y)]) },
+      aria: 'Index chart, 2015 = 100, of bus and train fares against consumer prices and average monthly earnings, 2015 to 2027.',
+      table: { headers: ['Year', 'Fares', 'All items', 'Core', 'Earnings'], rows: yrs.map(y => [String(y), g(fares, y), g(all, y), g(core, y), g(wages, y)]) },
     });
   }
 
@@ -236,9 +240,8 @@
     });
   }
 
-  // ---------- chart: monthly cost against the number of trips a week ----------
+  // ---------- chart: cost of 30 days against the number of trips a month ----------
   function chartVolume(root) {
-    const WEEKS = 30 / 7; // the pass covers 30 days
     const st = { min: 60, after: false };
     const title = h('p', 'fv-title', '', root);
     const sub = h('p', 'fv-sub', '', root);
@@ -246,24 +249,24 @@
     const out = h('div', null, null, root);
     toggle(controls, 'Trip length', [[30, '30 minutes'], [60, '1 hour']], st.min, v => { st.min = v; render(); });
     toggle(controls, 'Fares', [[false, 'Today'], [true, 'From 26 Dec 2026']], st.after, v => { st.after = v; render(); });
-    const weekly = []; for (let x = 0; x <= 24; x += 0.5) weekly.push(x);
+    const counts = []; for (let x = 0; x <= 100; x += 1) counts.push(x);
     const render = () => {
       const fare = fareAfter(st.after ? 2026 : 2025, st.min / 60 * SPEED) / 100;
-      const cost = x => x * WEEKS * fare;
-      const perTrip = { key: 'n', label: 'Pay per trip', short: 'Pay per trip', color: 'var(--s1)', width: 2.5, points: weekly.map(x => [x, cost(x), false]) };
-      const pass = { key: 'p', label: 'Monthly pass', short: 'Pass', color: 'var(--s2)', width: 2.5, points: weekly.map(x => [x, PASS, false]) };
-      const even = PASS / (fare * WEEKS);
-      title.textContent = `At ${money(fare)} a trip the pass pays from about ${Math.round(even)} trips a week`;
+      const cost = x => x * fare;
+      const perTrip = { key: 'n', label: 'Pay per trip', short: 'Pay per trip', color: 'var(--s1)', width: 2.5, points: counts.map(x => [x, cost(x), false]) };
+      const pass = { key: 'p', label: 'Monthly pass', short: 'Pass', color: 'var(--s2)', width: 2.5, points: counts.map(x => [x, PASS, false]) };
+      const even = PASS / fare;
+      title.textContent = `At ${money(fare)} a trip the pass pays from about ${Math.round(even)} trips a month`;
       sub.textContent = `Cost of 30 days of ${st.min === 60 ? '1-hour' : '30-minute'} trips, paid per trip or with the pass`;
-      const w3 = monthly(3, st.min, st.after).trips / WEEKS, w5 = monthly(5, st.min, st.after).trips / WEEKS;
+      const w3 = monthly(3, st.min, st.after).trips, w5 = monthly(5, st.min, st.after).trips;
       lineChart(out, {
         series: [perTrip, pass], marginR: 84,
-        notes: [{ x: even, y: PASS, text: even.toFixed(1) + ' trips', color: 'var(--s1)', dx: -9, dy: -9, anchor: 'end' }],
+        notes: [{ x: even, y: PASS, text: Math.round(even) + ' trips', color: 'var(--s1)', dx: -9, dy: -9, anchor: 'end' }],
         vlines: [{ x: w3, label: `3-day week: ${Math.round(w3)}`, short: `3 days: ${Math.round(w3)}` }, { x: w5, label: `5-day week: ${Math.round(w5)}`, short: `5 days: ${Math.round(w5)}` }],
-        xLabel: 'Trips a week', yLabel: 'Cost per 30 days ($)', xTicks: [0, 4, 8, 12, 16, 20, 24], yRange: [0, 240],
-        yFmt: v => '$' + Math.round(v), valFmt: money, xFull: v => v + ' trips a week',
-        aria: `Cost per 30 days against trips a week for ${st.min}-minute trips. The pass costs a flat ${money(PASS)} and overtakes paying per trip at ${even.toFixed(1)} trips a week.`,
-        table: { headers: ['Trips a week', 'Pay per trip', 'Pass'], rows: weekly.filter(x => x % 4 === 0).map(x => [String(x), money(cost(x)), money(PASS)]) },
+        xLabel: 'Trips a month', yLabel: 'Cost per 30 days ($)', xTicks: [0, 20, 40, 60, 80, 100], yRange: [0, 240],
+        yFmt: v => '$' + Math.round(v), valFmt: money, xFull: v => v + ' trips a month',
+        aria: `Cost per 30 days against trips a month for ${st.min}-minute trips. The pass costs a flat ${money(PASS)} and overtakes paying per trip at ${Math.round(even)} trips a month.`,
+        table: { headers: ['Trips a month', 'Pay per trip', 'Pass'], rows: counts.filter(x => x % 20 === 0).map(x => [String(x), money(cost(x)), money(PASS)]) },
       });
     };
     render();
@@ -276,7 +279,7 @@
     2019: { comp: [['Core inflation', 0.9, '1.7% × 0.5'], ['Wages', 1.4, '3.5% × 0.4'], ['Energy costs', 3.2, '32.3% × 0.1'], ['Capacity', 1.6, 'allowance for network capacity'], ['Productivity', -0.1, 'productivity discount']], prior: 0, formula: 7.0, granted: 7.0 },
     2020: { comp: null, prior: 0, formula: 4.4, granted: 0.0 },
     2021: { comp: null, prior: 4.4, formula: -2.2, granted: 2.2 },
-    2022: { comp: null, prior: 0, formula: 13.5, granted: 2.9 },
+    2022: { comp: [['Core inflation', 0.5, '0.9% × 0.5'], ['Wages', 1.4, '3.6% × 0.4'], ['Energy costs', 11.7, '117% × 0.1'], ['Capacity', 0, 'excluded from the 2022 computation'], ['Productivity', -0.1, 'productivity discount']], prior: 0, formula: 13.5, granted: 2.9 },
     2023: { comp: [['Core inflation', 2.1, '4.1% × 0.5'], ['Wages', 2.7, '6.7% × 0.4'], ['Energy costs', 6.2, '62.3% × 0.1'], ['Capacity', 1.1, 'allowance for network capacity'], ['Productivity', -0.1, 'productivity discount']], prior: 10.6, formula: 12.0, granted: 7.0 },
     2024: { comp: null, prior: 15.6, formula: 3.3, granted: 6.0 },
     2025: { comp: null, prior: 12.9, formula: 1.5, granted: 5.0 },
@@ -294,7 +297,7 @@
       const F = FORMULA[st.year], ceiling = F.formula + F.prior, left = ceiling - F.granted;
       const rows = []; let cum = 0;
       if (F.comp) F.comp.forEach(([label, v, note]) => { rows.push({ label, start: v < 0 ? cum + v : cum, end: v < 0 ? cum : cum + v, v, note, kind: 'input' }); cum += v; });
-      rows.push({ label: 'Formula result', start: Math.min(0, F.formula), end: Math.max(0, F.formula), v: F.formula, note: F.comp ? 'sum of the steps above' : st.year === 2022 ? 'inferred: equals the ceiling, as nothing was deferred into 2022' : 'components not available', kind: 'total' });
+      rows.push({ label: 'Formula result', start: Math.min(0, F.formula), end: Math.max(0, F.formula), v: F.formula, note: F.comp ? 'sum of the steps above' : 'components not available', kind: 'total' });
       if (F.prior > 0) rows.push({ label: 'Deferred earlier', start: F.formula, end: ceiling, v: F.prior, note: 'increases postponed from earlier reviews', kind: 'deferred' });
       rows.push({ label: 'Ceiling', start: 0, end: ceiling, v: ceiling, note: 'the most the council could allow', kind: 'total' });
       rows.push({ label: 'Granted', start: 0, end: F.granted, v: F.granted, note: 'the increase the council approved', kind: 'granted' });
